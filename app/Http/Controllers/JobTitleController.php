@@ -65,7 +65,7 @@ class JobTitleController extends Controller
     public function update($id, JobTitleRequest $request)
     {
         $this->jobTitleService->updateJobTitle($id, $request->all());
-        return redirect()->route("jobTitle.show", [$id])->with('success', 'Update success!');;
+        return redirect()->route("jobTitle.show", [$id])->with('success', 'Update success!');
     }
 
     public function importView()
