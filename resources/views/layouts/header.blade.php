@@ -722,10 +722,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="../main/authentication-login.html"
+                                        <a href="{{ route('logout') }}"
                                            class="btn btn-outline-primary"
-                                        >Log Out</a
-                                        >
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+                                        >Log Out</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                        </form>
                                     </div>
                                 </div>
 
