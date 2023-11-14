@@ -51,7 +51,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-chat.svg')}}"
+                                                                src="{{ asset('assets/images/svgs/icon-dd-chat.svg') }}"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -73,7 +73,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-invoice.svg')}}"
+                                                                src="{{ asset('assets/images/svgs/icon-dd-invoice.svg') }}"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -93,7 +93,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-mobile.svg')}}"
+                                                                src="{{ asset('assets/images/svgs/icon-dd-mobile.svg') }}"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -115,7 +115,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-message-box.svg')}}"
+                                                                src="{{ asset('assets/images/svgs/icon-dd-message-box.svg') }}"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -139,7 +139,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-cart.svg')}}"
+                                                                src="/assets/images/svgs/icon-dd-cart.svg"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -161,7 +161,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-date.svg')}}"
+                                                                src="/assets/images/svgs/icon-dd-date.svg"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -183,7 +183,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-lifebuoy.svg')}}"
+                                                                src="/assets/images/svgs/icon-dd-lifebuoy.svg"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -205,7 +205,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-application.svg')}}"
+                                                                src="/assets/images/svgs/icon-dd-application.svg"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -244,7 +244,8 @@
                                     <h5 class="fs-5 mb-9 fw-semibold">Quick Links</h5>
                                     <ul class="">
                                         <li class="mb-3">
-                                            <a class="fw-semibold bg-hover-primary" href="../main/page-pricing.html"
+                                            <a class="fw-semibold bg-hover-primary"
+                                               href="../main/page-pricing.html"
                                             >Pricing Page</a
                                             >
                                         </li>
@@ -270,7 +271,8 @@
                                             >
                                         </li>
                                         <li class="mb-3">
-                                            <a class="fw-semibold bg-hover-primary" href="../main/app-notes.html"
+                                            <a class="fw-semibold bg-hover-primary"
+                                               href="../main/app-notes.html"
                                             >Notes App</a
                                             >
                                         </li>
@@ -310,7 +312,7 @@
             </ul>
 
             <div class="d-block d-lg-none">
-                <img src="{{ Vite::asset('resources/images/logos/dark-logo.svg')}}" width="180" alt="" />
+                <img src="/assets/images/logos/dark-logo.svg" width="180" alt=""/>
             </div>
             <a
                 class="navbar-toggler nav-icon-hover p-0 border-0"
@@ -352,7 +354,7 @@
                                 aria-expanded="false"
                             >
                                 <img
-                                    src="{{ Vite::asset('resources/images/svgs/icon-flag-en.svg')}}"
+                                    src="/assets/images/svgs/icon-flag-en.svg"
                                     alt=""
                                     width="20px"
                                     height="20px"
@@ -370,7 +372,7 @@
                                     >
                                         <div class="position-relative">
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-flag-en.svg')}}"
+                                                src="/assets/images/svgs/icon-flag-en.svg"
                                                 alt=""
                                                 width="20px"
                                                 height="20px"
@@ -385,7 +387,7 @@
                                     >
                                         <div class="position-relative">
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-flag-cn.svg')}}"
+                                                src="/assets/images/svgs/icon-flag-cn.svg"
                                                 alt=""
                                                 width="20px"
                                                 height="20px"
@@ -400,7 +402,7 @@
                                     >
                                         <div class="position-relative">
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-flag-fr.svg')}}"
+                                                src="/assets/images/svgs/icon-flag-fr.svg"
                                                 alt=""
                                                 width="20px"
                                                 height="20px"
@@ -415,7 +417,7 @@
                                     >
                                         <div class="position-relative">
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-flag-sa.svg')}}"
+                                                src="/assets/images/svgs/icon-flag-sa.svg"
                                                 alt=""
                                                 width="20px"
                                                 height="20px"
@@ -479,7 +481,7 @@
                                     >
     <span class="me-3">
       <img
-          src="{{ Vite::asset('resources/images/profile/user-1.jpg')}}"
+          src="/assets/images/profile/user-1.jpg"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -488,7 +490,8 @@
     </span>
                                         <div class="w-75 d-inline-block v-middle">
                                             <h6 class="mb-1 fw-semibold lh-base">Roman Joined the Team!</h6>
-                                            <span class="fs-2 d-block text-body-secondary">Congratulate him</span>
+                                            <span
+                                                class="fs-2 d-block text-body-secondary">Congratulate him</span>
                                         </div>
                                     </a>
                                     <a
@@ -497,7 +500,7 @@
                                     >
     <span class="me-3">
       <img
-          src="{{ Vite::asset('resources/images/profile/user-2.jpg')}}"
+          src="/assets/images/profile/user-2.jpg"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -515,7 +518,7 @@
                                     >
     <span class="me-3">
       <img
-          src="{{ Vite::asset('resources/images/profile/user-3.jpg')}}"
+          src="/assets/images/profile/user-3.jpg"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -524,7 +527,8 @@
     </span>
                                         <div class="w-75 d-inline-block v-middle">
                                             <h6 class="mb-1 fw-semibold lh-base">Bianca sent payment</h6>
-                                            <span class="fs-2 d-block text-body-secondary">Check your earnings</span>
+                                            <span
+                                                class="fs-2 d-block text-body-secondary">Check your earnings</span>
                                         </div>
                                     </a>
                                     <a
@@ -533,7 +537,7 @@
                                     >
     <span class="me-3">
       <img
-          src="{{ Vite::asset('resources/images/profile/user-4.jpg')}}"
+          src="/assets/images/profile/user-4.jpg"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -542,7 +546,8 @@
     </span>
                                         <div class="w-75 d-inline-block v-middle">
                                             <h6 class="mb-1 fw-semibold lh-base">Jolly completed tasks</h6>
-                                            <span class="fs-2 d-block text-body-secondary">Assign her new tasks</span>
+                                            <span
+                                                class="fs-2 d-block text-body-secondary">Assign her new tasks</span>
                                         </div>
                                     </a>
                                     <a
@@ -551,7 +556,7 @@
                                     >
     <span class="me-3">
       <img
-          src="{{ Vite::asset('resources/images/profile/user-5.jpg')}}"
+          src="/assets/images/profile/user-5.jpg"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -569,7 +574,7 @@
                                     >
     <span class="me-3">
       <img
-          src="{{ Vite::asset('resources/images/profile/user-1.jpg')}}"
+          src="/assets/images/profile/user-1.jpg"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -578,7 +583,8 @@
     </span>
                                         <div class="w-75 d-inline-block v-middle">
                                             <h6 class="mb-1 fw-semibold lh-base">Roman Joined the Team!</h6>
-                                            <span class="fs-2 d-block text-body-secondary">Congratulate him</span>
+                                            <span
+                                                class="fs-2 d-block text-body-secondary">Congratulate him</span>
                                         </div>
                                     </a>
                                 </div>
@@ -606,7 +612,7 @@
                                 <div class="d-flex align-items-center">
                                     <div class="user-profile-img">
                                         <img
-                                            src="{{ Vite::asset('resources/images/profile/user-1.jpg')}}"
+                                            src="/assets/images/profile/user-1.jpg"
                                             class="rounded-circle"
                                             width="35"
                                             height="35"
@@ -625,7 +631,7 @@
                                     </div>
                                     <div class="d-flex align-items-center py-9 mx-7 border-bottom">
                                         <img
-                                            src="{{ Vite::asset('resources/images/profile/user-1.jpg')}}"
+                                            src="/assets/images/profile/user-1.jpg"
                                             class="rounded-circle"
                                             width="80"
                                             height="80"
@@ -648,7 +654,7 @@
           class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6"
       >
         <img
-            src="{{ Vite::asset('resources/images/svgs/icon-account.svg')}}"
+            src="/assets/images/svgs/icon-account.svg"
             alt=""
             width="24"
             height="24"
@@ -656,15 +662,17 @@
       </span>
                                             <div class="w-75 d-inline-block v-middle ps-3">
                                                 <h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>
-                                                <span class="fs-2 d-block text-body-secondary">Account Settings</span>
+                                                <span
+                                                    class="fs-2 d-block text-body-secondary">Account Settings</span>
                                             </div>
                                         </a>
-                                        <a href="../main/app-email.html" class="py-8 px-7 d-flex align-items-center">
+                                        <a href="../main/app-email.html"
+                                           class="py-8 px-7 d-flex align-items-center">
       <span
           class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6"
       >
         <img
-            src="{{ Vite::asset('resources/images/svgs/icon-inbox.svg')}}"
+            src="/assets/images/svgs/icon-inbox.svg"
             alt=""
             width="24"
             height="24"
@@ -672,15 +680,17 @@
       </span>
                                             <div class="w-75 d-inline-block v-middle ps-3">
                                                 <h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>
-                                                <span class="fs-2 d-block text-body-secondary">Messages & Emails</span>
+                                                <span
+                                                    class="fs-2 d-block text-body-secondary">Messages & Emails</span>
                                             </div>
                                         </a>
-                                        <a href="../main/app-notes.html" class="py-8 px-7 d-flex align-items-center">
+                                        <a href="../main/app-notes.html"
+                                           class="py-8 px-7 d-flex align-items-center">
       <span
           class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6"
       >
         <img
-            src="{{ Vite::asset('resources/images/svgs/icon-tasks.svg')}}"
+            src="/assets/images/svgs/icon-tasks.svg"
             alt=""
             width="24"
             height="24"
@@ -704,7 +714,7 @@
                                                 <div class="col-6">
                                                     <div class="m-n4 unlimited-img">
                                                         <img
-                                                            src="{{ Vite::asset('resources/images/backgrounds/unlimited-bg.png')}}"
+                                                            src="/assets/images/backgrounds/unlimited-bg.png"
                                                             alt=""
                                                             class="w-100"
                                                         />
@@ -712,7 +722,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="../main/authentication-login.html" class="btn btn-outline-primary"
+                                        <a href="../main/authentication-login.html"
+                                           class="btn btn-outline-primary"
                                         >Log Out</a
                                         >
                                     </div>
@@ -744,7 +755,7 @@
         >
             <nav class="sidebar-nav scroll-sidebar">
                 <div class="offcanvas-header justify-content-between">
-                    <img src="{{ Vite::asset('resources/images/logos/favicon.ico')}}" alt="" class="img-fluid" />
+                    <img src="/assets/images/logos/favicon.ico" alt="" class="img-fluid"/>
                     <button
                         type="button"
                         class="btn-close"
@@ -776,7 +787,7 @@
                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                         >
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-chat.svg')}}"
+                                                src="/assets/images/svgs/icon-dd-chat.svg"
                                                 alt=""
                                                 class="img-fluid"
                                                 width="24"
@@ -797,7 +808,7 @@
                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                         >
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-invoice.svg')}}"
+                                                src="/assets/images/svgs/icon-dd-invoice.svg"
                                                 alt=""
                                                 class="img-fluid"
                                                 width="24"
@@ -818,7 +829,7 @@
                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                         >
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-mobile.svg')}}"
+                                                src="/assets/images/svgs/icon-dd-mobile.svg"
                                                 alt=""
                                                 class="img-fluid"
                                                 width="24"
@@ -839,7 +850,7 @@
                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                         >
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-message-box.svg')}}"
+                                                src="/assets/images/svgs/icon-dd-message-box.svg"
                                                 alt=""
                                                 class="img-fluid"
                                                 width="24"
@@ -860,7 +871,7 @@
                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                         >
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-cart.svg')}}"
+                                                src="/assets/images/svgs/icon-dd-cart.svg"
                                                 alt=""
                                                 class="img-fluid"
                                                 width="24"
@@ -881,7 +892,7 @@
                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                         >
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-date.svg')}}"
+                                                src="/assets/images/svgs/icon-dd-date.svg"
                                                 alt=""
                                                 class="img-fluid"
                                                 width="24"
@@ -902,7 +913,7 @@
                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                         >
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-lifebuoy.svg')}}"
+                                                src="/assets/images/svgs/icon-dd-lifebuoy.svg"
                                                 alt=""
                                                 class="img-fluid"
                                                 width="24"
@@ -923,7 +934,7 @@
                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                         >
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-application.svg')}}"
+                                                src="/assets/images/svgs/icon-dd-application.svg"
                                                 alt=""
                                                 class="img-fluid"
                                                 width="24"
@@ -943,27 +954,34 @@
                                         <h5 class="fs-5 fw-semibold">Quick Links</h5>
                                     </li>
                                     <li class="sidebar-item py-2">
-                                        <a class="fw-semibold text-dark" href="../main/page-pricing.html">Pricing Page</a>
+                                        <a class="fw-semibold text-dark" href="../main/page-pricing.html">Pricing
+                                            Page</a>
                                     </li>
                                     <li class="sidebar-item py-2">
-                                        <a class="fw-semibold text-dark" href="../main/authentication-login.html"
+                                        <a class="fw-semibold text-dark"
+                                           href="../main/authentication-login.html"
                                         >Authentication Design</a
                                         >
                                     </li>
                                     <li class="sidebar-item py-2">
-                                        <a class="fw-semibold text-dark" href="../main/authentication-register.html">Register Now</a>
+                                        <a class="fw-semibold text-dark"
+                                           href="../main/authentication-register.html">Register Now</a>
                                     </li>
                                     <li class="sidebar-item py-2">
-                                        <a class="fw-semibold text-dark" href="../main/authentication-error.html">404 Error Page</a>
+                                        <a class="fw-semibold text-dark"
+                                           href="../main/authentication-error.html">404 Error Page</a>
                                     </li>
                                     <li class="sidebar-item py-2">
-                                        <a class="fw-semibold text-dark" href="../main/app-notes.html">Notes App</a>
+                                        <a class="fw-semibold text-dark" href="../main/app-notes.html">Notes
+                                            App</a>
                                     </li>
                                     <li class="sidebar-item py-2">
-                                        <a class="fw-semibold text-dark" href="../main/page-user-profile.html">User Application</a>
+                                        <a class="fw-semibold text-dark" href="../main/page-user-profile.html">User
+                                            Application</a>
                                     </li>
                                     <li class="sidebar-item py-2">
-                                        <a class="fw-semibold text-dark" href="../main/page-account-settings.html">Account Settings</a>
+                                        <a class="fw-semibold text-dark"
+                                           href="../main/page-account-settings.html">Account Settings</a>
                                     </li>
                                 </ul>
                             </ul>
@@ -1017,13 +1035,13 @@
                 <li class="nav-item d-none d-xl-block">
                     <a href="../main/index.html" class="text-nowrap nav-link">
                         <img
-                            src="{{ Vite::asset('resources/images/logos/dark-logo.svg')}}"
+                            src="/assets/images/logos/dark-logo.svg"
                             class="dark-logo"
                             width="180"
                             alt=""
                         />
                         <img
-                            src="{{ Vite::asset('resources/images/logos/light-logo.svg')}}"
+                            src="/assets/images/logos/light-logo.svg"
                             class="light-logo"
                             width="180"
                             alt=""
@@ -1067,7 +1085,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-chat.svg')}}"
+                                                                src="/assets/images/svgs/icon-dd-chat.svg"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -1089,7 +1107,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-invoice.svg')}}"
+                                                                src="/assets/images/svgs/icon-dd-invoice.svg"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -1109,7 +1127,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-mobile.svg')}}"
+                                                                src="/assets/images/svgs/icon-dd-mobile.svg"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -1131,7 +1149,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-message-box.svg')}}"
+                                                                src="/assets/images/svgs/icon-dd-message-box.svg"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -1155,7 +1173,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-cart.svg')}}"
+                                                                src="/assets/images/svgs/icon-dd-cart.svg"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -1177,7 +1195,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-date.svg')}}"
+                                                                src="/assets/images/svgs/icon-dd-date.svg"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -1199,7 +1217,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-lifebuoy.svg')}}"
+                                                                src="/assets/images/svgs/icon-dd-lifebuoy.svg"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -1221,7 +1239,7 @@
                                                             class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center"
                                                         >
                                                             <img
-                                                                src="{{ Vite::asset('resources/images/svgs/icon-dd-application.svg')}}"
+                                                                src="/assets/images/svgs/icon-dd-application.svg"
                                                                 alt=""
                                                                 class="img-fluid"
                                                                 width="24"
@@ -1260,7 +1278,8 @@
                                     <h5 class="fs-5 mb-9 fw-semibold">Quick Links</h5>
                                     <ul class="">
                                         <li class="mb-3">
-                                            <a class="fw-semibold bg-hover-primary" href="../main/page-pricing.html"
+                                            <a class="fw-semibold bg-hover-primary"
+                                               href="../main/page-pricing.html"
                                             >Pricing Page</a
                                             >
                                         </li>
@@ -1286,7 +1305,8 @@
                                             >
                                         </li>
                                         <li class="mb-3">
-                                            <a class="fw-semibold bg-hover-primary" href="../main/app-notes.html"
+                                            <a class="fw-semibold bg-hover-primary"
+                                               href="../main/app-notes.html"
                                             >Notes App</a
                                             >
                                         </li>
@@ -1326,7 +1346,7 @@
             </ul>
             <div class="d-block d-xl-none">
                 <a href="../main/index.html" class="text-nowrap nav-link">
-                    <img src="{{ Vite::asset('resources/images/logos/dark-logo.svg')}}" width="180" alt="" />
+                    <img src="{{ asset('assets/images/logos/dark-logo.svg') }}" width="180" alt=""/>
                 </a>
             </div>
             <a
@@ -1369,7 +1389,7 @@
                                 aria-expanded="false"
                             >
                                 <img
-                                    src="{{ Vite::asset('resources/images/svgs/icon-flag-en.svg')}}"
+                                    src="{{ asset('assets/images/svgs/icon-flag-en.svg') }}"
                                     alt=""
                                     width="20px"
                                     height="20px"
@@ -1387,7 +1407,7 @@
                                     >
                                         <div class="position-relative">
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-flag-en.svg')}}"
+                                                src="{{ asset('assets/images/svgs/icon-flag-en.svg') }}"
                                                 alt=""
                                                 width="20px"
                                                 height="20px"
@@ -1402,7 +1422,7 @@
                                     >
                                         <div class="position-relative">
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-flag-cn.svg')}}"
+                                                src="{{ asset('assets/images/svgs/icon-flag-cn.svg') }}"
                                                 alt=""
                                                 width="20px"
                                                 height="20px"
@@ -1417,7 +1437,7 @@
                                     >
                                         <div class="position-relative">
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-flag-fr.svg')}}"
+                                                src="{{ asset('assets/images/svgs/icon-flag-fr.svg') }}"
                                                 alt=""
                                                 width="20px"
                                                 height="20px"
@@ -1432,7 +1452,7 @@
                                     >
                                         <div class="position-relative">
                                             <img
-                                                src="{{ Vite::asset('resources/images/svgs/icon-flag-sa.svg')}}"
+                                                src="{{ asset('assets/images/svgs/icon-flag-sa.svg') }}"
                                                 alt=""
                                                 width="20px"
                                                 height="20px"
@@ -1496,7 +1516,7 @@
                                     >
     <span class="me-3">
       <img
-          src="{{ Vite::asset('resources/images/profile/user-1.jpg')}}"
+          src="{{ asset('assets/images/profile/user-1.jpg') }}"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -1505,7 +1525,8 @@
     </span>
                                         <div class="w-75 d-inline-block v-middle">
                                             <h6 class="mb-1 fw-semibold lh-base">Roman Joined the Team!</h6>
-                                            <span class="fs-2 d-block text-body-secondary">Congratulate him</span>
+                                            <span
+                                                class="fs-2 d-block text-body-secondary">Congratulate him</span>
                                         </div>
                                     </a>
                                     <a
@@ -1514,7 +1535,7 @@
                                     >
     <span class="me-3">
       <img
-          src="{{ Vite::asset('resources/images/profile/user-2.jpg')}}"
+          src="{{ asset('assets/images/profile/user-2.jpg') }}"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -1532,7 +1553,7 @@
                                     >
     <span class="me-3">
       <img
-          src="{{ Vite::asset('resources/images/profile/user-3.jpg')}}"
+          src="{{ asset('assets/images/profile/user-3.jpg') }}"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -1541,7 +1562,8 @@
     </span>
                                         <div class="w-75 d-inline-block v-middle">
                                             <h6 class="mb-1 fw-semibold lh-base">Bianca sent payment</h6>
-                                            <span class="fs-2 d-block text-body-secondary">Check your earnings</span>
+                                            <span
+                                                class="fs-2 d-block text-body-secondary">Check your earnings</span>
                                         </div>
                                     </a>
                                     <a
@@ -1550,7 +1572,7 @@
                                     >
     <span class="me-3">
       <img
-          src="{{ Vite::asset('resources/images/profile/user-4.jpg')}}"
+          src="{{ asset('assets/images/profile/user-4.jpg') }}"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -1559,7 +1581,8 @@
     </span>
                                         <div class="w-75 d-inline-block v-middle">
                                             <h6 class="mb-1 fw-semibold lh-base">Jolly completed tasks</h6>
-                                            <span class="fs-2 d-block text-body-secondary">Assign her new tasks</span>
+                                            <span
+                                                class="fs-2 d-block text-body-secondary">Assign her new tasks</span>
                                         </div>
                                     </a>
                                     <a
@@ -1568,7 +1591,7 @@
                                     >
     <span class="me-3">
       <img
-          src="{{ Vite::asset('resources/images/profile/user-5.jpg')}}"
+          src="{{ asset('assets/images/profile/user-5.jpg') }}"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -1586,7 +1609,7 @@
                                     >
     <span class="me-3">
       <img
-          src="{{ Vite::asset('resources/images/profile/user-1.jpg')}}"
+          src="{{ asset('assets/images/profile/user-1.jpg') }}"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -1595,7 +1618,8 @@
     </span>
                                         <div class="w-75 d-inline-block v-middle">
                                             <h6 class="mb-1 fw-semibold lh-base">Roman Joined the Team!</h6>
-                                            <span class="fs-2 d-block text-body-secondary">Congratulate him</span>
+                                            <span
+                                                class="fs-2 d-block text-body-secondary">Congratulate him</span>
                                         </div>
                                     </a>
                                 </div>
@@ -1623,7 +1647,7 @@
                                 <div class="d-flex align-items-center">
                                     <div class="user-profile-img">
                                         <img
-                                            src="{{ Vite::asset('resources/images/profile/user-1.jpg')}}"
+                                            src="{{ asset('assets/images/profile/user-1.jpg') }}"
                                             class="rounded-circle"
                                             width="35"
                                             height="35"
@@ -1642,7 +1666,7 @@
                                     </div>
                                     <div class="d-flex align-items-center py-9 mx-7 border-bottom">
                                         <img
-                                            src="{{ Vite::asset('resources/images/profile/user-1.jpg')}}"
+                                            src="{{ asset('assets/images/profile/user-1.jpg') }}"
                                             class="rounded-circle"
                                             width="80"
                                             height="80"
@@ -1665,7 +1689,7 @@
           class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6"
       >
         <img
-            src="{{ Vite::asset('resources/images/svgs/icon-account.svg')}}"
+            src="{{ asset('assets/images/svgs/icon-account.svg') }}"
             alt=""
             width="24"
             height="24"
@@ -1673,15 +1697,17 @@
       </span>
                                             <div class="w-75 d-inline-block v-middle ps-3">
                                                 <h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>
-                                                <span class="fs-2 d-block text-body-secondary">Account Settings</span>
+                                                <span
+                                                    class="fs-2 d-block text-body-secondary">Account Settings</span>
                                             </div>
                                         </a>
-                                        <a href="../main/app-email.html" class="py-8 px-7 d-flex align-items-center">
+                                        <a href="../main/app-email.html"
+                                           class="py-8 px-7 d-flex align-items-center">
       <span
           class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6"
       >
         <img
-            src="{{ Vite::asset('resources/images/svgs/icon-inbox.svg')}}"
+            src="{{ asset('assets/images/svgs/icon-inbox.svg') }}"
             alt=""
             width="24"
             height="24"
@@ -1689,15 +1715,17 @@
       </span>
                                             <div class="w-75 d-inline-block v-middle ps-3">
                                                 <h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>
-                                                <span class="fs-2 d-block text-body-secondary">Messages & Emails</span>
+                                                <span
+                                                    class="fs-2 d-block text-body-secondary">Messages & Emails</span>
                                             </div>
                                         </a>
-                                        <a href="../main/app-notes.html" class="py-8 px-7 d-flex align-items-center">
+                                        <a href="../main/app-notes.html"
+                                           class="py-8 px-7 d-flex align-items-center">
       <span
           class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6"
       >
         <img
-            src="{{ Vite::asset('resources/images/svgs/icon-tasks.svg')}}"
+            src="{{ asset('assets/images/svgs/icon-tasks.svg') }}"
             alt=""
             width="24"
             height="24"
@@ -1721,7 +1749,7 @@
                                                 <div class="col-6">
                                                     <div class="m-n4 unlimited-img">
                                                         <img
-                                                            src="{{ Vite::asset('resources/images/backgrounds/unlimited-bg.png')}}"
+                                                            src="{{ asset('assets/images/backgrounds/unlimited-bg.png') }}"
                                                             alt=""
                                                             class="w-100"
                                                         />
@@ -1729,7 +1757,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="../main/authentication-login.html" class="btn btn-outline-primary"
+                                        <a href="../main/authentication-login.html"
+                                           class="btn btn-outline-primary"
                                         >Log Out</a
                                         >
                                     </div>
