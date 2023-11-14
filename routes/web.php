@@ -16,4 +16,16 @@ use App\Http\Controllers\JobTitleController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/job-title', [JobTitleController::class, 'index']);
+
+// job title 
+Route::prefix("/job-title")->controller(JobTitleController::class)->name("jobTitle.")->group(function(){
+    Route::get('/', 'index')->name('list');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store')->name('store');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::put('/edit/{id}', 'update')->name('update');
+    Route::get('/detail/{id}', 'show')->name('show');
+    Route::get('/search', 'search')->name('search');
+    Route::get('/import', 'importView')->name('importView');
+    Route::post('/import', 'import')->name('import');
+});

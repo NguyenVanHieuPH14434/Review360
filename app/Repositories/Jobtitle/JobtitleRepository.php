@@ -7,5 +7,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
 
 interface JobtitleRepository extends Repository{
 
-    // Write something awesome :)
+    public function listJobTitle($searchData, $limit);
+
+    public function getLatestJobTitle();
 }

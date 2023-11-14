@@ -467,10 +467,10 @@
 
 </div>
 <div class="dark-transparent sidebartoggler"></div>
-<!-- Import Js Files -->
-<script
-    src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-    crossorigin="anonymous"></script>
+    <!-- Import Js Files -->
+    <script src="{{ mix('resources/libs/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{ mix('resources/js/sweetalert2@11.js')}}"></script>
+    @include('layouts._script')
+    @yield('script')
 </body>
 </html>
