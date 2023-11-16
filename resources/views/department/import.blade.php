@@ -1,7 +1,11 @@
 @extends('layouts.master')
+@section('breadcrumb')
+    <x-breadcrumb titlePage="Phòng ban" action="Import"/>
+@endsection
 @section('content')
-    <div class="container-fluid">
-        <form action="{{ route('department.import') }}" method="POST" enctype="multipart/form-data">
+    <div class="card">
+        <x-card-title title="Import" label="Tải mẫu import" />
+        <form class="card-body" action="{{ route('department.import') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Upload file</label>
@@ -20,10 +24,10 @@
                     @endforeach
                 @endif
             </div>
-            <a href="{{ route('department.list') }}" class="btn btn-danger rounded-pill px-4 waves-effect waves-light">
-                Tải mẫu import
-            </a>
-            <button type="submit" class="btn btn-primary rounded-pill px-4 waves-effect waves-light">Save</button>
+            <button type="submit" class="btn btn-primary rounded-pill px-4 waves-effect waves-light">
+                <i class="ti ti-send me-2 fs-4"></i>
+                Lưu lại
+            </button>
         </form>
     </div>
 @endsection

@@ -86,7 +86,23 @@
         $( '.hasSelect2' ).select2( {
             theme: 'bootstrap-5'
         });
-    })
+        $(window).trigger('hashchange');
+    });
+    $(window).on('hashchange', function() {
+        highlightActiveLink();
+    });
+
+    function highlightActiveLink() {
+        var currentUrl = window.location.href;
+        $('.sidebar-item').removeClass('active');
+
+        $('.sidebar-item a').each(function() {
+            var linkUrl = $(this).attr('href');
+            if (currentUrl.indexOf(linkUrl) !== -1) {
+                $(this).closest('li').children().addClass('active');
+            }
+        });
+    }
 </script>
 </body>
 </html>

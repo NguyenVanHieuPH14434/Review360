@@ -1,21 +1,24 @@
 @extends('layouts.master')
+@section('breadcrumb')
+    <x-breadcrumb titlePage="Phòng ban" action="Chi tiết"/>
+@endsection
 @section('content')
-    <div class="container-fluid">
+    <div class="">
         <div class="row">
             <div class="col-lg-12">
                 <!-- ---------------------
                                         start Form with view only
                                     ---------------- -->
                 <div class="card">
-                    <div class="card-header text-bg-primary">
-                        <h5 class="mb-0 text-white">Form with view only</h5>
-                    </div>
+                    <x-card-title title="Thông tin phòng ban">
+                        <x-slot:create>
+                            <a href="{{ route('department.create') }}" class="btn mb-1 waves-effect waves-light btn-primary">
+                                <i class="ti ti-plus"></i> Tạo mới
+                            </a>
+                        </x-slot:create>  
+                    </x-card-title>
                     <form class="form-horizontal">
                         <div class="form-body">
-                            <div class="card-body">
-                                <h5 class="card-title mb-0">Thông tin phòng ban</h5>
-                            </div>
-                            <hr class="mt-0 mb-5">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -75,17 +78,8 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title mb-0">Mô tả</h5>
-                            </div>
-                            <hr>
-                            <div class="row card-body">
-                                <div class="col-12">
-                                    <div class="form-group row">
-                                        <div class="col-12">
-                                            <p class="form-control-static">{{ $department->description }}</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <h5 class="card-title mb-0">Mô tả: </h5>
+                                <span class="form-control-static">{{ $department->description }}</span>
                             </div>
                             <hr>
                             <div class="form-actions">
@@ -94,16 +88,10 @@
                                         <div class="col-md-6">
                                             <div class="row">
                                                 <div class="col-md-offset-3 col-md-9">
-                                                    <a href="{{ route('department.list') }}" class="btn btn-danger">
-                                                        Danh sách
-                                                    </a>
-                                                    <a href="{{ route('department.create') }}" class="btn btn-success">
-                                                        Tạo mới
-                                                    </a>
                                                     <a href="{{ route('department.edit', $department->id) }}"
                                                         class="btn btn-primary">
                                                         <i class="ti ti-edit fs-5"></i>
-                                                        Update
+                                                        Cập nhật
                                                     </a>
                                                 </div>
                                             </div>

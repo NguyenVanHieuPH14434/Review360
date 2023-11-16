@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigIncrements('role_id')->comment('1-Admin, 2-Division manager, 3-Manager, 4-Employee');
-            $table->bigIncrements('job_title_id');
-            $table->bigIncrements('department_id');
+            $table->id();
+            $table->integer('role_id')->comment('1-Admin, 2-Division manager, 3-Manager, 4-Employee');
+            $table->integer('job_title_id');
+            $table->integer('department_id');
             $table->string('code', 10)->comment('auto generate start NV0001');
             $table->string('name')->nullable();
             $table->string('email')->unique();
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('direct_management', 100);
             $table->date('work_start_date')->nullable();
             $table->text('avatar')->nullable();
-            $table->integer('status')->default(1)->comment('0-inactive, 1-active');
+            $table->integer('status')->default(1)->comment('2-inactive, 1-active');
             $table->rememberToken();
 
             $table->timestamps();
