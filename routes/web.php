@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobTitleController;
+use \App\Http\Controllers\CategoryCriteriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,9 @@ use App\Http\Controllers\JobTitleController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// job title 
+// job title
 Route::prefix("/job-title")->controller(JobTitleController::class)->name("jobTitle.")->group(function(){
     Route::get('/', 'index')->name('list');
     Route::get('/create', 'create')->name('create');
@@ -28,4 +29,16 @@ Route::prefix("/job-title")->controller(JobTitleController::class)->name("jobTit
     Route::get('/search', 'search')->name('search');
     Route::get('/import', 'importView')->name('importView');
     Route::post('/import', 'import')->name('import');
+});
+
+// categoryCriteria
+Route::prefix("/category-criteria")->controller(CategoryCriteriaController::class)
+    ->name("categoryCriteria.")->group(function(){
+    Route::get('/', 'index')->name('list');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store')->name('store');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::put('/edit/{id}', 'update')->name('update');
+    Route::get('/view/{id}', 'show')->name('show');
+    Route::get('/delete/{id}', 'destroy')->name('destroy');
 });
