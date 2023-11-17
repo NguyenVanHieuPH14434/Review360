@@ -12,10 +12,10 @@ return new class extends Migration {
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code', 10)->comment('auto generate start DT0001');;
+            $table->string('department_code', 10)->comment('auto generate start DT0001');;
             $table->string('title');
             $table->text('description')->nullable();
-            $table->integer('status')->default(1)->comment('0-inactive, 1-active');
+            $table->integer('status')->default(1)->comment('2-inactive, 1-active');
             $table->timestamps();
             $table->softDeletes();
         });

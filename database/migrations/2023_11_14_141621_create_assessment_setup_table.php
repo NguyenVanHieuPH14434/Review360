@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('job_title', function (Blueprint $table) {
-            $table->string('job_title_code', 10);
-            $table->string('title', 255)->change();
-            $table->text('description')->nullable()->change();
+        Schema::create('assessment_setup', function (Blueprint $table) {
+            $table->id();
+            $table->integer('number_level');
+            $table->timestamps();
         });
     }
 
@@ -23,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('job_title', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('assessment_setup');
     }
 };

@@ -37,7 +37,7 @@
                 <!-- Dashboard -->
                 <!-- ---------------------------------- -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="../main/index.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('jobTitle.list') }}" aria-expanded="false">
         <span>
           <i class="ti ti-aperture"></i>
         </span>
@@ -45,7 +45,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="../main/index2.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('department.list') }}" aria-expanded="false">
         <span>
           <i class="ti ti-shopping-cart"></i>
         </span>
@@ -76,7 +76,7 @@
                     <span class="hide-menu">Đánh giá</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="../main/app-calendar.html" aria-expanded="false">
+                    <a class="sidebar-link " href="{{ route('categoryCriteria.list') }}" aria-expanded="false">
         <span>
           <i class="ti ti-calendar"></i>
         </span>

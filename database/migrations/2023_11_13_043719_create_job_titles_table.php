@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_titles', function (Blueprint $table) {
+        Schema::create('job_title', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code', 10)->comment('auto generate start JT0001');;
+            $table->string('job_title_code', 10)->comment('auto generate start JT0001');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->integer('status')->default(1)->comment('0-inactive, 1-active');
+            $table->integer('status')->default(1)->comment('2-inactive, 1-active');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_titles');
+        Schema::dropIfExists('job_title');
     }
 };

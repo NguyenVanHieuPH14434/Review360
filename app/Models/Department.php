@@ -17,6 +17,5 @@ class Department extends Model
         'title',
         'description',
         'status',
-        'is_deleted'
     ];
 }

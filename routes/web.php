@@ -59,8 +59,6 @@ Route::macro('resourceRoutes', function ($prefix, $routeName, $controller) {
     });
 });
 
-Route::get('/', [HomeController::class, 'index']);
-
 // job title 
 Route::resourceRoutes('/job-title', 'jobTitle',JobTitleController::class);
 
