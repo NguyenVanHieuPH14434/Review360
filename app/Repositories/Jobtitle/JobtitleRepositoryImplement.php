@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Jobtitle;
 
+use App\Models\JobTitle;
 use LaravelEasyRepository\Implementations\Eloquent;
-use App\Models\Jobtitle;
 
 class JobtitleRepositoryImplement extends Eloquent implements JobtitleRepository{
 
@@ -15,7 +15,7 @@ class JobtitleRepositoryImplement extends Eloquent implements JobtitleRepository
     protected $model;
     const LIMIT_PERPAG = 10;
 
-    public function __construct(Jobtitle $model)
+    public function __construct(JobTitle $model)
     {
         $this->model = $model;
     }
@@ -27,15 +27,12 @@ class JobtitleRepositoryImplement extends Eloquent implements JobtitleRepository
         $jobTitleCode = $searchData['jobTitleCode'] ?? null;
         $title= $searchData['title'] ?? null;
         if(! empty($searchData)) {
-           $qb = $qb->when($title && $jobTitleCode, function($q) use ($title, $jobTitleCode) {
-                $q->where('title', 'like', "%" . $title . "%")
-                  ->where('job_title_code', 'like', "%" . $jobTitleCode . "%");
-            }, function($q) use ($title, $jobTitleCode) {
-                if(! is_null($title)) {
-                    $q->where('title', 'like', "%" . $title . "%");
-                }
-                $q->where('job_title_code', 'like', "%" . $jobTitleCode . "%");
-            });
+            if($title) {
+                $qb = $qb->where('title', 'like', "%" . $title . "%");
+            }
+            if($jobTitleCode) {
+                $qb = $qb->where('job_title_code', 'like', "%" . $jobTitleCode . "%");
+            }
         }
 
         return $qb->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->paginate($limit);

@@ -43,4 +43,9 @@ class DepartmentServiceImplement extends Service implements DepartmentService{
   {
     return $this->departmentRepository->update($id, $data);
   }
+
+  public function getAllDepartment()
+  {
+    return $this->departmentRepository->all();
+  }
 }

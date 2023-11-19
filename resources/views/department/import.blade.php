@@ -20,6 +20,7 @@
                     @foreach (Session::get("import_error") as $failure)
                         <span class="text-danger" role="alert">
                             <strong>{{ $failure->errors()[0] }} Error at line: {{ $failure->row() }}</strong>
+                            <br>
                         </span>
                     @endforeach
                 @endif

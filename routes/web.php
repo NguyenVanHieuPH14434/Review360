@@ -6,6 +6,7 @@ use \App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobTitleController;
 use \App\Http\Controllers\CategoryCriteriaController;
 use \App\Http\Controllers\AssessmentPeriodController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,19 +20,6 @@ use \App\Http\Controllers\AssessmentPeriodController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
-// job title
-Route::prefix("/job-title")->controller(JobTitleController::class)->name("jobTitle.")->group(function(){
-    Route::get('/', 'index')->name('list');
-    Route::get('/create', 'create')->name('create');
-    Route::post('/create', 'store')->name('store');
-    Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::put('/edit/{id}', 'update')->name('update');
-    Route::get('/detail/{id}', 'show')->name('show');
-    Route::get('/search', 'search')->name('search');
-    Route::get('/import', 'importView')->name('importView');
-    Route::post('/import', 'import')->name('import');
-});
 
 // categoryCriteria
 Route::prefix("/category-criteria")->controller(CategoryCriteriaController::class)
@@ -80,6 +68,14 @@ Route::resourceRoutes('/job-title', 'jobTitle',JobTitleController::class);
 
 // department
 Route::resourceRoutes('/department', 'department',DepartmentController::class);
+// job title 
+Route::resourceRoutes('/job-title', 'jobTitle', JobTitleController::class);
+
+// department 
+Route::resourceRoutes('/department', 'department', DepartmentController::class);
+
+// user 
+Route::resourceRoutes('/user', 'user', UserController::class);
 
 Auth::routes();
 

@@ -24,17 +24,12 @@
                         </span>
                     @enderror
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="description" class="form-label">Trạng thái <span class="text-danger">*</span></label>
-                    <select class="form-select @error('status') is-invalid @enderror" name="status">
-                        @php
-                            $status = old('status') == 1 || $jobTitle->status !== 2 && ! old('status') ? true : false;
-                        @endphp
-                        <option value="">Chọn trạng thái</option>
-                        <option {{ $status ? "selected" : "" }} value="1">Hoạt động</option>
-                        <option {{ ! $status ? "selected" : "" }} value="2">Không hoạt động</option>
-                    </select>
-                </div>
+                @php
+                    $isSelected = function ($key, $value) use ($jobTitle){
+                        return old('status') == $key || ($jobTitle->status == $key && !old('status'));
+                    };
+                @endphp
+                <x-form-select :select="['1'=>'Hoạt động', '2'=>'Không hoạt động']" label="Trạng thái" name="status" required="true" :isSelected="$isSelected"/>
                 <div class="col-md-12 mb-3">
                     <label for="description" class="form-label">Mô tả</label>
                     <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{ old('description') ?? $jobTitle->description}}</textarea>

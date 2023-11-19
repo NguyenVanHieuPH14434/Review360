@@ -21,21 +21,20 @@ class DepartmentController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->has('per_page') ? $request->query("per_page") : null;
-        $listDepartment = $this->departmentService->listDepartment([], $perPage);
+        $listDepartment = $this->departmentService->listDepartment([], null);
         return view("department.index", ['listDepartment' => $listDepartment]);
     }
 
     public function search(Request $request) {
-        if (
-            $request->has('title') && ! empty($request->query('title')) ||
-            $request->has('jobTitleCode') && ! empty($request->query('jobTitleCode'))
-        ) {
-            $perPage = $request->has('per_page') ? $request->query("per_page") : null;
-            $listDepartment = $this->departmentService->listDepartment([], $perPage);
-        return view("department.index", ['listDepartment' => $listDepartment]);
+        $req = array_filter($request->query(), function($val) {
+            return $val !== null;
+        });
+        if (empty($req)) {
+            return redirect()->route("department.list");
         }
-       return redirect()->route("department.list");
+        $listDepartment = $this->departmentService->listDepartment($req, null);
+        return view("department.index", ['listDepartment' => $listDepartment]);
+
     }
 
     /**

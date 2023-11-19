@@ -15,4 +15,6 @@ interface DepartmentService extends BaseService{
     public function generateDepartmentCode();
 
     public function updateDepartment($id, $data);
+
+    public function getAllDepartment();
 }

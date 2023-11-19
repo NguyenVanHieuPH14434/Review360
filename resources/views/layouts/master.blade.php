@@ -24,8 +24,19 @@
         rel="stylesheet"
         href="{{ asset('assets/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}"
     />
+    <!-- Datepicker  -->
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}"/>
 
     @vite(['resources/scss/app_style.scss'])
+    <style>
+        /* Overrides the text wrapper inside of the input box */
+        li[class="select2-search select2-search--inline"] {
+            margin-left:10px;
+        }
+        .select2-results__option[aria-selected=true] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -75,15 +86,25 @@
 <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
 <script src="{{ asset('assets/js/theme.js') }}"></script>
 
+<script src="{{ asset('assets/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
+<script src="{{ asset('assets/js/dashboards/dashboard.js') }}"></script>
+<script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
+
 @include('layouts.page_javascript')
 @yield('script')
 @vite(['resources/js/app_js.js'])
 <script>
     $(document).ready(function (){
-        $( '.hasSelect2' ).select2( {
-            theme: 'bootstrap-5'
+        $( '.hasSelect2' ).select2({
+            theme: 'bootstrap-5',
         });
         $(window).trigger('hashchange');
+        $(".datepicker" ).datepicker({
+            showAnim: 'slideDown',
+            dateFormat: 'dd-mm-yy'
+        });
+        addPlaceholderSelect2Multiple();
     });
     $(window).on('hashchange', function() {
         highlightActiveLink();
@@ -97,6 +118,22 @@
             var linkUrl = $(this).attr('href');
             if (currentUrl.indexOf(linkUrl) !== -1) {
                 $(this).closest('li').children().addClass('active');
+            }
+        });
+    }
+
+    // preview image
+    function preview() {
+        previewImage.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    function addPlaceholderSelect2Multiple() {
+        $("select.hasSelect2").each(function(e){
+            if($(this).prop("multiple")){
+               let placeholder = $(this).attr("aria-placeholder");
+               $(this).select2({
+                    placeholder: placeholder ?? "",
+               });
             }
         });
     }

@@ -27,15 +27,12 @@ class DepartmentRepositoryImplement extends Eloquent implements DepartmentReposi
         $departmentCode = $searchData['departmentCode'] ?? null;
         $title= $searchData['title'] ?? null;
         if(! empty($searchData)) {
-           $qb = $qb->when($title && $departmentCode, function($q) use ($title, $departmentCode) {
-                $q->where('title', 'like', "%" . $title . "%")
-                  ->where('department_code', 'like', "%" . $departmentCode . "%");
-            }, function($q) use ($title, $departmentCode) {
-                if(! is_null($title)) {
-                    $q->where('title', 'like', "%" . $title . "%");
-                }
-                $q->where('department_code', 'like', "%" . $departmentCode . "%");
-            });
+            if($title) {
+                $qb = $qb->where('title', 'like', "%" . $title . "%");
+            }
+            if($departmentCode) {
+                $qb = $qb->where('department_code', 'like', "%" . $departmentCode . "%");
+            }
         }
 
         return $qb->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->paginate($limit);

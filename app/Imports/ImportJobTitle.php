@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Jobtitle;
+use App\Models\JobTitle;
 use App\Services\Jobtitle\JobTitleService;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -21,7 +21,7 @@ class ImportJobTitle implements ToModel, WithHeadingRow, WithValidation
     */
     public function model(array $row)
     {
-        return new Jobtitle([
+        return new JobTitle([
             'title' => $row['title'],
             'description' => $row['description'],
             'job_title_code' => $this->jobTitleService->generateJobTitleCode()

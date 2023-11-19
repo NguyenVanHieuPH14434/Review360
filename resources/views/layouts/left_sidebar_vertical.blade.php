@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="../main/index3.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('user.list') }}" aria-expanded="false">
         <span>
           <i class="ti ti-currency-dollar"></i>
         </span>
