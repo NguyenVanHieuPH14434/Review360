@@ -23,7 +23,7 @@ class CategoryCriteriaRequest extends FormRequest
      */
     public function rules(Request $req): array
     {
-        $uniqueTitle = Rule::unique('category_criteria', 'title');
+        $uniqueTitle = Rule::unique('category_criteria', 'title')->whereNull('deleted_at');
 
         if ($req->method() == 'PUT') {
             $uniqueTitle->ignore($req->id);

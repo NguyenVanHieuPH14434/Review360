@@ -26301,3 +26301,6 @@ span#select2-tb-status-container {
     line-height: 1.5;
     color: #5a6a85;
 }
+
+.modal-sm{--bs-modal-width: 430px;}
+.fs-modal{font-size: 5rem}

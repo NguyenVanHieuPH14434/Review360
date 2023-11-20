@@ -778,3 +778,8 @@
         </div>
     </div>
 @endsection
+@section('script')
+    <script src="{{ asset('assets/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dashboards/dashboard.js') }}"></script>
+@endsection

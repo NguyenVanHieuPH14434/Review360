@@ -39,9 +39,9 @@ Route::prefix("/category-criteria")->controller(CategoryCriteriaController::clas
     Route::get('/create', 'create')->name('create');
     Route::post('/create', 'store')->name('store');
     Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::put('/edit/{id}', 'update')->name('update');
+    Route::put('/update/{id}', 'update')->name('update');
     Route::get('/view/{id}', 'show')->name('show');
-    Route::get('/delete/{id}', 'destroy')->name('destroy');
+    Route::post('/delete', 'destroy')->name('destroy');
 });
 
 // In your RouteServiceProvider or any service provider
@@ -59,9 +59,9 @@ Route::macro('resourceRoutes', function ($prefix, $routeName, $controller) {
     });
 });
 
-// job title 
+// job title
 Route::resourceRoutes('/job-title', 'jobTitle',JobTitleController::class);
 
-// department 
+// department
 Route::resourceRoutes('/department', 'department',DepartmentController::class);
 

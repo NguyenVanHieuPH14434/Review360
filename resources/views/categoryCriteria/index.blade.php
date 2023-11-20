@@ -29,6 +29,7 @@
             </div>
         </div>
         <div class="card-body p-4">
+            @csrf
             <div class="table-responsive rounded-2">
                 <table class="table table-striped text-nowrap customize-table mb-0 align-middle">
                     <thead class="text-dark fs-4">
@@ -74,8 +75,9 @@
                                         <p class="mb-0 fw-normal fs-4">{{$categoryCriteria->created_at->format('d/m/Y')}}</p>
                                     </td>
                                     <td class="td-action">
+                                        <a href="{{route('categoryCriteria.show',$categoryCriteria->id)}}"><i class="ti ti-eye btn-update"></i></a>
                                         <a href="{{route('categoryCriteria.edit',$categoryCriteria->id)}}"><i class="ti ti-pencil btn-update"></i></a>
-                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#al-danger-alert"><i class="ti ti-trash btn-delete"></i></a>
+                                        <a href="javascript:void(0)" class="delete-obj" data-flag="confirm" data-id="{{$categoryCriteria->id}}"><i class="ti ti-trash btn-delete"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -88,5 +90,33 @@
             </div>
         </div>
     </div>
-    <x-alert level="danger" message="Please try again."/>
+    <x-alert level="danger" message="Những tiêu chí thuộc nhóm tiêu chí cũng sẽ bị xóa"/>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $(document).on('click','.delete-obj', function (e){
+                e.preventDefault();
+                let id = $(this).data('id');
+                let _token = $('input[name="_token"]').val();
+                let flag_del = $(this).data('flag');
+                $.ajax({
+                    url: "{{route('categoryCriteria.destroy')}}",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {id:id, _token:_token, flag_del: flag_del} ,
+                    success: function (response) {
+                        if (flag_del === 'confirm') {
+                            $('#al-danger-alert').modal('show');
+                        } else {
+                            $(window).reload();
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus, errorThrown);
+                    }
+                });
+            })
+        })
+    </script>
 @endsection

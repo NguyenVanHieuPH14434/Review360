@@ -32,8 +32,8 @@ class CategoryCriteriaController extends Controller
 
     public function edit($id)
     {
-        $jobTitle = $this->categoryCriteriaService->findCategoryCriteria($id);
-        return view('categoryCriteria.update', ['jobTitle' => $jobTitle]);
+        $data['categoryCriteria'] = $this->categoryCriteriaService->findCategoryCriteria($id);
+        return view('categoryCriteria.update', $data);
     }
 
     public function update($id, CategoryCriteriaRequest $request)
@@ -44,13 +44,20 @@ class CategoryCriteriaController extends Controller
 
     public function show($id)
     {
-        $data = $this->categoryCriteriaService->findCategoryCriteria($id);
+        $data['categoryCriteria'] = $this->categoryCriteriaService->findCategoryCriteria($id);
         return view('categoryCriteria.view',  $data);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $data = $this->categoryCriteriaService->deleteCategoryCriteria($id);
-        return view('categoryCriteria.view',  $data);
+        $id = $request->id;
+
+        //todo: xóa tiêu chí thuộc nhóm
+
+        if ($request->flag_del == 'delete') {
+            $this->categoryCriteriaService->deleteCategoryCriteria($id);
+        }
+
+        return json_encode(['code' => 200]);
     }
 }
