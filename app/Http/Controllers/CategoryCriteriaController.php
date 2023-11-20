@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryCriteriaRequest;
+use App\Models\CategoryCriteria;
 use App\Services\CategoryCriteria\CategoryCriteriaService;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class CategoryCriteriaController extends Controller
 
     public function create()
     {
-        return view('categoryCriteria.create');
+        $data['categoryCriteria'] = new CategoryCriteria();
+        return view('categoryCriteria.create', $data);
     }
 
     public function store(CategoryCriteriaRequest $request)

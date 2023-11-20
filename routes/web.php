@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobTitleController;
 use \App\Http\Controllers\CategoryCriteriaController;
+use \App\Http\Controllers\AssessmentPeriodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,19 @@ Route::prefix("/category-criteria")->controller(CategoryCriteriaController::clas
     Route::get('/view/{id}', 'show')->name('show');
     Route::post('/delete', 'destroy')->name('destroy');
 });
+
+
+// AssessmentPeriod
+Route::prefix("/assessment-period")->controller(AssessmentPeriodController::class)
+    ->name("assessmentPeriod.")->group(function(){
+        Route::get('/', 'index')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/create', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::put('/update/{id}', 'update')->name('update');
+        Route::get('/view/{id}', 'show')->name('show');
+        Route::post('/delete', 'destroy')->name('destroy');
+    });
 
 // In your RouteServiceProvider or any service provider
 Route::macro('resourceRoutes', function ($prefix, $routeName, $controller) {
