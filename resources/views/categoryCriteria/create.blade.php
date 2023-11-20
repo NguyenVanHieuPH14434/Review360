@@ -10,7 +10,7 @@
                             <li class="breadcrumb-item">
                                 <a class="text-muted text-decoration-none" href="{{route('home')}}">Home</a>
                             </li>
-                            <li class="breadcrumb-item" aria-current="page"> <a class="text-muted text-decoration-none" href="#">Thể loại tiêu chí</a></li>
+                            <li class="breadcrumb-item" aria-current="page"> <a class="text-muted text-decoration-none" href="{{route('categoryCriteria.list')}}">Thể loại tiêu chí</a></li>
                             <li class="breadcrumb-item" aria-current="page">Tạo mới</li>
                         </ol>
                     </nav>
@@ -24,9 +24,9 @@
         <div class="px-4 py-3 border-bottom">
             <h5 class="card-title fw-semibold mb-0 lh-sm title-form">Tạo mới</h5>
             <div class="box-action">
-                <button type="button" class="btn mb-1 waves-effect waves-light btn-primary">
+                <a href="{{route('categoryCriteria.list')}}" class="btn mb-1 waves-effect waves-light btn-primary">
                     <i class="ti ti-list"></i> Danh sách
-                </button>
+                </a>
             </div>
         </div>
         <div class="card-body">

@@ -24,7 +24,7 @@ class CategoryCriteriaServiceImplement extends Service implements CategoryCriter
 
     public function findCategoryCriteria($id)
     {
-        // TODO: Implement findCategoryCriteria() method.
+       return $this->mainRepository->find($id);
     }
 
     public function createCategoryCriteria($data)
@@ -34,11 +34,11 @@ class CategoryCriteriaServiceImplement extends Service implements CategoryCriter
 
     public function updateCategoryCriteria($id, $data)
     {
-        // TODO: Implement updateCategoryCriteria() method.
+        return $this->mainRepository->update($id, $data);
     }
 
     public function deleteCategoryCriteria($id)
     {
-        // TODO: Implement deleteCategoryCriteria() method.
+       return $this->mainRepository->delete($id);
     }
 }

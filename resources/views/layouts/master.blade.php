@@ -75,11 +75,8 @@
 <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
 <script src="{{ asset('assets/js/theme.js') }}"></script>
 
-<script src="{{ asset('assets/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-<script src="{{ asset('assets/js/dashboards/dashboard.js') }}"></script>
-
 @include('layouts.page_javascript')
+@yield('script')
 @vite(['resources/js/app_js.js'])
 <script>
     $(document).ready(function (){

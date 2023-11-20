@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6 mb-3">
         <label for="tb-title">Nhóm tiêu chí <span class="text-danger">*</span></label>
-        <input type="text" class="form-control @error('title') is-invalid @enderror" id="tb-title" name="title" value="{{ old('title') }}">
+        <input type="text" class="form-control @error('title') is-invalid @enderror" id="tb-title" name="title" value="{{ old('title') ?? $categoryCriteria->title }}">
         @error('title')
         <span class="text-danger" role="alert">
                     <strong>{{ $message }}</strong>
@@ -10,10 +10,11 @@
     </div>
     <div class="col-md-6 mb-3">
         <label for="tb-status" class="floating-label">Trạng thái <span class="text-danger">*</span></label>
+        @php $status = old('status') ?? $categoryCriteria->status @endphp
         <select aria-label="Trạng thái" class="form-control hasSelect2 customSelect floating-control @error('status') is-invalid @enderror" name="status" id="tb-status">
             <option value="">Chọn trạng thái</option>
-            <option value="1">Hoạt động</option>
-            <option value="2">Không hoạt động</option>
+            <option value="1" {{ $status == 1 ? "selected" : "" }}>Hoạt động</option>
+            <option value="2" {{ $status == 2 ? "selected" : "" }}>Không hoạt động</option>
         </select>
         @error('status')
         <span class="text-danger" role="alert">
@@ -23,7 +24,7 @@
     </div>
     <div class="col-md-12 mb-3">
         <label for="tb-description">Mô tả</label>
-        <textarea class="form-control" rows="12" style="height: 100px" id="tb-description" name="description">{{ old('description') }}</textarea>
+        <textarea class="form-control" rows="12" style="height: 100px" id="tb-description" name="description">{{ old('description') ?? $categoryCriteria->description }}</textarea>
     </div>
 
     <div class="col-12">
