@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\AssessmentPeriod;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -21,17 +22,14 @@ class AssessmentPeriodRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(Request $req): array
+    public function rules(): array
     {
-        $uniqueTitle = Rule::unique('category_criteria', 'title')->whereNull('deleted_at');
-
-        if ($req->method() == 'PUT') {
-            $uniqueTitle->ignore($req->id);
-        }
-
         return [
-            'title' => ["required", $uniqueTitle],
+            'title' => "required",
             'status' => "required",
+            'start_date' => "required",
+            'end_date' => "required",
+            'type_eval' => "required",
         ];
     }
 
@@ -40,15 +38,19 @@ class AssessmentPeriodRequest extends FormRequest
         return [
             'title.required'=>':attribute không được để trống!',
             'status.required'=>':attribute không được để trống!',
-            'title.unique'=>':attribute đã tồn tại!',
+            'start_date.required'=>':attribute không được để trống!',
+            'end_date.required'=>':attribute không được để trống!',
         ];
     }
 
     public function attributes()
     {
         return [
-            'title' => 'Nhóm tiêu chí',
+            'title' => 'Kỳ đánh giá',
             'status'=> 'Trạng thái',
+            'start_date'=> 'Thời hạn đánh giá',
+            'end_date'=> 'Thời hạn đánh giá',
+            'type_eval' => 'Loại đánh giá'
         ];
     }
 }

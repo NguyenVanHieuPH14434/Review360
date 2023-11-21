@@ -1,4 +1,5 @@
 @extends('layouts.master')
+<?php use Carbon\Carbon;?>
 @section('breadcrumb')
     <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
         <div class="card-body px-4 py-3">
@@ -50,12 +51,6 @@
                                 <h6 class="fs-4 fw-semibold mb-0">Ngày kết thúc</h6>
                             </th>
                             <th>
-                                <h6 class="fs-4 fw-semibold mb-0">Số nhân viên</h6>
-                            </th>
-                            <th>
-                                <h6 class="fs-4 fw-semibold mb-0">Công khai điểm</h6>
-                            </th>
-                            <th>
                                 <h6 class="fs-4 fw-semibold mb-0">Trạng thái</h6>
                             </th>
                             <th>
@@ -78,7 +73,13 @@
                                             <p class="mb-0 fw-normal fs-4">{{$assessmentPeriod->title}}</p>
                                         </td>
                                         <td>
-                                            <p class="mb-0 fw-normal fs-4">{{$assessmentPeriod->description}}</p>
+                                            <p class="mb-0 fw-normal fs-4">{{config('constants.type_eval')[$assessmentPeriod->type_eval]}}</p>
+                                        </td>
+                                        <td>
+                                            <p class="mb-0 fw-normal fs-4">{{Carbon::createFromFormat('Y-m-d',$assessmentPeriod->start_date)->format('d/m/Y')}}</p>
+                                        </td>
+                                        <td>
+                                            <p class="mb-0 fw-normal fs-4">{{Carbon::createFromFormat('Y-m-d',$assessmentPeriod->end_date)->format('d/m/Y')}}</p>
                                         </td>
                                         <td>
                                             <span class="mb-1 badge rounded-pill {{config('constants.badge-status')[$assessmentPeriod->status]}} fw-semibold fs-2">{{config('constants.status')[$assessmentPeriod->status]}}</span>
