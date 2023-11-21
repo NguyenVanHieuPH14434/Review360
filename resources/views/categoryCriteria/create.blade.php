@@ -4,13 +4,13 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-12">
-                    <h4 class="fw-semibold mb-8">Thể loại tiêu chí</h4>
+                    <h4 class="fw-semibold mb-8">Nhóm tiêu chí</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a class="text-muted text-decoration-none" href="{{route('home')}}">Home</a>
                             </li>
-                            <li class="breadcrumb-item" aria-current="page"> <a class="text-muted text-decoration-none" href="{{route('categoryCriteria.list')}}">Thể loại tiêu chí</a></li>
+                            <li class="breadcrumb-item" aria-current="page"> <a class="text-muted text-decoration-none" href="{{route('categoryCriteria.list')}}">Nhóm tiêu chí</a></li>
                             <li class="breadcrumb-item" aria-current="page">Tạo mới</li>
                         </ol>
                     </nav>

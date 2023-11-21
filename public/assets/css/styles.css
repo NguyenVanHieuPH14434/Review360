@@ -22180,7 +22180,6 @@ body .connect-sorting-content {
   background: var(--bs-border-color);
   display: block;
   margin: 0.5em;
-  min-height: 35em;
   overflow: hidden;
   position: relative;
   width: auto;
@@ -22549,14 +22548,14 @@ File: css
   background: transparent;
 }
 .wizard-content .wizard > .actions > ul {
-  float: right;
-  list-style: none;
+  list-style: none;float: left;
   padding: 0;
   margin: 0;
 }
 .wizard-content .wizard > .actions > ul > li {
   float: none;
   float: left;
+    margin: 0;
 }
 .wizard-content .wizard > .actions > ul > li > a {
   background: var(--bs-primary);
@@ -22619,6 +22618,7 @@ File: css
   background: transparent;
   overflow: hidden;
   position: relative;
+  min-height: 10em;
   width: auto;
   padding: 0;
   margin: 0;
@@ -26304,3 +26304,9 @@ span#select2-tb-status-container {
 
 .modal-sm{--bs-modal-width: 430px;}
 .fs-modal{font-size: 5rem}
+.box-eval-form{margin-top: 20px;}
+.select2-container--bootstrap-5.select2-container--focus .select2-selection, .select2-container--bootstrap-5.select2-container--open .select2-selection{box-shadow: 0 0 0 1px rgba(13,110,253,.25)!important;}
+
+.select2-container--bootstrap-5 .select2-selection--multiple .select2-search .select2-search__field{border:0!important;}
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option{font-size:14px!important;}
+.select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice{font-size:14px!important;}

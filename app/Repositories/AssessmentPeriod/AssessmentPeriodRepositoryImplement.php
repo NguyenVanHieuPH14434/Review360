@@ -13,6 +13,8 @@ class AssessmentPeriodRepositoryImplement extends Eloquent implements Assessment
     * @property Model|mixed $model;
     */
     protected $model;
+    const Active = 1;
+
 
     public function __construct(AssessmentPeriod $model)
     {
@@ -23,4 +25,10 @@ class AssessmentPeriodRepositoryImplement extends Eloquent implements Assessment
     {
         return $this->model::latest()->paginate(10);
     }
+
+    public function listAP()
+    {
+        return $this->model::latest()->where('status',self::Active)->whereNull('deleted_at')->pluck('title','id');
+    }
+
 }

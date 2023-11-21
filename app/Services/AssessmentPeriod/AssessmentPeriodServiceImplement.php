@@ -41,4 +41,8 @@ class AssessmentPeriodServiceImplement extends Service implements AssessmentPeri
     {
         return $this->mainRepository->delete($id);
     }
+
+    public function listApCopy(){
+        return $this->mainRepository->listAP();
+    }
 }

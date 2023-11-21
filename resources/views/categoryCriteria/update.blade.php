@@ -10,7 +10,7 @@
                             <li class="breadcrumb-item">
                                 <a class="text-muted text-decoration-none" href="{{route('home')}}">Home</a>
                             </li>
-                            <li class="breadcrumb-item" aria-current="page"> <a class="text-muted text-decoration-none" href="{{route('categoryCriteria.list')}}">Thể loại tiêu chí</a></li>
+                            <li class="breadcrumb-item" aria-current="page"> <a class="text-muted text-decoration-none" href="{{route('categoryCriteria.list')}}">Nhóm tiêu chí</a></li>
                             <li class="breadcrumb-item" aria-current="page">Cập nhật</li>
                         </ol>
                     </nav>

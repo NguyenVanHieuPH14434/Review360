@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AssessmentPeriodRequest;
+use App\Http\Traits\CommonTrait;
 use App\Models\AssessmentPeriod;
 use App\Services\AssessmentPeriod\AssessmentPeriodService;
 use Illuminate\Http\Request;
@@ -10,6 +11,8 @@ use Illuminate\Http\Request;
 class AssessmentPeriodController extends Controller
 {
     protected AssessmentPeriodService $assessmentPeriodService;
+
+    use CommonTrait;
 
     public function __construct(AssessmentPeriodService $assessmentPeriodService)
     {
@@ -24,13 +27,28 @@ class AssessmentPeriodController extends Controller
     public function create()
     {
         $data['assessmentPeriod'] = new AssessmentPeriod();
-        return view('assessmentPeriod.create', $data);
+        $data['listApCopy'] = $this->assessmentPeriodService->listApCopy();
+        return view('assessmentPeriod.step_1', $data);
     }
 
     public function store(AssessmentPeriodRequest $request)
     {
         $data = $this->assessmentPeriodService->createAssessmentPeriod($request->all());
-        return redirect()->route("assessmentPeriod.show", $data->id)->with('success', 'Create success!');
+        return redirect()->route("assessmentPeriod.step2", $data->id)->with('success', 'Create success!');
+    }
+
+    public function step2($id)
+    {
+        $data['assessmentPeriod'] = $this->assessmentPeriodService->findAssessmentPeriod($id);
+        $data['departments'] = $this->listDepartments();
+        $data['jobTitles'] = $this->listJobTitles();
+        return view('assessmentPeriod.step_2', $data);
+    }
+
+    public function updateStep2($id, assessmentPeriodRequest $request)
+    {
+        $this->assessmentPeriodService->updateAssessmentPeriod($id, $request->all());
+        return redirect()->route("assessmentPeriod.show", [$id])->with('success', 'Update success!');
     }
 
     public function edit($id)

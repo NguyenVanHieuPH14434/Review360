@@ -16,4 +16,6 @@ interface AssessmentPeriodService extends BaseService{
 
     public function deleteAssessmentPeriod($id);
 
+    public function listApCopy();
+
 }

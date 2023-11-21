@@ -51,7 +51,9 @@ Route::prefix("/assessment-period")->controller(AssessmentPeriodController::clas
     ->name("assessmentPeriod.")->group(function(){
         Route::get('/', 'index')->name('list');
         Route::get('/create', 'create')->name('create');
-        Route::post('/create', 'store')->name('store');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/step2/{id}', 'step2')->name('step2');
+        Route::put('/updateStep2/{id}', 'updateStep2')->name('updateStep2');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
         Route::get('/view/{id}', 'show')->name('show');
