@@ -6,7 +6,11 @@ use \App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobTitleController;
 use \App\Http\Controllers\CategoryCriteriaController;
 use \App\Http\Controllers\AssessmentPeriodController;
+<<<<<<< HEAD
 use App\Http\Controllers\UserController;
+=======
+use App\Http\Controllers\EvaluationCriteriaController;
+>>>>>>> 2eaf9e8 (feature evaluation criteria)
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +51,17 @@ Route::prefix("/assessment-period")->controller(AssessmentPeriodController::clas
         Route::get('/view/{id}', 'show')->name('show');
         Route::post('/delete', 'destroy')->name('destroy');
     });
+// evaluationCriteria
+Route::prefix("/evaluation-criteria")->controller(EvaluationCriteriaController::class)
+    ->name("evaluationCriteria.")->group(function(){
+    Route::get('/', 'index')->name('list');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store')->name('store');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::put('/edit/{id}', 'update')->name('update');
+    Route::get('/view/{id}', 'show')->name('show');
+    Route::get('/delete/{id}', 'destroy')->name('destroy');
+});
 
 // In your RouteServiceProvider or any service provider
 Route::macro('resourceRoutes', function ($prefix, $routeName, $controller) {
