@@ -81,3 +81,6 @@ Route::resourceRoutes('/job-title', 'jobTitle',JobTitleController::class);
 // department
 Route::resourceRoutes('/department', 'department',DepartmentController::class);
 
+Auth::routes();
+
+
