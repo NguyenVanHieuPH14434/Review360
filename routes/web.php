@@ -6,11 +6,8 @@ use \App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobTitleController;
 use \App\Http\Controllers\CategoryCriteriaController;
 use \App\Http\Controllers\AssessmentPeriodController;
-<<<<<<< HEAD
 use App\Http\Controllers\UserController;
-=======
 use App\Http\Controllers\EvaluationCriteriaController;
->>>>>>> 2eaf9e8 (feature evaluation criteria)
 
 /*
 |--------------------------------------------------------------------------
@@ -83,13 +80,13 @@ Route::resourceRoutes('/job-title', 'jobTitle',JobTitleController::class);
 
 // department
 Route::resourceRoutes('/department', 'department',DepartmentController::class);
-// job title 
+// job title
 Route::resourceRoutes('/job-title', 'jobTitle', JobTitleController::class);
 
-// department 
+// department
 Route::resourceRoutes('/department', 'department', DepartmentController::class);
 
-// user 
+// user
 Route::resourceRoutes('/user', 'user', UserController::class);
 
 Auth::routes();
