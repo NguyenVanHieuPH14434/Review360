@@ -84,7 +84,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="../main/apps-kanban.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('evaluationCriteria.list') }}" aria-expanded="false">
         <span>
           <i class="ti ti-layout-kanban"></i>
         </span>

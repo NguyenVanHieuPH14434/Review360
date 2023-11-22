@@ -19,5 +19,11 @@ class DatabaseSeeder extends Seeder
         JobTitle::factory()->count(10)->create();
         Department::factory(10)->create();
         User::factory(10)->create();
+        User::factory(10)->create();
+
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
     }
 }

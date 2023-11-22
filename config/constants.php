@@ -18,4 +18,9 @@ return [
 
 
 
+  'criterion_level' => [
+    '1' => 'Nhân viên',
+    '2' => 'Phòng ban' ,
+    '3' => 'Công ty',
+  ]
 ];

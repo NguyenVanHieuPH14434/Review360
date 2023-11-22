@@ -2,6 +2,7 @@
 
 namespace App\Services\Jobtitle;
 
+use App\Models\JobTitle;
 use LaravelEasyRepository\Service;
 use App\Repositories\Jobtitle\JobtitleRepository;
 
