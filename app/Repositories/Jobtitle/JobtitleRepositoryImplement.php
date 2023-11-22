@@ -24,15 +24,10 @@ class JobtitleRepositoryImplement extends Eloquent implements JobtitleRepository
     {
         $limit = ! is_null($limit) ? $limit : self::LIMIT_PERPAG;
         $qb = $this->model;
-        $jobTitleCode = $searchData['jobTitleCode'] ?? null;
-        $title= $searchData['title'] ?? null;
-        if(! empty($searchData)) {
-            if($title) {
-                $qb = $qb->where('title', 'like', "%" . $title . "%");
-            }
-            if($jobTitleCode) {
-                $qb = $qb->where('job_title_code', 'like', "%" . $jobTitleCode . "%");
-            }
+        $keyword = $searchData['keyword'] ?? null;
+        if(! empty($searchData) && $keyword) {
+            $qb = $qb->where('title', 'like', "%" . $keyword . "%")
+                     ->orwhere('job_title_code', 'like', "%" . $keyword . "%");
         }
 
         return $qb->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->paginate($limit);

@@ -22,44 +22,6 @@ use App\Http\Controllers\EvaluationCriteriaController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// categoryCriteria
-Route::prefix("/category-criteria")->controller(CategoryCriteriaController::class)
-    ->name("categoryCriteria.")->group(function(){
-    Route::get('/', 'index')->name('list');
-    Route::get('/create', 'create')->name('create');
-    Route::post('/create', 'store')->name('store');
-    Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::put('/update/{id}', 'update')->name('update');
-    Route::get('/view/{id}', 'show')->name('show');
-    Route::post('/delete', 'destroy')->name('destroy');
-});
-
-
-// AssessmentPeriod
-Route::prefix("/assessment-period")->controller(AssessmentPeriodController::class)
-    ->name("assessmentPeriod.")->group(function(){
-        Route::get('/', 'index')->name('list');
-        Route::get('/create', 'create')->name('create');
-        Route::post('/store', 'store')->name('store');
-        Route::get('/step2/{id}', 'step2')->name('step2');
-        Route::put('/updateStep2/{id}', 'updateStep2')->name('updateStep2');
-        Route::get('/edit/{id}', 'edit')->name('edit');
-        Route::put('/update/{id}', 'update')->name('update');
-        Route::get('/view/{id}', 'show')->name('show');
-        Route::post('/delete', 'destroy')->name('destroy');
-    });
-// evaluationCriteria
-Route::prefix("/evaluation-criteria")->controller(EvaluationCriteriaController::class)
-    ->name("evaluationCriteria.")->group(function(){
-    Route::get('/', 'index')->name('list');
-    Route::get('/create', 'create')->name('create');
-    Route::post('/create', 'store')->name('store');
-    Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::put('/edit/{id}', 'update')->name('update');
-    Route::get('/view/{id}', 'show')->name('show');
-    Route::get('/delete/{id}', 'destroy')->name('destroy');
-});
-
 // In your RouteServiceProvider or any service provider
 Route::macro('resourceRoutes', function ($prefix, $routeName, $controller) {
     Route::prefix("/$prefix")->controller($controller)->name("$routeName.")->group(function () {
@@ -75,19 +37,60 @@ Route::macro('resourceRoutes', function ($prefix, $routeName, $controller) {
     });
 });
 
-// job title
-Route::resourceRoutes('/job-title', 'jobTitle',JobTitleController::class);
+Route::middleware(['auth'])->prefix('/')->group(function () {
+    // categoryCriteria
+    Route::prefix("/category-criteria")->controller(CategoryCriteriaController::class)
+        ->name("categoryCriteria.")->group(function(){
+        Route::get('/', 'index')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/create', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::put('/update/{id}', 'update')->name('update');
+        Route::get('/view/{id}', 'show')->name('show');
+        Route::post('/delete', 'destroy')->name('destroy');
+    });
 
-// department
-Route::resourceRoutes('/department', 'department',DepartmentController::class);
-// job title
-Route::resourceRoutes('/job-title', 'jobTitle', JobTitleController::class);
 
-// department
-Route::resourceRoutes('/department', 'department', DepartmentController::class);
+    // AssessmentPeriod
+    Route::prefix("/assessment-period")->controller(AssessmentPeriodController::class)
+        ->name("assessmentPeriod.")->group(function(){
+            Route::get('/', 'index')->name('list');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/step2/{id}', 'step2')->name('step2');
+            Route::put('/updateStep2/{id}', 'updateStep2')->name('updateStep2');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::put('/update/{id}', 'update')->name('update');
+            Route::get('/view/{id}', 'show')->name('show');
+            Route::post('/delete', 'destroy')->name('destroy');
+        });
+    // evaluationCriteria
+    Route::prefix("/evaluation-criteria")->controller(EvaluationCriteriaController::class)
+        ->name("evaluationCriteria.")->group(function(){
+        Route::get('/', 'index')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/create', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::put('/edit/{id}', 'update')->name('update');
+        Route::get('/view/{id}', 'show')->name('show');
+        Route::get('/delete/{id}', 'destroy')->name('destroy');
+    });
 
-// user
-Route::resourceRoutes('/user', 'user', UserController::class);
+    // job title
+    Route::resourceRoutes('/job-title', 'jobTitle',JobTitleController::class);
+
+    // department
+    Route::resourceRoutes('/department', 'department',DepartmentController::class);
+    // job title
+    Route::resourceRoutes('/job-title', 'jobTitle', JobTitleController::class);
+
+    // department
+    Route::resourceRoutes('/department', 'department', DepartmentController::class);
+
+    // user
+    Route::resourceRoutes('/user', 'user', UserController::class);
+
+});
 
 Auth::routes();
 
