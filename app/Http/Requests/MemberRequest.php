@@ -35,7 +35,8 @@ class MemberRequest extends FormRequest
             'department_id' => ['required'],
             'direct_management' => ['required'],
             'work_start_date' => ['required', 'date', 'date_format:d-m-Y'],
-            'avatar' => ['mimes:png,jpg,jpeg', 'max:5120']
+            'avatar' => ['mimes:png,jpg,jpeg', 'max:5120'],
+            'level' => ['required']
         ];
     }
 
@@ -56,6 +57,7 @@ class MemberRequest extends FormRequest
             'work_start_date.date_format' => ':attribute phải là dạng :format!',
             'avatar.mimes' => ':attribute phải là dạng :values!',
             'avatar.max' => ':attribute tối đa 5Mb!',
+            'level.required' => ':attribute không được trống!'
         ]; 
     }
 
@@ -69,7 +71,8 @@ class MemberRequest extends FormRequest
             'department_id' => 'Phòng ban',
             'direct_management' => 'Người quản lý',
             'work_start_date' => 'Ngày làm việc',
-            'avatar' => "Ảnh"
+            'avatar' => "Ảnh",
+            'level' => 'Level'
         ];
     }
 }

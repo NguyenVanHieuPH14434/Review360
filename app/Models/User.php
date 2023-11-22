@@ -36,7 +36,8 @@ class User extends Authenticatable
         'work_start_date',
         'avatar',
         'status',
-        'remember_token'
+        'remember_token',
+        'level'
     ];
 
     const ACTIVE = 1;

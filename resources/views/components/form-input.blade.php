@@ -9,7 +9,9 @@
     @if ($previewImg)
         <input type="{{ $type }}" class="{{ $datepicker ? "datepicker " : "" }}form-control @error($name) is-invalid @enderror" value="{{ $oldValue }}" name="{{ $name }}" id="{{ $name }}"
         onchange="preview()">
-        <img src="" id="previewImage" class="mt-2" width="120" alt="" class="mb-2">
+        @if ( ! empty($class) && $class !== 'preview-img-none d-none')
+            <img src="" id="previewImage" class="mt-2" width="120" alt="" class="mb-2">
+        @endif
     @else
         <input autocomplete="{{ $autocomplete }}" type="{{ $type }}" 
         class="{{ $datepicker ? "datepicker " : "" }}form-control @error($name) is-invalid @enderror" 

@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
@@ -26,7 +24,7 @@ class UserFactory extends Factory
             'name' => "User " . static::$id,
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => Hash::make('password'),
+            'password' => 'password',
             'remember_token' => Str::random(10),
             'role_id' => fake()->numberBetween(1, 4),
             'job_title_id' => fake()->numberBetween(1, 5),
@@ -40,6 +38,7 @@ class UserFactory extends Factory
             'work_start_date' => now(),
             'avatar' => defaultImage(),
             'status' => 1,
+            'level' => fake()->numberBetween(1, 5),
         ];
     }
 
