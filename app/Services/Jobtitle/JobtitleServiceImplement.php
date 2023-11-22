@@ -2,7 +2,6 @@
 
 namespace App\Services\Jobtitle;
 
-use App\Models\Jobtitle;
 use LaravelEasyRepository\Service;
 use App\Repositories\Jobtitle\JobtitleRepository;
 
@@ -43,5 +42,10 @@ class JobtitleServiceImplement extends Service implements JobtitleService{
     public function updateJobTitle($id, $data)
     {
       return $this->jobtitleRepository->update($id, $data);
+    }
+
+    public function getAllJobTitle()
+    {
+      return $this->jobtitleRepository->all();
     }
 }

@@ -1,20 +1,12 @@
 @extends('layouts.master')
 @section('breadcrumb')
-    <x-breadcrumb titlePage="Danh sách chức danh"/>
+    <x-breadcrumb titlePage="Chức danh" action="Danh sách"/>
 @endsection
 @section('content')
     <div class="card card-body rounded-2">
         <div class="row pb-5 border-bottom">
             <div class="d-flex flex-wrap gap-2 justify-content-xxl-between justify-content-start">
                 <form class="d-flex flex-wrap gap-2 justify-content-start col-12 col-xxl-9" action="{{ route('jobTitle.search') }}" method="GET">
-                    <div class="col-12 col-md-2 col-xl-1">
-                        <div class="position-relative">
-                            <select id="perPage" name="per_page" class="form-select">
-                                <option {{ request('per_page') == 1 ? 'selected' : '' }} value="10">10</option>
-                                <option {{ request('per_page') == 2 ? 'selected' : '' }} value="20">20</option>
-                            </select>
-                        </div>
-                    </div>
                     <div class="col-12 col-md-4 col-xl-3">
                         <div class="position-relative">
                             <input type="text" class="form-control product-search ps-3" name="title"
@@ -54,7 +46,7 @@
             </div>
         </div>
         <div class="table-responsive-xl">
-            <table class="table table-striped text-nowrap customize-table mb-0 align-middle">
+            <table class="table table-striped text-nowrap customize-table mb-0 align-middle mb-4">
                 <thead class="text-dark fs-4">
                     <tr>
                         <th>Mã chức danh</th>
@@ -87,20 +79,4 @@
             {{ $listJobTitle->appends(request()->query())->links() }}
         </div>
     </div>
-@endsection
-@section('script')
-    <script>
-        $(function() {
-            $("#perPage").on("change", function(e) {
-                var selectedValue = $(this).val();
-
-                // Lấy URL hiện tại và thêm hoặc cập nhật tham số 'per_page'
-                var currentUrl = window.location.href;
-                var url = new URL(currentUrl);
-                url.searchParams.set('per_page', selectedValue);
-
-                window.location.href = url.toString();
-            });
-        });
-    </script>
 @endsection

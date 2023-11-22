@@ -15,4 +15,6 @@ interface JobTitleService extends BaseService{
     public function generateJobTitleCode();
 
     public function updateJobTitle($id, $data);
+
+    public function getAllJobTitle();
 }
