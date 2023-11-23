@@ -17,5 +17,6 @@ class EvaluationCriteria extends Model
         'description',
         'cat_criteria',
         'status',
+        'type_criteria'
     ];
 }

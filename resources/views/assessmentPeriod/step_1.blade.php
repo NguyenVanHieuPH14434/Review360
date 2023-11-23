@@ -155,7 +155,6 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{asset('assets/libs/bootstrap-datepicker/dist/js/boostrap-datepicker.min.js')}}"></script>
     <script>
         $("#date-range").datepicker({
             toggleActive: true,

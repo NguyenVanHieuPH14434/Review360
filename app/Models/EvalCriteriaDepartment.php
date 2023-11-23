@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EvaluationCriteriaPoint extends Model
+class EvalCriteriaDepartment extends Model
 {
     use HasFactory;
-
-    protected $table = "eval_criteria_point";
     public $timestamps = false;
+    public $table = 'eval_criteria_department';
     protected $fillable = [
         'criteria_id',
-        'point',
-        'description',
+        'department_id',
     ];
 }
