@@ -1,4 +1,4 @@
-@props(['title', 'create', 'label', 'routeName', 'icon'])
+@props(['title', 'create', 'label', 'routeName', 'icon', 'update', 'view'])
 @php
     $routeName = $routeName ?? explode('.', Route::currentRouteName())[0] . '.list';
     $icon = $icon ?? "ti ti-list";
@@ -9,9 +9,15 @@
         @if (!empty($create))
             {{ $create }}
         @endif
-        <a href="{{ route($routeName) }}" class="btn mb-1 waves-effect waves-light btn-primary">
+        <a href="{{ route($routeName) }}" class="btn mx-1 mb-1 waves-effect waves-light btn-primary">
             <i class="{{ $icon }}"></i> {{ ! empty($label) ? $label : __('Danh sách') }}
         </a>
+        @if (!empty($update))
+            {{ $update }}
+        @endif
+        @if (!empty($view))
+            {{ $view }}
+        @endif
     </div>
 
 </div>

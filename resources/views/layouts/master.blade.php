@@ -102,6 +102,28 @@
             dateFormat: 'dd-mm-yy'
         });
         addPlaceholderSelect2Multiple();
+
+        $('body').on('click', 'div.toggle-search', function(e) {
+            $(this).closest('div.head-search').find('div.body-search').toggleClass("d-none d-block");
+            addPlaceholderSelect2Multiple();
+            $(this).closest('div.position-relative').find('i:last').toggleClass("ti-chevron-down ti-chevron-up");
+        });
+
+        $(".hasSelect2").on("select2:unselect", () => {
+            $eventSelect.on("select2:open", () => {
+                $(".select2-search__field").val("");
+            })
+        })
+        $(".reset-form-search").on('click', function() {
+            $(this).closest('form')[0].reset();
+            $(this).closest('form').find('select:not(.hasSelect2)').prop('selectedIndex', 0);
+            $(".hasSelect2").val(null).trigger("change"); 
+        })
+        $('input.e-submit').on('keydown', function(e){
+            if(e.key === 'Enter') {
+                $(this).closest('form')[0].submit();
+            }
+        });
     });
     $(window).on('hashchange', function() {
         highlightActiveLink();

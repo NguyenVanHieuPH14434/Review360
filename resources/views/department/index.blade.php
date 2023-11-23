@@ -9,27 +9,16 @@
                 <form class="d-flex flex-wrap gap-2 justify-content-start col-12 col-xxl-9" action="{{ route('department.search') }}" method="GET">
                     <div class="col-12 col-md-4 col-xl-3">
                         <div class="position-relative">
-                            <input type="text" class="form-control product-search ps-3" name="title"
-                                value="{{ request('title') }}" placeholder="Phòng ban">
+                            <input type="text" class="ps-5 form-control product-search e-submit ps-3" name="keyword"
+                                value="{{ request('keyword') }}" placeholder="Mã phòng ban, tên phòng ban">
+                                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-3 col-xl-3">
-                        <div class="position-relative">
-                            <input type="text" class="form-control product-search ps-3" name="departmentCode"
-                                value="{{ request('departmentCode') }}" placeholder="Mã phòng ban">
-                        </div>
-                    </div>
-                    <div class="col-4 col-md-2 col-xl-1 d-flex">
-                        <button type="submit" style="min-height: 35px"
-                            class="btn btn-info w-100 h-100 d-flex justify-content-center position-relative">
-                            <i class="ti ti-search position-absolute top-50 translate-middle-y fs-6 text-white"></i>
-                        </button>
                     </div>
                 </form>
                 <div class="d-flex justify-content-xl-end gap-2 col-9 col-md-3 col-xxl-2">
                     <div class="col-auto text-start mt-3 mt-xxl-0">
                         <a href="{{ route('department.create') }}"
-                            class="btn btn-info">
+                            class="btn btn-success">
                             <i class="ti ti-plus"></i>
                             Tạo mới
                          </a>
@@ -52,7 +41,7 @@
                         <th>Mã phòng ban</th>
                         <th>Phòng ban</th>
                         <th>Ngày tạo</th>
-                        <th class="text-center">Action</th>
+                        <th class="th-action">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,7 +50,7 @@
                             <td>{{ $department->department_code }}</td>
                             <td>{{ $department->title }}</td>
                             <td>{{ $department->created_at->format('d/m/Y') }}</td>
-                            <td class="text-center td-action">
+                            <td class="th-action td-action">
                                 <a href="{{ route('department.show', $department->id) }}">
                                     <i class="ti ti-eye fs-6"></i>
                                 </a>

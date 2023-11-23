@@ -8,7 +8,9 @@ use App\Http\Traits\CommonTrait;
 use App\Imports\ImportUser;
 use App\Services\User\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Maatwebsite\Excel\Exceptions\ConcernConflictException;
+
 class UserController extends Controller
 {
     use CommonTrait;
@@ -60,6 +62,7 @@ class UserController extends Controller
         $data['listJobTitle'] = $this->listJobTitles();
         $data['listDepartment'] = $this->listDepartments();
         $data['roles'] = $this->roles;
+        $data['levels'] = Config::get('constants.level');
         return view('user.create', $data);
     }
 
@@ -92,6 +95,7 @@ class UserController extends Controller
         $data['listJobTitle'] = $this->listJobTitles();
         $data['listDepartment'] = $this->listDepartments();
         $data['roles'] = $this->roles;
+         $data['levels'] = Config::get('constants.level');
         return view('user.update', $data);
     }
 

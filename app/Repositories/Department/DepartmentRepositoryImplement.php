@@ -24,15 +24,10 @@ class DepartmentRepositoryImplement extends Eloquent implements DepartmentReposi
     {
         $limit = ! is_null($limit) ? $limit : self::LIMIT_PERPAG;
         $qb = $this->model;
-        $departmentCode = $searchData['departmentCode'] ?? null;
-        $title= $searchData['title'] ?? null;
-        if(! empty($searchData)) {
-            if($title) {
-                $qb = $qb->where('title', 'like', "%" . $title . "%");
-            }
-            if($departmentCode) {
-                $qb = $qb->where('department_code', 'like', "%" . $departmentCode . "%");
-            }
+        $keyword = $searchData['keyword'] ?? null;
+        if(! empty($searchData) && $keyword) {
+            $qb = $qb->where('title', 'like', "%" . $keyword . "%")
+                     ->orwhere('department_code', 'like', "%" . $keyword . "%");
         }
 
         return $qb->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->paginate($limit);

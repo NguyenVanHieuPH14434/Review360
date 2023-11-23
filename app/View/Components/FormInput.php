@@ -20,7 +20,7 @@ class FormInput extends Component
         public $type = 'text',
         public $ng = null,
         public bool $previewImg = false,
-        public bool $autocomplete = false,
+        public $autocomplete = "on",
         public $placeholder = "",
         public $class = "",
     )
