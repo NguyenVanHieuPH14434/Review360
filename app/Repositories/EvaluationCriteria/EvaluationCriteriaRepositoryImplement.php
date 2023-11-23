@@ -20,8 +20,13 @@ class EvaluationCriteriaRepositoryImplement extends Eloquent implements Evaluati
     }
 
     // Write something awesome :)
-    public function getLatestEvaluationCriteria()
+    public function getLatestEvalCriteria()
     {
         return $this->model::orderByDesc('id')->latest()->value('id');
+    }
+
+    public function allEvalCriteria()
+    {
+        return $this->model::latest()->paginate(10);
     }
 }

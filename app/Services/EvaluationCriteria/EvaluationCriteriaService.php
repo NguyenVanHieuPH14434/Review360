@@ -6,7 +6,15 @@ use LaravelEasyRepository\BaseService;
 
 interface EvaluationCriteriaService extends BaseService{
 
-    // Write something awesome :)
-    public function listCategoryCriteria();
-    public function createEvaluationCriteria($data);
+    public function listEvalCriteria();
+
+    public function findEvalCriteria($id);
+
+    public function createEvalCriteria($data);
+
+    public function updateEvalCriteria($id, $data);
+
+    public function deleteEvalCriteria($id);
+
+    public function generateCode();
 }

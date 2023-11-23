@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Traits;
+use App\Models\CategoryCriteria;
 use App\Models\Department;
 use App\Models\JobTitle;
 use App\Models\User;
@@ -15,5 +16,9 @@ trait CommonTrait {
 
     public function listUsers() {
         return User::latest()->where('status','1')->whereNull('deleted_at')->pluck('name','id');
+    }
+
+    public function listCateCriteria() {
+        return CategoryCriteria::latest()->where('status','1')->whereNull('deleted_at')->pluck('title','id');
     }
 }

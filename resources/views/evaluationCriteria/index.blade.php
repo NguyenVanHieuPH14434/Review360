@@ -57,23 +57,83 @@
                 </div>
             </div>
         </div>
-        <div class="table-responsive-xl">
+        <div class="table-responsive rounded-2">
             <table class="table table-striped text-nowrap customize-table mb-0 align-middle">
-                <thead class="text-dark fs-4">
+            <thead class="text-dark fs-3">
+            <tr>
+                <th class="text-center">
+                    <h6 class="fs-3 fw-semibold mb-0">No</h6>
+                </th>
+                <th class="text-center">
+                    <h6 class="fs-3 fw-semibold mb-0">Mã tiêu chí</h6>
+                </th>
+                <th>
+                    <h6 class="fs-3 fw-semibold mb-0">Tiêu chí</h6>
+                </th>
+                <th class="text-center">
+                    <h6 class="fs-3 fw-semibold mb-0">Nhóm tiêu chí</h6>
+                </th>
+                <th class="text-center">
+                    <h6 class="fs-3 fw-semibold mb-0">Loại tiêu chí</h6>
+                </th>
+                <th class="text-center">
+                    <h6 class="fs-3 fw-semibold mb-0">Cấp độ tiêu chí</h6>
+                </th>
+                <th class="text-center">
+                    <h6 class="fs-3 fw-semibold mb-0">Trạng thái</h6>
+                </th>
+                <th class="text-center">
+                    <h6 class="fs-3 fw-semibold mb-0">Ngày tạo</h6>
+                </th>
+                <th class="th-action text-center">
+                    <h6 class="fs-3 fw-semibold mb-0">Action</h6>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @if(isset($evalCris) && count($evalCris) > 0)
+                    <?php $i = 1;?>
+                @foreach($evalCris as $evalCri)
                     <tr>
-                        <th>Mã tiêu chí</th>
-                        <th>Tên tiêu chí</th>
-                        <th>Loại tiêu chí</th>
-                        <th>Chức danh</th>
-                        <th>Trạng thái</th>
-                        <th>Ngày tạo</th>
-                        <th>Ngày cập nhật</th>
-                        <th class="text-center">Action</th>
+                        <td class="text-center">
+                            {{$i++}}
+                        </td>
+                        <td class="text-center">
+                            <p class="mb-0 fw-normal fs-3">{{$evalCri->criteria_code}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 fw-normal fs-3">{{$evalCri->title}}</p>
+                        </td>
+                        <td class="text-center">
+                            <p class="mb-0 fw-normal fs-3">{{\App\Models\CategoryCriteria::find($evalCri->cat_criteria)->title}}</p>
+                        </td>
+                        <td class="text-center">
+                            <span class="mb-1 badge rounded-pill text-bg-primary fw-semibold fs-2">{{config('constants.type_criteria')[$evalCri->type_criteria]}}</span>
+                        </td>
+                        <td class="text-center">
+                            <span class="mb-1 badge rounded-pill text-bg-primary fw-semibold fs-2">{{config('constants.criterion_level')[$evalCri->criterion_level]}}</span>
+                        </td>
+                        <td class="text-center">
+                            <span class="mb-1 badge rounded-pill {{config('constants.badge-status')[$evalCri->status]}} fw-semibold fs-2">{{config('constants.status')[$evalCri->status]}}</span>
+                        </td>
+                        <td class="text-center">
+                            <p class="mb-0 fw-normal fs-3">{{$evalCri->created_at->format('d/m/Y')}}</p>
+                        </td>
+                        <td class="td-action text-center">
+                            <a href="{{route('categoryCriteria.show',$evalCri->id)}}"><i class="ti ti-eye btn-update"></i></a>
+                            <a href="{{route('categoryCriteria.edit',$evalCri->id)}}"><i class="ti ti-pencil btn-update"></i></a>
+                            <a href="javascript:void(0)" class="delete-obj" data-flag="confirm" data-id="{{$evalCri->id}}"><i class="ti ti-trash btn-delete"></i></a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+                @endforeach
+            @endif
+            </tbody>
+        </table>
+            @if(isset($evalCris) && count($evalCris) > 0)
+                <div class="box-pagination">
+                    {{ $evalCris->appends(request()->query())->links() }}
+                </div>
+            @endif
         </div>
     </div>
 @endsection
