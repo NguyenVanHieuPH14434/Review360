@@ -6,9 +6,8 @@ use App\Models\EvalCriteriaDepartment;
 use App\Models\EvalCriteriaJobTitle;
 use App\Models\EvalCriteriaLevel;
 use App\Models\EvalCriteriaUsers;
-use App\Models\EvaluationCriteria;
 use App\Models\EvaluationCriteriaPoint;
-use App\Repositories\CategoryCriteria\CategoryCriteriaRepository;
+use App\Services\EvalForm\EvalFormService;
 use Illuminate\Support\Facades\DB;
 use LaravelEasyRepository\Service;
 use App\Repositories\EvaluationCriteria\EvaluationCriteriaRepository;
@@ -20,10 +19,12 @@ class EvaluationCriteriaServiceImplement extends Service implements EvaluationCr
      * because used in extends service class
      */
     protected $mainRepository;
+    protected $evalformservice;
 
-    public function __construct(EvaluationCriteriaRepository $mainRepository)
+    public function __construct(EvaluationCriteriaRepository $mainRepository, EvalFormService $evalformservice)
     {
         $this->mainRepository = $mainRepository;
+        $this->evalformservice = $evalformservice;
     }
 
     public function listEvalCriteria(){
@@ -35,16 +36,16 @@ class EvaluationCriteriaServiceImplement extends Service implements EvaluationCr
         return $this->mainRepository->find($id);
     }
 
-    public function createEvalCriteria($data)
+    public function createEvalCriteria($data): ?\Illuminate\Database\Eloquent\Model
     {
-        $data['criteria_code'] = $this->generateCode();
-        $evalCri = $this->mainRepository->create($data);
+        try {
+            DB::beginTransaction();
+            $data['criteria_code'] = $this->generateCode();
+            $evalCri = $this->mainRepository->create($data);
 
-        if($evalCri->id) {
-            $criteria_id = $evalCri->id;
-            $job_titles = $levels =  $departments = $users = $points = [];
-            try {
-                DB::beginTransaction();
+            if($evalCri->id) {
+                $criteria_id = $evalCri->id;
+                $job_titles = $levels =  $departments = $users = $points = [];
                 if (!empty($data['job_titles'])) {
                     foreach ($data['job_titles'] as $job_title){
                         $job_titles[] = ['criteria_id' => $criteria_id, 'job_title_id' => $job_title];
@@ -63,6 +64,7 @@ class EvaluationCriteriaServiceImplement extends Service implements EvaluationCr
                     foreach ($data['departments'] as $department){
                         $departments[] = ['criteria_id' => $criteria_id, 'department_id' => $department];
                     }
+
                     EvalCriteriaDepartment::insert($departments);
                 }
 
@@ -81,14 +83,24 @@ class EvaluationCriteriaServiceImplement extends Service implements EvaluationCr
                     EvaluationCriteriaPoint::insert($points);
                 }
 
-                DB::commit();
-            } catch (\Exception $e) {
-                DB::rollback();
-                throw $e;
-            }
-        }
+                $dataForm = [
+                    'departments' => $data['departments']?? [],
+                    'job_titles' => $data['job_titles'] ?? [],
+                    'users' => $data['users'] ?? [],
+                    'levels' => $data['levels'] ?? [],
+                    'criteria_id' => $criteria_id,
+                    'type_criteria' => $evalCri->type_criteria
+                ];
 
-        return $evalCri;
+                $this->evalformservice->createEvalForm($dataForm);
+            }
+
+            DB::commit();
+            return $evalCri;
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
     }
 
     public function updateEvalCriteria($id, $data)

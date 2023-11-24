@@ -8,6 +8,7 @@ use \App\Http\Controllers\CategoryCriteriaController;
 use \App\Http\Controllers\AssessmentPeriodController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EvaluationCriteriaController;
+use \App\Http\Controllers\EvalFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,7 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
     Route::prefix("/assessment-period")->controller(AssessmentPeriodController::class)
         ->name("assessmentPeriod.")->group(function(){
             Route::get('/', 'index')->name('list');
+            Route::post('/list-users', 'getListUser')->name('getListUser');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
             Route::get('/step2/{id}', 'step2')->name('step2');
@@ -75,6 +77,16 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
         Route::get('/view/{id}', 'show')->name('show');
         Route::get('/delete/{id}', 'destroy')->name('destroy');
     });
+
+    // evaluationCriteria
+    Route::prefix("/evaluation-form")->controller(EvalFormController::class)
+        ->name("evalForm.")->group(function(){
+            Route::get('/', 'index')->name('list');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::put('/edit/{id}', 'update')->name('update');
+            Route::get('/view/{id}', 'show')->name('show');
+            Route::get('/delete/{id}', 'destroy')->name('destroy');
+        });
 
     // job title
     Route::resourceRoutes('/job-title', 'jobTitle',JobTitleController::class);

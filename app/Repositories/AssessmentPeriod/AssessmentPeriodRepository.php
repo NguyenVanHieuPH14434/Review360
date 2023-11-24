@@ -9,4 +9,6 @@ interface AssessmentPeriodRepository extends Repository{
     public function allAssessmentPeriod();
 
     public function listAP();
+
+    public function getListUser($data);
 }

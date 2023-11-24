@@ -6,5 +6,5 @@ use LaravelEasyRepository\Repository;
 
 interface EvalFormRepository extends Repository{
 
-    // Write something awesome :)
+    public function allEvalForm();
 }

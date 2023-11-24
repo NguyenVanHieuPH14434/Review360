@@ -2,6 +2,7 @@
 
 namespace App\Repositories\AssessmentPeriod;
 
+use App\Models\User;
 use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\AssessmentPeriod;
 
@@ -29,6 +30,28 @@ class AssessmentPeriodRepositoryImplement extends Eloquent implements Assessment
     public function listAP()
     {
         return $this->model::latest()->where('status',self::Active)->whereNull('deleted_at')->pluck('title','id');
+    }
+
+    public function getListUser($data){
+        $users = User::where('status',self::Active)->whereNull('deleted_at');
+
+        if (!empty($data['departments'])) {
+            $users->whereIn('users.department_id', $data['departments']);
+        }
+
+        if (!empty($data['jobTitles'])) {
+            $users->whereIn('users.job_title_id', $data['jobTitles']);
+        }
+
+        if (!empty($data['levels'])) {
+            $users->whereIn('users.level', $data['levels']);
+        }
+
+        if (!empty($data['users'])) {
+            $users->whereIn('users.id', $data['users']);
+        }
+
+        return $users->with(['getJobTitle','getDepartment','getManagement'])->get();
     }
 
 }

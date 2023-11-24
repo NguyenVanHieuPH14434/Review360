@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('breadcrumb')
-    <x-breadcrumb titlePage="Danh sách tiêu chí đánh giá"/>
+    <x-breadcrumb titlePage="Tiêu chí đánh giá"/>
 @endsection
 @section('content')
 <div class="card card-body rounded-2">

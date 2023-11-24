@@ -6,5 +6,10 @@ use LaravelEasyRepository\BaseService;
 
 interface EvalFormService extends BaseService{
 
-    // Write something awesome :)
+    public function createEvalForm($data);
+
+    public function listEvalForm();
+
+    public function updateEvalForm($id, $data);
+
 }

@@ -26314,3 +26314,4 @@ span#select2-tb-status-container {
 .cursor-pointer {
   cursor: pointer;
 }
+.select2-container--default .select2-search--inline .select2-search__field{border:none!important;}

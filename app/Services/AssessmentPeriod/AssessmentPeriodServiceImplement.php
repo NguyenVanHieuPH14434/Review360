@@ -32,9 +32,13 @@ class AssessmentPeriodServiceImplement extends Service implements AssessmentPeri
         return $this->mainRepository->create($data);
     }
 
-    public function updateAssessmentPeriod($id, $data)
+    public function updateStep2($id, $data)
     {
         return $this->mainRepository->update($id, $data);
+    }
+
+    public function getListUser($data){
+        return $this->mainRepository->getListUser($data);
     }
 
     public function deleteAssessmentPeriod($id)
