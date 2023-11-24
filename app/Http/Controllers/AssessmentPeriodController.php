@@ -42,25 +42,20 @@ class AssessmentPeriodController extends Controller
         $data['assessmentPeriod'] = $this->assessmentPeriodService->findAssessmentPeriod($id);
         $data['departments'] = $this->listDepartments();
         $data['jobTitles'] = $this->listJobTitles();
+        $data['users'] = $this->listUsers();
         return view('assessmentPeriod.step_2', $data);
     }
 
     public function updateStep2($id, assessmentPeriodRequest $request)
     {
-        $this->assessmentPeriodService->updateAssessmentPeriod($id, $request->all());
+        $this->assessmentPeriodService->updateStep2($id, $request->all());
         return redirect()->route("assessmentPeriod.show", [$id])->with('success', 'Update success!');
     }
 
-    public function edit($id)
+    public function getListUser(Request $request): bool|string
     {
-        $data['assessmentPeriod'] = $this->assessmentPeriodService->findAssessmentPeriod($id);
-        return view('assessmentPeriod.update', $data);
-    }
-
-    public function update($id, assessmentPeriodRequest $request)
-    {
-        $this->assessmentPeriodService->updateAssessmentPeriod($id, $request->all());
-        return redirect()->route("assessmentPeriod.show", [$id])->with('success', 'Update success!');
+        $data['users'] = $this->assessmentPeriodService->getListUser($request->all());
+        return json_encode(['code' => '200','html' => view('assessmentPeriod.list_user', $data)->render()]);
     }
 
     public function show($id)

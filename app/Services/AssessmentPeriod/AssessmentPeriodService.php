@@ -12,7 +12,9 @@ interface AssessmentPeriodService extends BaseService{
 
     public function createAssessmentPeriod($data);
 
-    public function updateAssessmentPeriod($id, $data);
+    public function updateStep2($id, $data);
+
+    public function getListUser($data);
 
     public function deleteAssessmentPeriod($id);
 

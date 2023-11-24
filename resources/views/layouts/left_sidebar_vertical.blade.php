@@ -92,7 +92,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="../main/app-notes.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{route('evalForm.list')}}" aria-expanded="false">
         <span>
           <i class="ti ti-notes"></i>
         </span>

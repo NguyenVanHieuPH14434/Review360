@@ -19,5 +19,9 @@ class EvalFormRepositoryImplement extends Eloquent implements EvalFormRepository
         $this->model = $model;
     }
 
-    // Write something awesome :)
+    public function allEvalForm(){
+        return $this->model::latest()->where('status', 1)->whereNull('deleted_at')
+            ->with('jobTitle')->with('department')
+            ->paginate(10);
+    }
 }

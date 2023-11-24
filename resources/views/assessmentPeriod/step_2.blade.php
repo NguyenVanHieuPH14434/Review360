@@ -20,6 +20,7 @@
     </div>
 @endsection
 @section('content')
+    @csrf
     <div class="card">
         <div class="px-4 py-3 border-bottom">
             <h5 class="card-title fw-semibold mb-0 lh-sm title-form">Tạo mới</h5>
@@ -42,7 +43,7 @@
                         </li>
                         <li role="tab" aria-disabled="false" class="current" aria-selected="true">
                             <a id="steps-uid-5-t-1" href="#steps-uid-5-h-1" aria-controls="steps-uid-5-p-1">
-                                <span class="step">2</span> Thiết lập mẫu đánh giá
+                                <span class="step">2</span> Thiết lập nhân viên
                             </a>
                         </li>
                         <li role="tab" class="disabled" aria-disabled="true">
@@ -56,74 +57,45 @@
                     <h6 id="steps-uid-5-h-0" tabindex="-1" class="title current">Personal Info</h6>
                     <section id="steps-uid-5-p-0" role="tabpanel" aria-labelledby="steps-uid-5-h-0" class="body current" aria-hidden="false" style="">
                         <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <label for="tb-status" class="floating-label">Phòng ban<span class="text-danger">*</span></label>
-                                @php $status = old('status') ?? $assessmentPeriod->status @endphp
-                                <select aria-label="Phòng ban" multiple="multiple" class="form-control selectDepartment customSelect floating-control @error('status') is-invalid @enderror" name="status" id="selectDepartment">
-                                    <option value="">Chọn phòng ban áp dụng</option>
+                            <h5 style="margin-bottom:  20px">Tìm kiếm nhân viên</h5>
+                            <div class="col-md-6 mb-3">
+                                <label for="tb-status" class="floating-label">Phòng ban</label>
+                                <select aria-label="Phòng ban" multiple="multiple" class="selectEmp hasSelect2 form-control selectDepartment customSelect floating-control" name="departments[]" id="selectDepartment"  aria-placeholder="Tìm kiếm theo phòng ban">
                                     @if(!empty($departments))
                                         @foreach($departments as $key => $department)
                                             <option value="{{$key}}">{{$department}}</option>
                                         @endforeach
                                     @endif
                                 </select>
-                                @error('status')
-                                <span class="text-danger" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="tb-status" class="floating-label">Chức danh<span class="text-danger">*</span></label>
-                                @php $status = old('status') ?? $assessmentPeriod->status @endphp
-                                <select aria-label="Chức danh" multiple="multiple" class="form-control selectJobTitle customSelect floating-control @error('status') is-invalid @enderror" name="status" id="selectJobTitle">
-                                    <option value="">Chọn chức danh áp dụng</option>
+                            <div class="col-md-6 mb-3">
+                                <label for="tb-status" class="floating-label">Chức danh</label>
+                                <select aria-label="Chức danh" multiple="multiple" class="selectEmp hasSelect2 form-control selectJobTitle customSelect floating-control" name="jobTitles[]" id="selectJobTitle"  aria-placeholder="Tìm kiếm theo chức danh">
                                     @if(!empty($jobTitles))
                                         @foreach($jobTitles as $key => $jobTitle)
                                             <option value="{{$key}}">{{$jobTitle}}</option>
                                         @endforeach
                                     @endif
                                 </select>
-                                @error('status')
-                                <span class="text-danger" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="tb-status" class="floating-label">Nhân viên<span class="text-danger">*</span></label>
-                                @php $status = old('status') ?? $assessmentPeriod->status @endphp
-                                <select aria-label="Trạng thái" id="selectUser" class="form-control customSelect floating-control @error('status') is-invalid @enderror" name="status">
-                                    <option value="">Chọn loại đánh giá</option>
-                                    <option value="1" {{ $status == 1 ? "selected" : "" }}>Job Rank</option>
-                                    <option value="2" {{ $status == 2 ? "selected" : "" }}>Performance</option>
-                                    <option value="1" {{ $status == 3 ? "selected" : "" }}>Tháng</option>
-                                    <option value="1" {{ $status == 4 ? "selected" : "" }}>Quý</option>
-                                    <option value="1" {{ $status == 5 ? "selected" : "" }}>Năm</option>
-                                    <option value="1" {{ $status == 5 ? "selected" : "" }}>Đánh giá 360</option>
+                            <div class="col-md-6 mb-3">
+                                <label for="department" class="form-label">Level</label>
+                                <select class="form-select hasSelect2 customSelect selectEmp" name="levels[]" multiple id="selectLevel" aria-placeholder="Tìm kiếm theo level">
+                                    @foreach(config('constants.level') as $key => $level)
+                                        <option value="{{$key}}">{{$level}}</option>
+                                    @endforeach
                                 </select>
-                                @error('status')
-                                <span class="text-danger" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="department" class="form-label">Nhân viên</label>
+                                <select class="form-select hasSelect2 selectEmp customSelect @error('status') is-invalid @enderror" name="users[]" multiple id="selectUser" aria-placeholder="Tìm kiếm theo nhân viên">
+                                    @foreach($users as $k => $user)
+                                        <option value="{{$k}}">{{$user}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="box-eval-form">
-                                <h5>Mẫu đánh giá</h5>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Mẫu đánh giá</th>
-                                            <th>Thao tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="3">Không có dữ liệu</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
                             </div>
                         </div>
                     </section>
@@ -143,8 +115,27 @@
 @endsection
 @section('script')
     <script>
-        $('#selectDepartment,#selectJobTitle,#selectUser').select2( {
-            theme: 'bootstrap-5',
-        });
+        $('.selectEmp').on('change', function (e){
+            e.preventDefault();
+            let departments = $('#selectDepartment').val();
+            let jobTitles = $('#selectJobTitle').val();
+            let levels = $('#selectLevel').val();
+            let users = $('#selectUser').val();
+            let _token = $('input[name="_token"]').val();
+
+            $.ajax({
+                url: "{{route('assessmentPeriod.getListUser')}}",
+                type: "POST",
+                dataType: "JSON",
+                data: {_token:_token, departments:departments, jobTitles:jobTitles, levels:levels, users:users} ,
+                success: function (response) {
+                    console.log(response.html);
+                    $('.box-eval-form').html(response.html)
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+            });
+        })
     </script>
 @endsection

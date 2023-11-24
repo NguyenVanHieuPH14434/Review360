@@ -22,7 +22,7 @@ class CategoryCriteriaRepositoryImplement extends Eloquent implements CategoryCr
 
     public function allCategoryCriteria()
     {
-        return $this->model::latest()->paginate(10);
+        return $this->model::latest()->where('status', 1)->whereNull('deleted_at')->paginate(10);
     }
 
 }
