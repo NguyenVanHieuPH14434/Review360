@@ -4,12 +4,17 @@
 @endsection
 @section('content')
     <div class="card">
-        <x-card-title title="Cập nhật phòng ban">
+        <x-card-title title="Cập nhật">
             <x-slot:create>
-                <a href="{{ route('department.create') }}" class="btn mb-1 waves-effect waves-light btn-primary">
+                <a href="{{ route('department.create') }}" class="btn mb-1 waves-effect waves-light btn-success">
                     <i class="ti ti-plus"></i> Tạo mới
                 </a>
             </x-slot:create>  
+            <x-slot:view>
+                <a href="{{ route('department.show', $department->id) }}" class="btn mb-1 waves-effect waves-light btn-warning">
+                    <i class="ti ti-eye"></i> Chi tiết
+                </a>
+            </x-slot:view>  
         </x-card-title>
         <form class="card-body" action="{{ route('department.update', $department->id) }}" method="POST">
             @csrf

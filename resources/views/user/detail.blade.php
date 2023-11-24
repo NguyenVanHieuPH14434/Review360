@@ -6,12 +6,12 @@
 <div class="card">
     <x-card-title title="Thông tin người dùng">
         <x-slot:create>
-            <a href="{{ route('jobTitle.create') }}" class="btn mb-1 waves-effect waves-light btn-success">
+            <a href="{{ route('user.create') }}" class="btn mb-1 waves-effect waves-light btn-success">
                 <i class="ti ti-plus"></i> Tạo mới
             </a>
         </x-slot:create>  
         <x-slot:update>
-            <a href="{{ route('jobTitle.edit', $user->id) }}" class="btn mb-1 waves-effect waves-light btn-secondary">
+            <a href="{{ route('user.edit', $user->id) }}" class="btn mb-1 waves-effect waves-light btn-secondary">
                 <i class="ti ti-edit"></i> Cập nhật
             </a>
         </x-slot:update>  
@@ -70,7 +70,7 @@
                                                                 </div>
                                                                 <div class="col-6 mb-9">
                                                                     <p class="mb-1 fs-2">Trạng thái</p>
-                                                                    <h6 class="fw-semibold mb-0">
+                                                                    <h6 class="fw-semibold mb-0 mb-1 badge rounded-pill text-bg-{{ $user->status == 1 ? "success" : "danger" }} fw-semibold fs-2">
                                                                         {{ $user->status == 1 ? 'Hoạt động' : 'Không hoạt động' }}
                                                                     </h6>
                                                                 </div>
