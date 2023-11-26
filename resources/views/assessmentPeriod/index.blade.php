@@ -20,6 +20,7 @@
     </div>
 @endsection
 @section('content')
+    <x-notification/>
     <div class="card w-100 position-relative overflow-hidden">
         <div class="px-4 py-3 border-bottom">
             <h5 class="card-title fw-semibold mb-0 lh-sm">Danh sách</h5>
@@ -57,7 +58,7 @@
                                 <h6 class="fs-4 fw-semibold mb-0">Ngày tạo</h6>
                             </th>
                             <th class="th-action">
-                                <h6 class="fs-4 fw-semibold mb-0">Action</h6>
+                                <h6 class="fs-4 fw-semibold mb-0">Thao tác</h6>
                             </th>
                         </tr>
                         </thead>
@@ -90,7 +91,7 @@
                                         <td class="td-action">
                                             <a href="{{route('assessmentPeriod.show',$assessmentPeriod->id)}}"><i class="ti ti-eye btn-update"></i></a>
                                             <a href="{{route('assessmentPeriod.edit',$assessmentPeriod->id)}}"><i class="ti ti-pencil btn-update"></i></a>
-                                            <a href="javascript:void(0)" class="delete-obj" data-flag="confirm" data-id="{{$assessmentPeriod->id}}"><i class="ti ti-trash btn-delete"></i></a>
+                                            <a href="javascript:void(0)" class="delete-obj" data-flag="confirm"><i class="ti ti-trash btn-delete"></i></a>
                                         </td>
                                     </tr>
                                @endforeach
@@ -109,32 +110,20 @@
             </div>
         </div>
     </div>
-    <x-alert level="danger" message="Những tiêu chí thuộc nhóm tiêu chí cũng sẽ bị xóa"/>
+    <x-alert level="danger" message="Những tiêu chí thuộc nhóm tiêu chí cũng sẽ bị xóa" :id="$assessmentPeriod->id ?? 0"/>
 @endsection
 @section('script')
     <script>
         $(document).ready(function(){
             $(document).on('click','.delete-obj', function (e){
                 e.preventDefault();
+                $('#al-danger-alert').modal('show');
                 let id = $(this).data('id');
                 let _token = $('input[name="_token"]').val();
                 let flag_del = $(this).data('flag');
-                $.ajax({
-                    url: "{{route('assessmentPeriod.destroy')}}",
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {id:id, _token:_token, flag_del: flag_del} ,
-                    success: function (response) {
-                        if (flag_del === 'confirm') {
-                            $('#al-danger-alert').modal('show');
-                        } else {
-                            $(window).reload();
-                        }
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.log(textStatus, errorThrown);
-                    }
-                });
+                let url = "{{route('assessmentPeriod.destroy')}}";
+                let data = {id:id, _token:_token, flag_del: flag_del};
+                deleteData(url, data, flag_del);
             })
         })
     </script>

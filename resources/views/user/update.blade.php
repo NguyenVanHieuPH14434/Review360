@@ -36,9 +36,11 @@
                             <div class="card-body p-4">
                             <h5 class="card-title fw-semibold">Ảnh hồ sơ của bạn</h5>
                             <div class="text-center">
-                                <img src="{{ asset($user->avatar) }}" id="previewImage" alt="" class="img-fluid rounded-circle" width="120" height="120">
+                                <img src="{{ asset(session('image') ?? $user->avatar) }}" id="previewImage" alt="" class="img-fluid rounded-circle" width="120" height="120">
                                 <div class="d-flex align-items-center justify-content-center my-4 gap-3">
                                 <x-form-input name="avatar" class="preview-img-none d-none" label="Avatar" :oldValue="old('avatar')" type="file" previewImg="true" />
+                                <input type="hidden" value="{{ session('image') ?? null }}" name="tmp_image">
+                                <input type="hidden" value="{{ session('originName') ?? null }}" name="origin_name">
                                 <label for="avatar" class="btn btn-primary">Tải lên</label>
                                 </div>
                                 <p class="mb-0">Allowed JPG, JPEG or PNG. Max size of 5MB</p>
@@ -78,7 +80,7 @@
                                         <x-form-input class="col" name="email" label="Email" required="true" :oldValue="old('email') ?? $user->email" placeholder="Email" />
                                     </div>
                                     <div class="mb-4">
-                                        <x-form-input class="col" name="work_start_date" label="Ngày bắt đầu làm việc" required="true" :oldValue="old('work_start_date') ?? date('d-m-Y', strtotime($user->work_start_date))" 
+                                        <x-form-input class="col" name="work_start_date" label="Ngày bắt đầu làm việc" required="true" :oldValue="old('work_start_date') ?? $user->work_start_date" 
                                         datepicker="true" autocomplete="off" placeholder="Ngày bắt đầu làm việc" />
                                     </div>
                                 </div>
@@ -92,19 +94,27 @@
                                         :isSelected="$selectedDepartment" select2="true" />
                                     </div>
                                     <div class="mb-4">
-                                        <x-form-select :select="$listUser" class="col" label="Quản lý trực tiếp" name="direct_management" required="true"
+                                        <x-form-select :select="$users" class="col" label="Quản lý trực tiếp" name="direct_management" required="true"
                                         :isSelected="$selectedManagement" select2="true" />
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 d-flex justify-content-between">
+                                    <div class="col-3 d-flex align-items-center justify-content-start mt-4 gap-3">
+                                        <button class="btn btn-warning back-page">
+                                            <div class="d-flex align-items-center">
+                                                <i class="ti ti-arrow-left"></i>
+                                                Quay lại
+                                            </div>
+                                        </button>
+                                    </div>
                                     <div class="d-flex align-items-center justify-content-end mt-4 gap-3">
-                                    <button class="btn btn-primary">
-                                        <div class="d-flex align-items-center">
-                                            <i class="ti ti-send me-2 fs-4"></i>
-                                            Lưu lại
-                                        </div>
-                                    </button>
-                                    <input type="reset" class="btn bg-danger-subtle text-danger" value="Hủy bỏ"/>
+                                        <button class="btn btn-primary">
+                                            <div class="d-flex align-items-center">
+                                                <i class="ti ti-send me-2 fs-4"></i>
+                                                Lưu lại
+                                            </div>
+                                        </button>
+                                        <input type="reset" class="btn bg-danger-subtle text-danger" value="Hủy bỏ"/>
                                     </div>
                                 </div>
                                 </div>

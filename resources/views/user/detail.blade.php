@@ -23,7 +23,7 @@
                     <div class="chatting-box app-email-chatting-box">
                         <div class="position-relative overflow-hidden">
                             <div class="position-relative">
-                                <div class="chat-box p-9" style="height: calc(100vh - 428px)"
+                                <div class="chat-box p-9" style="height: calc(100vh - 100px)"
                                     data-simplebar="init">
                                     <div class="simplebar-wrapper" style="margin: -20px;">
                                         <div class="simplebar-height-auto-observer-wrapper">
@@ -98,11 +98,21 @@
                                                                     </h6>
                                                                 </div>
                                                             </div>
-                                                            <div class="d-flex align-items-center gap-2">
-                                                                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary fs-2"
-                                                                    fdprocessedid="pk6kl8">Cập nhật</a>
-                                                                <button class="btn btn-danger fs-2"
-                                                                    fdprocessedid="83zpb">Xóa</button>
+                                                            <div class="d-flex align-items-center justify-content-between gap-2">
+                                                                <div class="col-3 d-flex align-items-center justify-content-start mt-4 gap-3">
+                                                                    <button class="btn btn-warning back-page fs-2">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <i class="ti ti-arrow-left"></i>
+                                                                            Quay lại
+                                                                        </div>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="d-flex align-items-center justify-content-end mt-4 gap-3">
+                                                                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary fs-2"
+                                                                        fdprocessedid="pk6kl8">Cập nhật</a>
+                                                                    <button class="btn btn-danger fs-2"
+                                                                        fdprocessedid="83zpb">Xóa</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         

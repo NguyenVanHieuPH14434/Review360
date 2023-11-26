@@ -3,6 +3,7 @@
     <x-breadcrumb titlePage="Chức danh" action="Danh sách"/>
 @endsection
 @section('content')
+    <x-notification />
     <div class="card card-body rounded-2">
         <div class="row pb-5 border-bottom">
             <div class="d-flex flex-wrap gap-2 justify-content-xxl-between justify-content-start">
@@ -41,7 +42,7 @@
                         <th>Mã chức danh</th>
                         <th>Chức danh</th>
                         <th>Ngày tạo</th>
-                        <th class="th-action">Action</th>
+                        <th class="th-action">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>

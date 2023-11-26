@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -29,12 +30,12 @@ class MemberRequest extends FormRequest
         }
         return [
             'name' => ['required', 'max:255'],
-            'email' => ['required', 'email', $uniqueEmail],
+            'email' => ['required', 'email', $uniqueEmail, 'max:255'],
             'role_id' => ['required'],
             'job_title_id' => ['required'],
             'department_id' => ['required'],
             'direct_management' => ['required'],
-            'work_start_date' => ['required', 'date', 'date_format:d-m-Y'],
+            'work_start_date' => ['required', 'date_format:d/m/Y'],
             'avatar' => ['mimes:png,jpg,jpeg', 'max:5120'],
             'level' => ['required']
         ];
@@ -48,12 +49,12 @@ class MemberRequest extends FormRequest
             'email.required' => ':attribute không được trống!',
             'email.email' => ':attribute không đúng định dạng!',
             'email.unique' => ':attribute đã tồn tại!',
+            'email.max' => ':attribute tối đa :max ký tự!',
             'role_id.required' => ':attribute không được trống!',
             'job_title_id.required' => ':attribute không được trống!',
             'department_id.required' => ':attribute không được trống!',
             'direct_management.required' => ':attribute không được trống!',
             'work_start_date.required' => ':attribute không được trống!',
-            'work_start_date.date' => ':attribute không đúng định dạng!',
             'work_start_date.date_format' => ':attribute phải là dạng :format!',
             'avatar.mimes' => ':attribute phải là dạng :values!',
             'avatar.max' => ':attribute tối đa 5Mb!',
@@ -74,5 +75,18 @@ class MemberRequest extends FormRequest
             'avatar' => "Ảnh",
             'level' => 'Level'
         ];
+    }
+
+    public function withValidator(Validator $validator)
+    {
+        $validator->after(function ($validator) {
+            if($validator->failed()) {
+                if($this->hasFile('avatar')){
+                    session()->flash('originName', $this->file('avatar')->hashName());
+                    return redirect()->back()->withInput()->withErrors($validator)
+                    ->with('image', fileUpload($this->file('avatar'), 'user', 'uploads/tmp-users'));
+                }
+            }
+        });
     }
 }

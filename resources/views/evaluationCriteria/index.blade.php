@@ -86,7 +86,7 @@
                     <h6 class="fs-3 fw-semibold mb-0">Ngày tạo</h6>
                 </th>
                 <th class="th-action text-center">
-                    <h6 class="fs-3 fw-semibold mb-0">Action</h6>
+                    <h6 class="fs-3 fw-semibold mb-0">Thao tác</h6>
                 </th>
             </tr>
             </thead>

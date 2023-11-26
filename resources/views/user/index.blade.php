@@ -3,6 +3,7 @@
     <x-breadcrumb titlePage="Người dùng" action="Danh sách"/>
 @endsection
 @section('content')
+    <x-notification />
     <div class="card rounded-2">
         <x-card-title title="Danh sách" label="Import" routeName="user.import" icon="ti ti-download fs-4">
             <x-slot:create>
@@ -28,7 +29,7 @@
                         </div>
                         <div class="col-12 col-md-4 col-xl-3">
                             <x-form-input name="workDate" class="col" :oldValue="request('workDate')" datepicker="true"
-                            placeholder="Ngày bắt đầu làm việc" />
+                            placeholder="Ngày bắt đầu làm việc" autocomplete="off" />
                         </div>
                         @php
                             $selectedStatus = function ($key, $value) {
@@ -76,14 +77,14 @@
                         <th>Phòng ban</th>
                         <th>Quản lý trực tiếp</th>
                         <th>Ngày tạo</th>
-                        <th class="th-action">Action</th>
+                        <th class="th-action">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($listUser as $user)
                         <tr>
                             <td>
-                                <img src="{{ asset($user->avatar) }}" width="60" height="60" class="img-fluid rounded-circle" alt="{{$user->avatar}}">
+                                <img src="{{ asset($user->avatar) }}" width="60" height="60" class="img-fluid rounded-circle" alt="{{ Str::limit($user->avatar, 15, '...') }}">
                             </td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>

@@ -48,7 +48,7 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
         Route::get('/view/{id}', 'show')->name('show');
-        Route::post('/delete', 'destroy')->name('destroy');
+        Route::delete('/delete', 'destroy')->name('destroy');
     });
 
 
@@ -64,7 +64,7 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
             Route::get('/edit/{id}', 'edit')->name('edit');
             Route::put('/update/{id}', 'update')->name('update');
             Route::get('/view/{id}', 'show')->name('show');
-            Route::post('/delete', 'destroy')->name('destroy');
+            Route::delete('/delete', 'destroy')->name('destroy');
         });
     // evaluationCriteria
     Route::prefix("/evaluation-criteria")->controller(EvaluationCriteriaController::class)
@@ -92,11 +92,6 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
     Route::resourceRoutes('/job-title', 'jobTitle',JobTitleController::class);
 
     // department
-    Route::resourceRoutes('/department', 'department',DepartmentController::class);
-    // job title
-    Route::resourceRoutes('/job-title', 'jobTitle', JobTitleController::class);
-
-    // department
     Route::resourceRoutes('/department', 'department', DepartmentController::class);
 
     // user
@@ -105,5 +100,9 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
 });
 
 Auth::routes();
+
+Route::any('{url}', function(){
+    return abort(404);
+})->where('url', '.*');
 
 

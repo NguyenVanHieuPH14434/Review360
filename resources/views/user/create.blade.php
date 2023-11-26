@@ -4,6 +4,9 @@
 @endsection
 @section('content')
 <div class="card">
+        @php
+            $avatar = session('image') ?? 'assets/images/profile/user-1.jpg';
+        @endphp
     <x-card-title title="Tạo mới" />
     <div class="card-body">
         <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
@@ -16,9 +19,11 @@
                         <div class="card-body p-4">
                         <h5 class="card-title fw-semibold">Ảnh hồ sơ của bạn</h5>
                         <div class="text-center">
-                            <img src="{{ asset('assets/images/profile/user-1.jpg') }}" id="previewImage" alt="" class="img-fluid rounded-circle" width="120" height="120">
+                            <img src="{{ asset($avatar) }}" id="previewImage" alt="" class="img-fluid rounded-circle" width="120" height="120">
                             <div class="d-flex align-items-center justify-content-center my-4 gap-3">
-                            <x-form-input name="avatar" class="preview-img-none d-none" label="Avatar" :oldValue="old('avatar')" type="file" previewImg="true" />
+                            <x-form-input name="avatar" class="preview-img-none d-none" label="Avatar" :oldValue="old('avatar') ?? $avatar" type="file" previewImg="true" />
+                            <input type="hidden" value="{{ session('image') ?? null }}" name="tmp_image">
+                            <input type="hidden" value="{{ session('originName') ?? null }}" name="origin_name">
                             <label for="avatar" class="btn btn-primary">Tải lên</label>
                             </div>
                             <p class="mb-0">Allowed JPG, JPEG or PNG. Max size of 5MB</p>
@@ -70,7 +75,7 @@
                                     select2="true" />
                                 </div>
                                 <div class="mb-4">
-                                    <x-form-select :select="$listUser" class="col" label="Quản lý trực tiếp" name="direct_management" required="true"
+                                    <x-form-select :select="$users" class="col" label="Quản lý trực tiếp" name="direct_management" required="true"
                                     select2="true" />
                                 </div>
                             </div>

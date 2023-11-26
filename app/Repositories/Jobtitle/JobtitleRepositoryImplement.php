@@ -30,7 +30,7 @@ class JobtitleRepositoryImplement extends Eloquent implements JobtitleRepository
                      ->orwhere('job_title_code', 'like', "%" . $keyword . "%");
         }
 
-        return $qb->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->paginate($limit);
+        return $qb->whereNull('deleted_at')->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->paginate($limit);
     }
 
     public function getLatestJobTitle()

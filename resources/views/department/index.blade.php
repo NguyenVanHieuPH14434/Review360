@@ -3,11 +3,12 @@
     <x-breadcrumb titlePage="Phòng ban" action="Danh sách"/>
 @endsection
 @section('content')
+    <x-notification />
     <div class="card card-body rounded-2">
         <div class="row pb-5 border-bottom">
             <div class="d-flex flex-wrap gap-2 justify-content-xxl-between justify-content-start">
                 <form class="d-flex flex-wrap gap-2 justify-content-start col-12 col-xxl-9" action="{{ route('department.search') }}" method="GET">
-                    <div class="col-12 col-md-4 col-xl-3">
+                    <div class="col-12 col-md-4 col-xl-4">
                         <div class="position-relative">
                             <input type="text" class="ps-5 form-control product-search e-submit ps-3" name="keyword"
                                 value="{{ request('keyword') }}" placeholder="Mã phòng ban, tên phòng ban">
@@ -41,7 +42,7 @@
                         <th>Mã phòng ban</th>
                         <th>Phòng ban</th>
                         <th>Ngày tạo</th>
-                        <th class="th-action">Action</th>
+                        <th class="th-action">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>

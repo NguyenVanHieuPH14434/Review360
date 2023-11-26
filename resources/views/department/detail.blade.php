@@ -89,6 +89,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <button class="btn btn-warning back-page fs-3">
+                                    <div class="d-flex align-items-center">
+                                        <i class="ti ti-arrow-left"></i>
+                                        Quay lại
+                                    </div>
+                                </button>
                             </div>
                         </div>
                     </form>

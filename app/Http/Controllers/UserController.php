@@ -6,6 +6,7 @@ use App\Http\Requests\ImportRequest;
 use App\Http\Requests\MemberRequest;
 use App\Http\Traits\CommonTrait;
 use App\Imports\ImportUser;
+use App\Models\User;
 use App\Services\User\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -21,21 +22,23 @@ class UserController extends Controller
         "3" => "Quản lý",
         "4" => "Nhân viên" 
     ];
+    private $data;
     public function __construct(
         UserService $userService
     )
     {
         $this->userService = $userService;
+        $this->data['users'] = $this->listUsers();
+        $this->data['listJobTitle'] = $this->listJobTitles();
+        $this->data['listDepartment'] = $this->listDepartments();
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $data = $this->data;
         $data['listUser'] = $this->userService->listUser([], null);
-        $data['users'] = $this->listUsers();
-        $data['listJobTitle'] = $this->listJobTitles();
-        $data['listDepartment'] = $this->listDepartments();
         return view("user.index", $data);
     }
 
@@ -46,10 +49,8 @@ class UserController extends Controller
         if (empty($req)) {
             return redirect()->route("user.list");
         }
+        $data = $this->data;
         $data['listUser'] = $this->userService->listUser($req, null);
-        $data['users'] = $this->listUsers();
-        $data['listJobTitle'] = $this->listJobTitles();
-        $data['listDepartment'] = $this->listDepartments();
         return view("user.index", $data);
     }
 
@@ -58,9 +59,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data['listUser'] = $this->listUsers();
-        $data['listJobTitle'] = $this->listJobTitles();
-        $data['listDepartment'] = $this->listDepartments();
+        $data = $this->data;
         $data['roles'] = $this->roles;
         $data['levels'] = Config::get('constants.level');
         return view('user.create', $data);
@@ -72,7 +71,7 @@ class UserController extends Controller
     public function store(MemberRequest $request)
     {
         $user = $this->userService->creatUser($request);
-        return redirect()->route("user.show", [$user['id']])->with('success', 'Create success!');
+        return redirect()->route("user.list")->with('notice', ['success', 'Tạo mới thành công!']);
     }
 
     /**
@@ -80,7 +79,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $data['user'] = $this->userService->findUser($id);
+        $data['user'] = $this->findOrFailAndReturn(User::class, $id);
         $data['roles'] = $this->roles;
         return view('user.detail', $data);
     }
@@ -90,10 +89,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $data['user'] = $this->userService->findUser($id);
-        $data['listUser'] = $this->listUsers();
-        $data['listJobTitle'] = $this->listJobTitles();
-        $data['listDepartment'] = $this->listDepartments();
+        $data = $this->data;
+        $data['user'] = $this->findOrFailAndReturn(User::class, $id);
         $data['roles'] = $this->roles;
          $data['levels'] = Config::get('constants.level');
         return view('user.update', $data);
@@ -105,7 +102,7 @@ class UserController extends Controller
     public function update(MemberRequest $request, $id)
     {
         $user = $this->userService->updateUser($id, $request);
-        return redirect()->route('user.show', [$id]);
+        return redirect()->route('user.list')->with('notice', ['success', 'Cập nhật thành công!']);
     }
 
     public function importView()
@@ -121,7 +118,7 @@ class UserController extends Controller
             if($users->getErrorRows()) {
                 return redirect()->back()->with('error', $users->getErrorRows()['message'] . "Error at line: " .$users->getErrorRows()['row'][0]);
             }
-           return redirect()->route("user.list")->with('success', 'Import success!');
+           return redirect()->route("user.list")->with('notice', ['success', 'Import thành công!']);
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
              $failures = $e->failures();
              return redirect()->back()->with('import_error', $failures);

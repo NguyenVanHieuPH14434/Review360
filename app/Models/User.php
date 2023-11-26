@@ -79,7 +79,12 @@ class User extends Authenticatable
 
     public function setWorkStartDateAttribute($value) 
     {
-        $this->attributes['work_start_date'] = date('Y-m-d', strtotime($value));
+        $this->attributes['work_start_date'] = Carbon::createFromFormat('d/m/Y',$value)->format('Y-m-d');
+    }
+
+    public function getWorkStartDateAttribute() 
+    {
+        return (Carbon::parse($this->attributes['work_start_date']))->format('d/m/Y');
     }
 
     public function setStatusAttribute($value) 
