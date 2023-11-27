@@ -51,7 +51,12 @@ class AssessmentPeriodRepositoryImplement extends Eloquent implements Assessment
             $users->whereIn('users.id', $data['users']);
         }
 
-        return $users->with(['getJobTitle','getDepartment','getManagement'])->get();
+        if(!empty($data['userid'])){
+            is_array($data['userid']) ? $users->whereNotIn('id', $data['userid']) :  $users->where('id','<>',$data['userid']);
+            return $users->with(['getJobTitle','getDepartment','getManagement'])->pluck('name','id');
+        }else{
+            return $users->with(['getJobTitle','getDepartment','getManagement'])->get();
+        }
     }
 
 }

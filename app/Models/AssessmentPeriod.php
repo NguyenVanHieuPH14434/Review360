@@ -14,7 +14,7 @@ class AssessmentPeriod extends Model
     protected $table = "assessment_period";
     protected $fillable = [
         'title',
-        'description',
+        'description','departments','jobTitles','levels','users',
         'status','start_date','end_date','type_eval','eval_copy_id','setting_result_eval','setting_point_eval'
     ];
 

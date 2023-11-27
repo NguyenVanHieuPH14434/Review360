@@ -60,7 +60,12 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
             Route::get('/step2/{id}', 'step2')->name('step2');
-            Route::put('/updateStep2/{id}', 'updateStep2')->name('updateStep2');
+            Route::post('/updateStep2/{id}', 'updateStep2')->name('updateStep2');
+            Route::get('/step3/{id}', 'step3')->name('step3');
+            Route::post('/updateStep3/{id}', 'updateStep3')->name('updateStep3');
+            Route::post('/list-reviewer', 'getListReviewer')->name('getListReviewer');
+            Route::post('/add-reviewer', 'addReviewer')->name('addReviewer');
+
             Route::get('/edit/{id}', 'edit')->name('edit');
             Route::put('/update/{id}', 'update')->name('update');
             Route::get('/view/{id}', 'show')->name('show');
