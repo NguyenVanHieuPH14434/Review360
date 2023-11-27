@@ -15587,7 +15587,7 @@ textarea.form-control-lg {
 }
 
 .body-wrapper {
-  padding-top: calc(70px + 30px);
+  padding-top: calc(70px + 15px);
 }
 
 a {
@@ -26315,3 +26315,5 @@ span#select2-tb-status-container {
   cursor: pointer;
 }
 .select2-container--default .select2-search--inline .select2-search__field{border:none!important;}
+.select2-container--default.select2-container--focus .select2-selection--multiple{border-radius: 7px !important}
+body .select2-container--default .select2-selection--multiple{border-radius: 7px !important;}

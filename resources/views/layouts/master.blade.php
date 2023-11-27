@@ -25,7 +25,7 @@
         href="{{ asset('assets/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}"
     />
     <!-- Datepicker  -->
-    <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.min.css') }}"/>
 
     @vite(['resources/scss/app_style.scss'])
     <style>
@@ -85,7 +85,6 @@
 
 <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
 <script src="{{ asset('assets/js/theme.js') }}"></script>
-<script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
 <script src="{{asset('assets/libs/bootstrap-datepicker/dist/js/boostrap-datepicker.min.js')}}"></script>
 
 @include('layouts.page_javascript')
@@ -98,8 +97,8 @@
         });
         $(window).trigger('hashchange');
         $(".datepicker" ).datepicker({
-            showAnim: 'slideDown',
-            dateFormat: 'dd-mm-yy'
+            todayHighlight: true,
+            format: 'dd/mm/yyyy'
         });
         addPlaceholderSelect2Multiple();
 
@@ -107,6 +106,11 @@
             $(this).closest('div.head-search').find('div.body-search').toggleClass("d-none d-block");
             addPlaceholderSelect2Multiple();
             $(this).closest('div.position-relative').find('i:last').toggleClass("ti-chevron-down ti-chevron-up");
+            if($(this).closest('div.head-search').find('div.body-search').hasClass('d-none')){
+                localStorage.removeItem('block-body-search');
+            }else{
+                localStorage.setItem('block-body-search', 'active');
+            }
         });
 
         $(".hasSelect2").on("select2:unselect", () => {
@@ -116,6 +120,7 @@
         })
         $(".reset-form-search").on('click', function() {
             $(this).closest('form')[0].reset();
+            $(this).closest('form').find('input.datepicker').val('');
             $(this).closest('form').find('select:not(.hasSelect2)').prop('selectedIndex', 0);
             $(".hasSelect2").val(null).trigger("change"); 
         })
@@ -124,6 +129,21 @@
                 $(this).closest('form')[0].submit();
             }
         });
+        $('.back-page').on('click', function(e){
+            e.preventDefault();
+            parent.history.back();
+            return false;
+        });
+
+        var bodySearch = localStorage.getItem('block-body-search');
+        if(bodySearch == 'active'){
+            $('div.head-search').find('div.body-search').addClass("d-block").removeClass('d-none');
+            addPlaceholderSelect2Multiple();
+        }
+        if(bodySearch !== 'active' || ! location.pathname.includes('/search')){
+            localStorage.removeItem('block-body-search');
+            $('div.head-search').find('div.body-search').addClass("d-none").removeClass('d-block');
+        }
     });
     $(window).on('hashchange', function() {
         highlightActiveLink();
@@ -155,6 +175,31 @@
                });
             }
         });
+    }
+
+    // delete
+    function deleteData(url, data, flag_del) {
+        if(flag_del === "delete"){
+            $.ajax({
+                url: url,
+                type: "DELETE",
+                dataType: "JSON",
+                data: data ,
+                success: function (response) {
+                    let level = Object.keys(response)[1];
+                    let message = response[level];
+                    $('#al-danger-alert').modal('hide');
+                    $('#notification').html(`
+                    <div class="alert alert-${level} alert-dismissible bg-${level} text-white border-0 fade show" role="alert">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <strong>${message}</strong>
+                    </div>
+                    `)
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                }
+            });
+        }
     }
 </script>
 </body>

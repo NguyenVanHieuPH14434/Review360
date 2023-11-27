@@ -10,7 +10,7 @@
                     <p class="mt-3">
                         {{$message}}
                     </p>
-                    <button type="button" class="btn btn-danger my-2 delete-obj" data-flag="delete" >
+                    <button type="button" class="btn btn-danger my-2 delete-obj" data-id="{{$id}}" data-flag="delete" >
                         Xóa
                     </button>
                     <button type="button" class="btn btn-light my-2" data-bs-dismiss="modal">

@@ -41,7 +41,7 @@ class CategoryCriteriaController extends Controller
     public function update($id, CategoryCriteriaRequest $request)
     {
         $this->categoryCriteriaService->updateCategoryCriteria($id, $request->all());
-        return redirect()->route("categoryCriteria.show", [$id])->with('success', 'Update success!');
+        return redirect()->route("categoryCriteria.show", [$id])->with('notice', ['success', 'Update success!']);
     }
 
     public function show($id)
@@ -60,6 +60,9 @@ class CategoryCriteriaController extends Controller
             $this->categoryCriteriaService->deleteCategoryCriteria($id);
         }
 
-        return json_encode(['code' => 200]);
+        return json_encode([
+            'code' => 200,
+            'success' => "Xóa thành công!"
+        ]);
     }
 }

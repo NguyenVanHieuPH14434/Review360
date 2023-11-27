@@ -74,6 +74,9 @@ class AssessmentPeriodController extends Controller
             $this->assessmentPeriodService->deleteAssessmentPeriod($id);
         }
 
-        return json_encode(['code' => 200]);
+        return json_encode([
+            'code' => 200,
+            'success' => 'Xóa thành công!'
+        ]);
     }
 }

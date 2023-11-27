@@ -54,6 +54,13 @@ use Illuminate\Support\Facades\Storage;
                 $file = $req->file($data['image']);
                 $dataImage = fileUpload($file, $data['prefixName'], $data['folder']);
             }
+            if($req['tmp_image'] && $req['origin_name'] !== null){
+                $sourcePath = $req['tmp_image'];
+                $destinationPath = $data['folder'] . '/';
+                $newFileName = $req['origin_name'];
+                $dataImage = $destinationPath . $newFileName;
+                Storage::move($sourcePath, $dataImage);
+            }
             return $dataImage;
         }
     }

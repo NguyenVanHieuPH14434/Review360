@@ -50,12 +50,20 @@
                     @enderror
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary rounded-pill px-4 waves-effect waves-light">
-                <div class="d-flex align-items-center">
-                    <i class="ti ti-send me-2 fs-4"></i>
-                    Lưu lại
-                </div>
-            </button>
+            <div class="col-12 d-flex flex-wrap justify-content-start gap-2">
+                <button class="btn btn-warning back-page">
+                    <div class="d-flex align-items-center">
+                        <i class="ti ti-arrow-left"></i>
+                        Quay lại
+                    </div>
+                </button>
+                <button type="submit" class="btn btn-primary px-4 waves-effect waves-light">
+                    <div class="d-flex align-items-center">
+                        <i class="ti ti-send me-2"></i>
+                        Lưu lại
+                    </div>
+                </button>
+            </div>
         </form>
     </div>
 @endsection

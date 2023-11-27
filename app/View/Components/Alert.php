@@ -22,16 +22,19 @@ class Alert extends Component
      */
     public $message;
 
+    public $id;
+
     /**
      * Create a new component instance.
      *
      * @param  string  $level
      * @param  mixed   $message
      */
-    public function __construct(string $level, $message)
+    public function __construct(string $level, $message, int $id)
     {
         $this->level   = $level;
         $this->message = $message;
+        $this->id = $id;
     }
 
 

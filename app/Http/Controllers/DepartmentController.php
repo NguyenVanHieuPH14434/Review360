@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DepartmentRequest;
 use App\Http\Requests\ImportRequest;
+use App\Http\Traits\CommonTrait;
 use App\Imports\ImportDepartment;
+use App\Models\Department;
 use App\Services\Department\DepartmentService;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DepartmentController extends Controller
 {
+    use CommonTrait;
     protected DepartmentService $departmentService;
     public function __construct(DepartmentService $departmentService)
     {
@@ -51,7 +54,7 @@ class DepartmentController extends Controller
     public function store(DepartmentRequest $request)
     {
         $department = $this->departmentService->createDepartment($request->all());
-        return redirect()->route("department.show", [$department['id']])->with('success', 'Create success!');
+        return redirect()->route("department.list")->with('notice', ['success', 'Tạo mới thành công!']);
     }
 
     /**
@@ -59,7 +62,7 @@ class DepartmentController extends Controller
      */
     public function show($department)
     {
-        $department = $this->departmentService->findDepartment($department);
+        $department = $this->findOrFailAndReturn(Department::class, $department);
         return view("department.detail", ['department' => $department]);
     }
 
@@ -68,7 +71,7 @@ class DepartmentController extends Controller
      */
     public function edit($department)
     {
-        $department = $this->departmentService->findDepartment($department);
+        $department = $this->findOrFailAndReturn(Department::class, $department);
         return view("department.update", ['department' => $department]);
     }
 
@@ -78,7 +81,7 @@ class DepartmentController extends Controller
     public function update(DepartmentRequest $request, $department)
     {
         $this->departmentService->updateDepartment($department, $request->all());
-        return redirect()->route("department.show", [$department])->with('success', 'Update success!');
+        return redirect()->route("department.list")->with('notice', ['success', 'Cập nhật thành công!']);
     }
 
     /**
@@ -98,7 +101,7 @@ class DepartmentController extends Controller
     {
         try {
             Excel::import(new ImportDepartment($this->departmentService), $request->file('file'));
-            return redirect()->route("department.list")->with('success', 'Import success!');
+            return redirect()->route("department.list")->with('notice', ['success', 'Import thành công!']);
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
              $failures = $e->failures();
              return redirect()->back()->with('import_error', $failures);

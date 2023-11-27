@@ -28,7 +28,7 @@ class JobTitleRequest extends FormRequest
             $uniqueTitle = Rule::unique('job_title', 'title')->ignore($req->id);
         }
         return [
-            'title' => ["required", $uniqueTitle],
+            'title' => ["required", $uniqueTitle, 'max:255'],
             'status' => "required",
         ];
     }
@@ -38,6 +38,7 @@ class JobTitleRequest extends FormRequest
         return [
             'title.required'=>':attribute không được để trống!',
             'title.unique'=>':attribute đã tồn tại!',
+            'title.max'=>':attribute tối đa :max ký tự!',
             'status.required'=>':attribute không được để trống!',
         ];
     }

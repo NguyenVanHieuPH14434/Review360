@@ -4,6 +4,7 @@ namespace App\Repositories\User;
 
 use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\User;
+use Carbon\Carbon;
 
 class UserRepositoryImplement extends Eloquent implements UserRepository{
 
@@ -47,14 +48,18 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
                 $qb = $qb->whereIn("direct_management", $directManagement);
             }
             if($workDate) {
-                $qb = $qb->where('work_start_date', date('Y-m-d', strtotime($workDate)));
+                $qb = $qb->where('work_start_date', Carbon::createFromFormat('d/m/Y', $workDate)->format('Y-m-d'));
             }
             if($status) {
                 $qb = $qb->where('status', $status);
             }
         }
 
-        return $qb->with(['getJobTitle', 'getDepartment', 'getManagement'])->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->paginate($limit);
+        return $qb->whereNull('deleted_at')
+                  ->with(['getJobTitle', 'getDepartment', 'getManagement'])
+                  ->orderBy('created_at', 'DESC')
+                  ->orderBy('id', 'DESC')
+                  ->paginate($limit);
     }
 
     public function getLatestUser()
