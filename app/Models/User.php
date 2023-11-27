@@ -27,10 +27,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id', 
+        'role_id',
         'job_title_id',
-        'department_id', 
-        'code', 
+        'department_id',
+        'code',
         'email_verified_at',
         'direct_management',
         'work_start_date',
@@ -77,22 +77,22 @@ class User extends Authenticatable
         return $this->belongsTo(User::class, 'direct_management', 'id');
     }
 
-    public function setWorkStartDateAttribute($value) 
+    public function setWorkStartDateAttribute($value)
     {
         $this->attributes['work_start_date'] = Carbon::createFromFormat('d/m/Y',$value)->format('Y-m-d');
     }
 
-    public function getWorkStartDateAttribute() 
+    public function getWorkStartDateAttribute()
     {
         return (Carbon::parse($this->attributes['work_start_date']))->format('d/m/Y');
     }
 
-    public function setStatusAttribute($value) 
+    public function setStatusAttribute($value)
     {
         $this->attributes['status'] = $value ?? self::ACTIVE;
     }
 
-    public function setPasswordAttribute($value) 
+    public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
     }

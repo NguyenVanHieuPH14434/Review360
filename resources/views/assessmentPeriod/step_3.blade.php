@@ -22,7 +22,7 @@
 @section('content')
     <div class="card">
         <div class="px-4 py-3 border-bottom">
-            <h5 class="card-title fw-semibold mb-0 lh-sm title-form">Tạo mới</h5>
+            <h5 class="card-title fw-semibold mb-0 lh-sm title-form">Thiết lập người đánh giá</h5>
             <div class="box-action">
                 <a href="{{route('assessmentPeriod.list')}}" class="btn mb-1 waves-effect waves-light btn-primary">
                     <i class="ti ti-list"></i> Danh sách
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="card-body wizard-content">
-            <form action="{{ route('assessmentPeriod.store') }}" method="POST" class="tab-wizard wizard-circle wizard clearfix">
+            <div class="tab-wizard wizard-circle wizard clearfix">
                 @csrf
                 <div class="steps clearfix">
                     <ul role="tablist">
@@ -55,110 +55,131 @@
                     <!-- Step 1 -->
                     <h6 id="steps-uid-5-h-0" tabindex="-1" class="title current">Personal Info</h6>
                     <section id="steps-uid-5-p-0" role="tabpanel" aria-labelledby="steps-uid-5-h-0" class="body current" aria-hidden="false" style="">
-                        <div class="row">
-                            <div class="col-md-9 mb-3">
-                                <label for="tb-title">Kỳ đánh giá <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="tb-title" name="title" value="{{ old('title') ?? $assessmentPeriod->title }}">
-                                @error('title')
-                                <span class="text-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="tb-status" class="floating-label">Sao chép từ kỳ đánh giá <span class="text-danger">*</span></label>
-                                @php $status = old('status') ?? $assessmentPeriod->status @endphp
-                                <select aria-label="Trạng thái" class="form-control hasSelect2 customSelect floating-control @error('status') is-invalid @enderror" name="status" id="tb-status">
-                                    <option value="">Chọn loại đánh giá</option>
-                                    <option value="1" {{ $status == 1 ? "selected" : "" }}>Job Rank</option>
-                                    <option value="2" {{ $status == 2 ? "selected" : "" }}>Performance</option>
-                                    <option value="1" {{ $status == 3 ? "selected" : "" }}>Tháng</option>
-                                    <option value="1" {{ $status == 4 ? "selected" : "" }}>Quý</option>
-                                    <option value="1" {{ $status == 5 ? "selected" : "" }}>Năm</option>
-                                    <option value="1" {{ $status == 5 ? "selected" : "" }}>Đánh giá 360</option>
-                                </select>
-                                @error('status')
-                                <span class="text-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="tb-status" class="floating-label">Loại đánh giá <span class="text-danger">*</span></label>
-                                @php $status = old('status') ?? $assessmentPeriod->status @endphp
-                                <select aria-label="Trạng thái" class="form-control hasSelect2 customSelect floating-control @error('status') is-invalid @enderror" name="status" id="tb-status">
-                                    <option value="">Chọn loại đánh giá</option>
-                                    <option value="1" {{ $status == 1 ? "selected" : "" }}>Job Rank</option>
-                                    <option value="2" {{ $status == 2 ? "selected" : "" }}>Performance</option>
-                                    <option value="1" {{ $status == 3 ? "selected" : "" }}>Tháng</option>
-                                    <option value="1" {{ $status == 4 ? "selected" : "" }}>Quý</option>
-                                    <option value="1" {{ $status == 5 ? "selected" : "" }}>Năm</option>
-                                </select>
-                                @error('status')
-                                <span class="text-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="tb-title">Ngày bắt đầu<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="tb-title" name="title" value="{{ old('title') ?? $assessmentPeriod->title }}">
-                                @error('title')
-                                <span class="text-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="tb-title">Ngày kết thúc<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="tb-title" name="title" value="{{ old('title') ?? $assessmentPeriod->title }}">
-                                @error('title')
-                                <span class="text-danger" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="tb-status" class="floating-label">Trạng thái <span class="text-danger">*</span></label>
-                                @php $status = old('status') ?? $assessmentPeriod->status @endphp
-                                <select aria-label="Trạng thái" class="form-control hasSelect2 customSelect floating-control @error('status') is-invalid @enderror" name="status" id="tb-status">
-                                    <option value="">Chọn trạng thái</option>
-                                    <option value="1" {{ $status == 1 ? "selected" : "" }}>Hoạt động</option>
-                                    <option value="2" {{ $status == 2 ? "selected" : "" }}>Không hoạt động</option>
-                                </select>
-                                @error('status')
-                                <span class="text-danger" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-8 col-xl-9" style="margin: 15px 0">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input primary check-outline outline-primary" type="checkbox" id="primary-outline-check" value="option1">
-                                    <label class="form-check-label" for="primary-outline-check">Công khai điểm đánh giá</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input primary check-outline outline-primary" type="checkbox" id="primary2-outline-check" value="option1" checked="">
-                                    <label class="form-check-label" for="primary2-outline-check">Công khai kết quả đánh giá</label>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mb-3">
-                                <label for="tb-description">Mô tả</label>
-                                <textarea class="form-control" rows="12" style="height: 100px" id="tb-description" name="description">{{ old('description') ?? $assessmentPeriod->description }}</textarea>
-                            </div>
-                        </div>
+                        <h5>Nhân viên đánh giá</h5>
+                        <table class="table table-striped table-responsive">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Ảnh</th>
+                                <th>Họ và tên</th>
+                                <th>Phòng ban</th>
+                                <th>Chức danh</th>
+                                <th>Level</th>
+                                <th>Quản lý trực tiếp</th>
+                                <th>Người đánh giá</th>
+                                <th>Thao tác</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if(count($users) > 0)
+                                @foreach($users as $key => $row)
+                                    <tr>
+                                        <td>
+                                            {{$key+1}}
+                                        </td>
+                                        <td id="avatar-{{$row->user_id}}">
+                                            <p class="mb-0 fw-normal fs-4">
+                                                <img src="{{ asset($row->user->avatar) }}" width="60" height="60" class="img-fluid rounded-circle" alt="{{$row->user->avatar}}">
+                                            </p>
+                                        </td>
+                                        <td id="info-{{$row->user_id}}">
+                                            <p class="mb-0 fw-normal fs-4 username">{{$row->user->name}}</p>
+                                            <p class="mb-0 fw-normal fs-2 userCode">{{$row->user->code}}</p>
+                                            <p class="mb-0 fw-normal fs-2 userEmail">{{$row->user->email}}</p>
+                                        </td>
+                                        <td id="department-{{$row->user_id}}">
+                                            <p class="mb-0 fw-normal fs-4">{{ $row->user->getDepartment ? $row->user->getDepartment->title : '' }}</p>
+                                        </td>
+                                        <td id="jobTitle-{{$row->user_id}}">
+                                            <p class="mb-0 fw-normal fs-4">{{ $row->user->getJobTitle ? $row->user->getJobTitle->title : '' }}</p>
+                                        </td>
+                                        <td id="level-{{$row->user_id}}">
+                                            <p class="mb-0 fw-normal fs-4">{{$row->user->level_id != '' ? config('constants.level')[$row->user->level_id] : ''}}</p>
+                                        </td>
+                                        <td id="management-{{$row->user_id}}">
+                                            <p class="mb-0 fw-normal fs-4">{{ $row->user->getManagement ? $row->user->getManagement->name : '' }}</p>
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                        <td class="td-action">
+                                            <a href="javascript:void(0)" class="add_reviewer" data-id="{{$row->id}}" data-userId="{{$row->user_id}}"><i class="ti ti-plus btn-update"></i></a>
+                                            <a href="javascript:void(0)" class="update_reviewer"><i class="ti ti-pencil btn-update"></i></a>
+                                            <a href="javascript:void(0)" class="delete-user" data-flag="confirm"><i class="ti ti-trash btn-delete"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="9">Không có dữ liệu</td>
+                                </tr>
+                            @endif
+                            </tbody>
+                        </table>
                     </section>
                 </div>
-                <div class="actions clearfix">
-                    <ul role="menu" aria-label="Pagination">
-                        <li aria-hidden="false" aria-disabled="false">
-                            <a href="#next" role="menuitem" class="font-medium rounded-pill px-4">
-                                <i class="ti ti-send me-2 fs-4"></i>Lưu và tiếp tục
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
+    <div class="modal fade hide modal-reviewer" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="reviewerModal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center">
+                    <h4 class="modal-title" id="myLargeModalLabel">
+                       Thêm người đánh giá nhân viên
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info font-medium rounded-pill px-4">
+                        <i class="ti ti-send me-2 fs-4"></i>Lưu lại
+                    </button>
+                    <button type="button" class="btn btn-danger font-medium rounded-pill px-4" data-bs-dismiss="modal">
+                        <i class="ti ti-trash me-2 fs-4"></i> Hủy
+                    </button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('.add_reviewer').on('click',function (e){
+                e.preventDefault();
+                let userid = $(this).data('userid');
+                let _token = $('input[name="_token"]').val();
+                let userInfo = {
+                    id: $(this).data('id'),
+                    user_id: userid,
+                    name: $('#info-' + userid + ' .username').html(),
+                    code: $('#info-'+userid+' .userCode').html(),
+                    email : $('#info-'+userid+' .userEmail').html(),
+                    department: $('#department-'+userid+' p').html(),
+                    jobTitle: $('#jobTitle-'+userid+' p').html(),
+                    level: $('#level-'+userid+' p').html(),
+                    management: $('#management-'+userid+' p').html(),
+                };
+
+                $.ajax({
+                    url: "{{route('assessmentPeriod.getListReviewer')}}",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {_token:_token, userid:userid,userInfo: userInfo},
+                    success: function (response) {
+                        $('.modal-reviewer .modal-body').html(response.html);
+                        $('.modal-reviewer').modal('show');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus, errorThrown);
+                    }
+                });
+            })
+        })
+    </script>
 @endsection
