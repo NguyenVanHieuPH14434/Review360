@@ -21,7 +21,7 @@ use \App\Http\Controllers\EvalFormController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('landingpage');
 
 // In your RouteServiceProvider or any service provider
 Route::macro('resourceRoutes', function ($prefix, $routeName, $controller) {
@@ -39,6 +39,8 @@ Route::macro('resourceRoutes', function ($prefix, $routeName, $controller) {
 });
 
 Route::middleware(['auth'])->prefix('/')->group(function () {
+    //home 
+    Route::get('/home', [HomeController::class, 'home'])->name('home');
     // categoryCriteria
     Route::prefix("/category-criteria")->controller(CategoryCriteriaController::class)
         ->name("categoryCriteria.")->group(function(){
