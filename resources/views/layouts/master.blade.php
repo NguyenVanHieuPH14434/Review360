@@ -37,6 +37,7 @@
             display: none;
         }
     </style>
+    @yield('styles')
 </head>
 <?php
 $user = \App\Models\User::find(auth()->user()->id);
@@ -122,6 +123,7 @@ $user = \App\Models\User::find(auth()->user()->id);
         })
         $(".reset-form-search").on('click', function() {
             $(this).closest('form')[0].reset();
+            $(this).closest('form').find(':input').val('');
             $(this).closest('form').find('input.datepicker').val('');
             $(this).closest('form').find('select:not(.hasSelect2)').prop('selectedIndex', 0);
             $(".hasSelect2").val(null).trigger("change");

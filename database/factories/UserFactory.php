@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -35,7 +36,7 @@ class UserFactory extends Factory
                 return $code;
             },
             'direct_management' => 1,
-            'work_start_date' => now(),
+            'work_start_date' => (now())->format('d/m/Y'),
             'avatar' => defaultImage(),
             'status' => 1,
             'level' => fake()->numberBetween(1, 5),

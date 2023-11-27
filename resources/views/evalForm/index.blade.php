@@ -64,8 +64,8 @@
                             <p class="mb-0 fw-normal fs-3">{{$evalForm->created_at->format('d/m/Y')}}</p>
                         </td>
                         <td class="td-action text-center">
-                            <a href="{{route('categoryCriteria.show',$evalForm->id)}}"><i class="ti ti-eye btn-update"></i></a>
-                            <a href="{{route('categoryCriteria.edit',$evalForm->id)}}"><i class="ti ti-pencil btn-update"></i></a>
+                            <a href="{{route('evalForm.show',$evalForm->id)}}"><i class="ti ti-eye btn-update"></i></a>
+                            <a href="{{route('evalForm.edit',$evalForm->id)}}"><i class="ti ti-pencil btn-update"></i></a>
                             <a href="javascript:void(0)" class="delete-obj" data-flag="confirm" data-id="{{$evalForm->id}}"><i class="ti ti-trash btn-delete"></i></a>
                         </td>
                     </tr>

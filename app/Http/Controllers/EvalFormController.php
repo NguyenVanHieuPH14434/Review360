@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\CommonTrait;
+use App\Models\EvalForm;
 use App\Services\EvalForm\EvalFormService;
 use Illuminate\Http\Request;
 
 class EvalFormController extends Controller
 {
+    use CommonTrait;
     protected EvalFormService $evalFormService;
 
     public function __construct(
@@ -37,7 +40,24 @@ class EvalFormController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['evalForm'] = $this->findOrFailAndReturn(EvalForm::class, $id);
+        $data['evaluationCriterias'] = $data['evalForm']->evaluationCriteria->sortBy('pivot.position');
+        $data['catCriterias'] = [];
+        $dataCatPosition = [];
+        foreach ($data['evaluationCriterias'] as $key => $value) {
+            $cate = $value->catCriteria->id;
+            if(!in_array($cate, array_keys($data['catCriterias']))){
+                $data['catCriterias'][$cate] = $value->catCriteria;
+                if(! is_null($value->pivot->cat_position)){
+                    $dataCatPosition[$key] = $value->pivot->cat_position;
+                }
+            }
+        }
+        if(! empty($dataCatPosition) && count($data['catCriterias']) == count($dataCatPosition)){
+            $data['catCriterias'] = array_combine(array_values($dataCatPosition), $data['catCriterias']);
+            ksort($data['catCriterias']);
+        }
+        return view('evalForm.update', $data);
     }
 
     /**
@@ -45,7 +65,8 @@ class EvalFormController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $evalFrom = $this->evalFormService->updateEvalForm($id, $request->all());
+        return redirect()->route('evalForm.list');
     }
 
     /**
