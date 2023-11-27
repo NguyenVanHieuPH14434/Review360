@@ -2,6 +2,7 @@
 
 namespace App\Services\AssessmentPeriod;
 
+use App\Models\AssessmentPeriodReviewer;
 use App\Models\AssessmentPeriodUser;
 use Illuminate\Support\Facades\DB;
 use LaravelEasyRepository\Service;
@@ -66,7 +67,22 @@ class AssessmentPeriodServiceImplement extends Service implements AssessmentPeri
     }
 
     public function updateStep3($id, $data){
+        $dataReviewer = [];
+        if(!empty($data['reviewers'])) {
+            foreach ($data['reviewers'] as $key => $item) {
+                $dataReviewer[] = [
+                    'assessment_period_user_id' => $id,
+                    'user_id' => $item['reviewer_id'],
+                    'peg_person' => $data['principal_reviewer'] == $key ? $item['reviewer_id'] : 0 ,
+                    'principal_reviewer' =>  $data['principal_reviewer'] == $key ? 1 : 0,
+                    'weighting' => $item['weighting'],
+                    'status' => 2
+                ];
+            }
+            AssessmentPeriodReviewer::insert($dataReviewer);
+        }
 
+        return true;
     }
 
     public function getListUser($data){

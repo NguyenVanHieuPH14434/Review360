@@ -134,7 +134,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info font-medium rounded-pill px-4">
+                    <button type="button" class="btn btn-info font-medium rounded-pill px-4 btn-reviewer">
                         <i class="ti ti-send me-2 fs-4"></i>Lưu lại
                     </button>
                     <button type="button" class="btn btn-danger font-medium rounded-pill px-4" data-bs-dismiss="modal">

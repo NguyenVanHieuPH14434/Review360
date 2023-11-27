@@ -80,7 +80,7 @@
         <span>
           <i class="ti ti-calendar"></i>
         </span>
-                        <span class="hide-menu">Loại tiêu chí</span>
+                        <span class="hide-menu">Nhóm tiêu chí</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
