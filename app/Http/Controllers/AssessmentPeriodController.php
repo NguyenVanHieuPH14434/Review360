@@ -60,10 +60,10 @@ class AssessmentPeriodController extends Controller
         return view('assessmentPeriod.step_3', $data);
     }
 
-    public function updateStep3($id, Request $request): \Illuminate\Http\RedirectResponse
+    public function updateStep3($id, Request $request)
     {
         $this->assessmentPeriodService->updateStep3($id, $request->all());
-        return redirect()->route("assessmentPeriod.show", [$id])->with('success', 'Update success!');
+        return json_encode(['code' => '200']);
     }
 
     public function getListUser(Request $request): bool|string
@@ -86,10 +86,10 @@ class AssessmentPeriodController extends Controller
         return json_encode(['code' => '200','html' => view('assessmentPeriod.reviewer_table', $data)->render()]);
     }
 
-    public function show($id)
+    public function edit($id)
     {
         $data['assessmentPeriod'] = $this->assessmentPeriodService->findAssessmentPeriod($id);
-        return view('assessmentPeriod.view',  $data);
+        return view('assessmentPeriod.step_1',  $data);
     }
 
     public function destroy(Request $request)

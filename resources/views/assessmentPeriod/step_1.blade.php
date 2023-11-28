@@ -81,11 +81,10 @@
                                 @php $type_eval = old('type_eval') ?? $assessmentPeriod->type_eval @endphp
                                 <select class="form-control customSelect floating-control @error('type_eval') is-invalid @enderror" name="type_eval" id="tb-type_eval">
                                     <option value="">Chọn loại đánh giá</option>
-                                    <option value="1" {{ $type_eval == 1 ? "selected" : "" }}>Job Rank</option>
-                                    <option value="2" {{ $type_eval == 2 ? "selected" : "" }}>Performance</option>
-                                    <option value="1" {{ $type_eval == 3 ? "selected" : "" }}>Tháng</option>
-                                    <option value="1" {{ $type_eval == 4 ? "selected" : "" }}>Quý</option>
-                                    <option value="1" {{ $type_eval == 5 ? "selected" : "" }}>Năm</option>
+                                    <option value="1" {{ $type_eval == 1 ? "selected" : "" }}>Tháng</option>
+                                    <option value="2" {{ $type_eval == 2 ? "selected" : "" }}>Quý</option>
+                                    <option value="3" {{ $type_eval == 3 ? "selected" : "" }}>Năm</option>
+                                    <option value="4" {{ $type_eval == 3 ? "selected" : "" }}>Đánh giá 360</option>
                                 </select>
                                 @error('type_eval')
                                 <span class="text-danger" role="alert">

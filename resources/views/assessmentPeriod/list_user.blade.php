@@ -9,8 +9,6 @@
         <th>Chức danh</th>
         <th>Level</th>
         <th>Quản lý trực tiếp</th>
-        <th>Mẫu đánh giá</th>
-        <th>Thao tác</th>
     </tr>
     </thead>
     <tbody>
@@ -22,30 +20,26 @@
                     </td>
                     <td>
                         <input type="hidden" name="user_eval[]" value="{{$user->id}}">
-                        <p class="mb-0 fw-normal fs-4">
+                        <p class="mb-0 fw-normal">
                             <img src="{{ asset($user->avatar) }}" width="60" height="60" class="img-fluid rounded-circle" alt="{{$user->avatar}}">
                         </p>
                     </td>
                     <td>
-                        <p class="mb-0 fw-normal fs-4">{{$user->name}}</p>
+                        <p class="mb-0 fw-normal">{{$user->name}}</p>
                         <p class="mb-0 fw-normal fs-2">{{$user->code}}</p>
                         <p class="mb-0 fw-normal fs-2">{{$user->email}}</p>
                     </td>
                     <td>
-                        <p class="mb-0 fw-normal fs-4">{{ $user->getDepartment ? $user->getDepartment->title : '' }}</p>
+                        <p class="mb-0 fw-normal">{{ $user->getDepartment ? $user->getDepartment->title : '' }}</p>
                     </td>
                     <td>
-                        <p class="mb-0 fw-normal fs-4">{{ $user->getJobTitle ? $user->getJobTitle->title : '' }}</p>
+                        <p class="mb-0 fw-normal">{{ $user->getJobTitle ? $user->getJobTitle->title : '' }}</p>
                     </td>
                     <td>
-                        <p class="mb-0 fw-normal fs-4">{{$user->level_id != '' ? config('constants.level')[$user->level_id] : ''}}</p>
+                        <p class="mb-0 fw-normal">{{$user->level_id != '' ? config('constants.level')[$user->level_id] : ''}}</p>
                     </td>
                     <td>
-                        <p class="mb-0 fw-normal fs-4">{{ $user->getManagement ? $user->getManagement->name : '' }}</p>
-                    </td>
-                    <td class="td-action">
-                    </td>
-                    <td class="td-action">
+                        <p class="mb-0 fw-normal">{{ $user->getManagement ? $user->getManagement->name : '' }}</p>
                     </td>
                 </tr>
             @endforeach

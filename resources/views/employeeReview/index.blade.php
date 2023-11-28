@@ -47,51 +47,51 @@
                     <thead class="text-dark fs-4">
                     <tr>
                         <th rowspan="2">
-                            <h6 class="fs-4 fw-semibold mb-0">No</h6>
+                            <h6 class="fw-semibold mb-0">No</h6>
                         </th>
                         <th rowspan="2">
-                            <h6 class="fs-4 fw-semibold mb-0">Ảnh</h6>
+                            <h6 class="fw-semibold mb-0">Ảnh</h6>
                         </th>
                         <th rowspan="2">
-                            <h6 class="fs-4 fw-semibold mb-0">Họ tên</h6>
+                            <h6 class="fw-semibold mb-0">Họ tên</h6>
                         </th>
                         <th rowspan="2">
-                            <h6 class="fs-4 fw-semibold mb-0">Phòng ban</h6>
+                            <h6 class="fw-semibold mb-0">Phòng ban</h6>
                         </th>
                         <th rowspan="2">
-                            <h6 class="fs-4 fw-semibold mb-0">Chức danh</h6>
+                            <h6 class="fw-semibold mb-0">Chức danh</h6>
                         </th>
                         <th colspan="2" class="text-center">
-                            <h6 class="fs-4 fw-semibold mb-0">JobRank</h6>
+                            <h6 class="fw-semibold mb-0">JobRank</h6>
                         </th>
                         <th colspan="2" class="text-center">
-                            <h6 class="fs-4 fw-semibold mb-0">Performance</h6>
+                            <h6 class="fw-semibold mb-0">Performance</h6>
                         </th>
                         <th rowspan="2">
-                            <h6 class="fs-4 fw-semibold mb-0">Trạng thái</h6>
+                            <h6 class="fw-semibold mb-0">Trạng thái</h6>
                         </th>
                         <th rowspan="2">
-                            <h6 class="fs-4 fw-semibold mb-0">Thời hạn đánh giá</h6>
+                            <h6 class="fw-semibold mb-0">Thời hạn đánh giá</h6>
                         </th>
                         <th rowspan="2">
-                            <h6 class="fs-4 fw-semibold mb-0">Ngày đánh giá</h6>
+                            <h6 class="fw-semibold mb-0">Ngày đánh giá</h6>
                         </th>
                         <th class="th-action" rowspan="2">
-                            <h6 class="fs-4 fw-semibold mb-0">Thao tác</h6>
+                            <h6 class="fw-semibold mb-0">Thao tác</h6>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            <h6 class="fs-4 fw-semibold mb-0">Tổng điểm</h6>
+                            <h6 class="fw-semibold mb-0">Tổng điểm</h6>
                         </th>
                         <th>
-                            <h6 class="fs-4 fw-semibold mb-0">Xếp loại</h6>
+                            <h6 class="fw-semibold mb-0">Xếp loại</h6>
                         </th>
                         <th>
-                            <h6 class="fs-4 fw-semibold mb-0">Tổng điểm</h6>
+                            <h6 class="fw-semibold mb-0">Tổng điểm</h6>
                         </th>
                         <th>
-                            <h6 class="fs-4 fw-semibold mb-0">Xếp loại</h6>
+                            <h6 class="fw-semibold mb-0">Xếp loại</h6>
                         </th>
                     </tr>
                     </thead>

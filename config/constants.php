@@ -9,11 +9,10 @@ return [
       '2' => 'text-bg-danger'
   ],
   'type_eval' => [
-      1 => 'JobRank',
-      2 => 'Performance',
-      3 => 'Tháng',
-      4 => 'Quý',
-      5 => 'Năm'
+      1 => 'Tháng',
+      2 => 'Quý',
+      3 => 'Năm',
+      4 => 'Đánh giá 360'
   ],
 
   'criterion_level' => [

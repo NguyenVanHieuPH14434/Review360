@@ -51,7 +51,7 @@
                             </select>
                         </td>
                         <td class="text-center td_weighting_1">
-                            <div class="input-group mb-3">
+                            <div class="input-group">
                                 <input type="number" class="form-control weightingInput" name="reviewers[1][weighting]" placeholder="Trọng số đánh giá" aria-label="Trọng số đánh giá" aria-describedby="basic-addon1">
                                 <span class="input-group-text">%</span>
                             </div>
@@ -86,9 +86,6 @@
         theme: 'bootstrap-5',
         dropdownParent: $("#reviewerModal")
     });
-
-
-
 
     $(document).on('change','.selectReviewer', function (){
         let id = $(this).val();
@@ -167,6 +164,7 @@
                 data: $('.form-reviewer').serialize(),
                 success: function (response) {
                     $('.modal-reviewer').modal('hide');
+                    window.location.reload();
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);

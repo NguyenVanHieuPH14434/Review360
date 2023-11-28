@@ -36,18 +36,18 @@
                 <div class="steps clearfix">
                     <ul role="tablist">
                         <li role="tab" class="done" aria-disabled="false" aria-selected="true">
-                            <a id="steps-uid-5-t-0" class="done" href="#steps-uid-5-h-0" aria-controls="steps-uid-5-p-0">
+                            <a id="steps-uid-5-t-0" class="done" href="{{route('assessmentPeriod.edit',$assessmentPeriod->id)}}" aria-controls="steps-uid-5-p-0">
                                 <span class="current-info audible">current step: </span>
                                 <span class="step">1</span> Thiết lập kỳ đánh giá
                             </a>
                         </li>
                         <li role="tab" aria-disabled="false" class="current" aria-selected="true">
-                            <a id="steps-uid-5-t-1" href="#steps-uid-5-h-1" aria-controls="steps-uid-5-p-1">
+                            <a id="steps-uid-5-t-1" href="javascript:void(0)" aria-controls="steps-uid-5-p-1">
                                 <span class="step">2</span> Thiết lập nhân viên
                             </a>
                         </li>
                         <li role="tab" class="disabled" aria-disabled="true">
-                            <a id="steps-uid-5-t-2" href="#steps-uid-5-h-2" aria-controls="steps-uid-5-p-2">
+                            <a id="steps-uid-5-t-2" href="javascript:void(0)" aria-controls="steps-uid-5-p-2">
                                 <span class="step">3</span> Thiết lập người đánh giá</a>
                         </li>
                     </ul>

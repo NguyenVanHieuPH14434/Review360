@@ -10,7 +10,7 @@
         </select>
     </td>
     <td class="text-center td_weighting_{{$number_tr +1}}">
-        <div class="input-group mb-3">
+        <div class="input-group">
             <input type="number" class="form-control weightingInput" name="reviewers[{{$number_tr + 1}}][weighting]" placeholder="Trọng số đánh giá" aria-label="Trọng số đánh giá" aria-describedby="basic-addon1">
             <span class="input-group-text">%</span>
         </div>
