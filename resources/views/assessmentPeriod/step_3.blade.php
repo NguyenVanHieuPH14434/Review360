@@ -64,7 +64,6 @@
                                 <th>Họ và tên</th>
                                 <th>Phòng ban</th>
                                 <th>Chức danh</th>
-                                <th>Level</th>
                                 <th>Quản lý trực tiếp</th>
                                 <th>Người đánh giá</th>
                                 <th>Thao tác</th>
@@ -91,16 +90,24 @@
                                             <p class="mb-0 fw-normal fs-4">{{ $row->user->getDepartment ? $row->user->getDepartment->title : '' }}</p>
                                         </td>
                                         <td id="jobTitle-{{$row->user_id}}">
-                                            <p class="mb-0 fw-normal fs-4">{{ $row->user->getJobTitle ? $row->user->getJobTitle->title : '' }}</p>
-                                        </td>
-                                        <td id="level-{{$row->user_id}}">
-                                            <p class="mb-0 fw-normal fs-4">{{$row->user->level_id != '' ? config('constants.level')[$row->user->level_id] : ''}}</p>
+                                            <p class="mb-0 fw-normal fs-4 jobTitle">{{ $row->user->getJobTitle ? $row->user->getJobTitle->title : '' }}</p>
+                                            <p class="mb-0 fw-normal fs-4 level">{{$row->user->level_id != '' ? config('constants.level')[$row->user->level_id] : ''}}</p>
                                         </td>
                                         <td id="management-{{$row->user_id}}">
                                             <p class="mb-0 fw-normal fs-4">{{ $row->user->getManagement ? $row->user->getManagement->name : '' }}</p>
                                         </td>
                                         <td>
-
+                                            @if(count($row->reviewers) > 0)
+                                                @foreach($row->reviewers as $item)
+                                                    <p class="mb-0 fw-normal fs-4 username">
+                                                        {{$item->user->name}}
+                                                         - Trọng số: {{$item->weighting}}%
+                                                        @if($item->principal_reviewer == 1)
+                                                            <span class="mb-1 badge rounded-pill font-medium bg-primary-subtle text-primary">Đánh giá chính</span>
+                                                        @endif
+                                                    </p>
+                                                @endforeach
+                                            @endif
                                         </td>
                                         <td class="td-action">
                                             <a href="javascript:void(0)" class="add_reviewer" data-id="{{$row->id}}" data-userId="{{$row->user_id}}"><i class="ti ti-plus btn-update"></i></a>
@@ -161,8 +168,8 @@
                     code: $('#info-'+userid+' .userCode').html(),
                     email : $('#info-'+userid+' .userEmail').html(),
                     department: $('#department-'+userid+' p').html(),
-                    jobTitle: $('#jobTitle-'+userid+' p').html(),
-                    level: $('#level-'+userid+' p').html(),
+                    jobTitle: $('#jobTitle-'+userid+' p.jobTitle').html(),
+                    level: $('#jobTitle-'+userid+' p.level').html(),
                     management: $('#management-'+userid+' p').html(),
                 };
 

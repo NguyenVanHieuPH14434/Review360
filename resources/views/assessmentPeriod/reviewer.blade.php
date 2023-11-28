@@ -40,8 +40,8 @@
                     </thead>
                     <tbody class="tb-reviewer">
                     <tr class="tr_reviewer" data-id="1">
-                        <td>
-                            <select aria-label="Người đánh giá" class="selectReviewer hasSelect2 form-control customSelect floating-control" name="reviewers[1][reviewer_id]">
+                        <td class="td_select_1">
+                            <select aria-label="Người đánh giá" data-id="1" class="selectReviewer hasSelect2 form-control customSelect floating-control" name="reviewers[1][reviewer_id]">
                                 @if(!empty($users))
                                     <option value="">Chọn người đánh giá</option>
                                     @foreach($users as $key => $user)
@@ -49,15 +49,10 @@
                                     @endforeach
                                 @endif
                             </select>
-                            <div class="error-reviewer" style="display: none">
-                                <span class="text-danger" role="alert">
-                                    <strong>Chưa chọn người đánh giá</strong>
-                                </span>
-                            </div>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center td_weighting_1">
                             <div class="input-group mb-3">
-                                <input type="number" class="form-control" name="reviewers[1][weighting]" placeholder="Trọng số đánh giá" aria-label="Trọng số đánh giá" aria-describedby="basic-addon1">
+                                <input type="number" class="form-control weightingInput" name="reviewers[1][weighting]" placeholder="Trọng số đánh giá" aria-label="Trọng số đánh giá" aria-describedby="basic-addon1">
                                 <span class="input-group-text">%</span>
                             </div>
                         </td>
@@ -93,43 +88,34 @@
     });
 
 
+
+
     $(document).on('change','.selectReviewer', function (){
         let id = $(this).val();
+        let idSelect = $(this).data('id');
         if (id !== '') {
             $('.error-reviewer').hide();
         }else{
             $('.error-reviewer').show();
         }
 
-        // let dataReviewers = $('#reviewers').val();
-        //
-        // if(dataReviewers === '') {
-        //     dataReviewers = id;
-        // }
-        //
-        // dataReviewers.split(',');
-        // if ($.inArray(id, dataReviewers)  === -1) {
-        //     dataReviewers.push(id);
-        // }else{
-        //
-        // }
-        //
-        //
-        //
-        // $('#reviewers').val(dataReviewers.toString())
-
-        //
-        // let idx = $.inArray(id, dataReviewers);
-        // if (idx === -1) {
-        //     dataReviewers.push(id);
-        // } else {
-        //     let html = '<div class="error-reviewer">';
-        //     html += '<span class="text-danger" role="alert"><strong>Người đánh giá bị trùng</strong>';
-        //     html += '</span></div>';
-        //     $(this).parent().append(html);
-        //     $(this).val('').trigger('change');
-        // }
-        // ;
+        let dataReviewers = $('#reviewers').val();
+        if(dataReviewers === '') {
+            dataReviewers = id;
+        }else{
+            dataReviewers = dataReviewers.split(',');
+            if ($.inArray(id, dataReviewers)  === -1) {
+                dataReviewers.push(id);
+            }else{
+                $('.td_select_'+idSelect).find('.error-reviewer').remove();
+                let html = '<div class="error-reviewer">';
+                html += '<span class="text-danger" role="alert"><strong>Người đánh giá bị trùng</strong>';
+                html += '</span></div>';
+                $('.td_select_'+idSelect).append(html);
+                $(this).val('').trigger('change');
+            }
+        }
+        $('#reviewers').val(dataReviewers.toString());
     })
 
     $('.add-more-reviewer').on('click',function (e){
@@ -140,11 +126,12 @@
         $('.tb-reviewer').find('.selectReviewer').each(function (){
             if($(this).val() === ''){
                 error = false;
-                $(this).parent().find('.error-reviewer').remove();
+                let idSelect = $(this).data('id');
+                $('.td_select_'+idSelect).find('.error-reviewer').remove();
                 let html = '<div class="error-reviewer">';
-                    html += '<span class="text-danger" role="alert"><strong>Chưa chọn người đánh giá</strong>';
-                    html += '</span></div>';
-                $(this).parent().append(html)
+                html += '<span class="text-danger" role="alert"><strong>Chưa chọn người đánh giá</strong>';
+                html += '</span></div>';
+                $('.td_select_'+idSelect).append(html);
             }
         })
 
@@ -179,13 +166,13 @@
                 dataType: "JSON",
                 data: $('.form-reviewer').serialize(),
                 success: function (response) {
-                    $('.modal-reviewer .modal-body').html(response.html);
-                    $('.modal-reviewer').modal('show');
+                    $('.modal-reviewer').modal('hide');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
                 }
             });
         }
-    })
+    });
+
 </script>

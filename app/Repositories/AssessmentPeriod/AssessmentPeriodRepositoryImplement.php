@@ -2,6 +2,9 @@
 
 namespace App\Repositories\AssessmentPeriod;
 
+use App\Models\AssessmentPeriodUser;
+use App\Models\EvalForm;
+use App\Models\EvaluationCriteria;
 use App\Models\User;
 use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\AssessmentPeriod;
@@ -13,7 +16,7 @@ class AssessmentPeriodRepositoryImplement extends Eloquent implements Assessment
     * Don't remove or change $this->model variable name
     * @property Model|mixed $model;
     */
-    protected $model;
+    protected AssessmentPeriod $model;
     const Active = 1;
 
 
@@ -57,6 +60,53 @@ class AssessmentPeriodRepositoryImplement extends Eloquent implements Assessment
         }else{
             return $users->with(['getJobTitle','getDepartment','getManagement'])->get();
         }
+    }
+
+    public function getListEmpReview($asID) {
+        return AssessmentPeriodUser::where('assessment_id',$asID)->with(['user','user.getJobTitle','user.getDepartment'])->get();
+    }
+
+    public function getEmpReview($id){
+        $user = User::find($id);
+        $evalForm = EvalForm::where(['job_title_id' => $user->job_title_id])->whereNull('department_id')
+            ->whereNull('level_id')->whereNull('user_id')
+            ->with('evalFormCri')->first();
+
+        $idCris = $dataCri =  [];
+
+        if($evalForm != '' && count($evalForm->evalFormCri) > 0) {
+            foreach ($evalForm->evalFormCri as $item) {
+                $idCris[] = $item->criteria_id;
+            }
+        }
+
+        $evalCris = EvaluationCriteria::whereIn('id', $idCris)->with('evalCriPoint')->get();
+
+        foreach ($evalCris as $evalCri) {
+            if(!array_key_exists($evalCri->type_criteria, $dataCri)){
+                $dataCri[$evalCri->type_criteria] = [];
+            }
+
+            if(!array_key_exists($evalCri->cat_criteria,$dataCri[$evalCri->type_criteria])){
+                $dataCri[$evalCri->type_criteria][$evalCri->cat_criteria] = [];
+            }
+
+
+            $dataCri[$evalCri->type_criteria][$evalCri->cat_criteria][$evalCri->id] = [
+                'criteria_code' => $evalCri->criteria_code,
+                'title' => $evalCri->title,
+                'points' => []
+            ];
+
+            foreach ($evalCri->evalCriPoint as $item) {
+                $dataCri[$evalCri->type_criteria][$evalCri->cat_criteria][$evalCri->id]['points'][] =[
+                    'point' => $item->point,
+                    'description' => $item->description
+                ];
+            }
+        }
+
+        return $dataCri;
     }
 
 }

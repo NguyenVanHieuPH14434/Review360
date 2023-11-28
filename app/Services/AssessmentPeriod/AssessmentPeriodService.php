@@ -20,4 +20,10 @@ interface AssessmentPeriodService extends BaseService{
 
     public function listApCopy();
 
+    public function listAp();
+
+    public function listEmpReview($asID);
+
+    public function getEmpReview($id);
+
 }

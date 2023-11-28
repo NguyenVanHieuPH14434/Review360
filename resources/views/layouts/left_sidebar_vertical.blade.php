@@ -108,7 +108,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="../main/app-email.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('employeeReview.list') }}" aria-expanded="false">
         <span>
           <i class="ti ti-mail"></i>
         </span>

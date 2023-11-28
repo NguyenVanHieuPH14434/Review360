@@ -14,4 +14,9 @@ class EvalFormCriteria extends Model
         'criteria_id',
         'type_criteria','position','weighting',
     ];
+
+    public function evalCri(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(EvaluationCriteria::class,'criteria_id', 'id');
+    }
 }
