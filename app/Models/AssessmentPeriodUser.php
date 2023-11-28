@@ -15,4 +15,9 @@ class AssessmentPeriodUser extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function reviewers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(AssessmentPeriodReviewer::class,'assessment_period_user_id','id');
+    }
 }

@@ -56,7 +56,7 @@ class AssessmentPeriodController extends Controller
     public function step3($id)
     {
         $data['users'] = AssessmentPeriodUser::where('assessment_id', $id)
-            ->with(['user','user.getJobTitle','user.getDepartment','user.getManagement'])->get();
+            ->with(['user','user.getJobTitle','user.getDepartment','user.getManagement', 'reviewers','reviewers.user'])->get();
         return view('assessmentPeriod.step_3', $data);
     }
 

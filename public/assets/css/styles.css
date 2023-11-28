@@ -26317,3 +26317,4 @@ span#select2-tb-status-container {
 .select2-container--default .select2-search--inline .select2-search__field{border:none!important;}
 .select2-container--default.select2-container--focus .select2-selection--multiple{border-radius: 7px !important}
 body .select2-container--default .select2-selection--multiple{border-radius: 7px !important;}
+.table thead tr th, .table tbody tr td {vertical-align: middle}

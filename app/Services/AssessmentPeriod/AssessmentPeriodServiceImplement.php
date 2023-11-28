@@ -7,6 +7,7 @@ use App\Models\AssessmentPeriodUser;
 use Illuminate\Support\Facades\DB;
 use LaravelEasyRepository\Service;
 use App\Repositories\AssessmentPeriod\AssessmentPeriodRepository;
+use function PHPUnit\Framework\isEmpty;
 
 class AssessmentPeriodServiceImplement extends Service implements AssessmentPeriodService{
 
@@ -96,5 +97,17 @@ class AssessmentPeriodServiceImplement extends Service implements AssessmentPeri
 
     public function listApCopy(){
         return $this->mainRepository->listAP();
+    }
+
+    public function listAp(){
+        return $this->mainRepository->listAP();
+    }
+
+    public function listEmpReview($asID) {
+        return $this->mainRepository->getListEmpReview($asID);
+    }
+
+    public function getEmpReview($id){
+        return $this->mainRepository->getEmpReview($id);
     }
 }

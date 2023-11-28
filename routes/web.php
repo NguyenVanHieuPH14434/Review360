@@ -9,6 +9,7 @@ use \App\Http\Controllers\AssessmentPeriodController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EvaluationCriteriaController;
 use \App\Http\Controllers\EvalFormController;
+use \App\Http\Controllers\EmployeeReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ Route::macro('resourceRoutes', function ($prefix, $routeName, $controller) {
 });
 
 Route::middleware(['auth'])->prefix('/')->group(function () {
-    //home 
+    //home
     Route::get('/home', [HomeController::class, 'home'])->name('home');
     // categoryCriteria
     Route::prefix("/category-criteria")->controller(CategoryCriteriaController::class)
@@ -68,11 +69,20 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
             Route::post('/list-reviewer', 'getListReviewer')->name('getListReviewer');
             Route::post('/add-reviewer', 'addReviewer')->name('addReviewer');
 
+
             Route::get('/edit/{id}', 'edit')->name('edit');
             Route::put('/update/{id}', 'update')->name('update');
             Route::get('/view/{id}', 'show')->name('show');
             Route::delete('/delete', 'destroy')->name('destroy');
         });
+
+    Route::prefix("/employee-reviews")->controller(EmployeeReviewController::class)
+        ->name("employeeReview.")->group(function(){
+            Route::get('/', 'index')->name('list');
+            Route::post('/listEmpReview', 'getListEmpReview')->name('getListEmpReview');
+            Route::get('/review/id={id}&asId={asID}', 'empReview')->name('empReview');
+        });
+
     // evaluationCriteria
     Route::prefix("/evaluation-criteria")->controller(EvaluationCriteriaController::class)
         ->name("evaluationCriteria.")->group(function(){

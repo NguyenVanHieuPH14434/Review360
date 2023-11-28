@@ -19,4 +19,9 @@ class EvaluationCriteria extends Model
         'status',
         'type_criteria'
     ];
+
+    public function evalCriPoint(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(EvaluationCriteriaPoint::class,'criteria_id', 'id');
+    }
 }
