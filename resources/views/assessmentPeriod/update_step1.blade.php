@@ -30,22 +30,23 @@
             </div>
         </div>
         <div class="card-body wizard-content">
-            <form action="{{ route('assessmentPeriod.store') }}" method="POST" class="tab-wizard wizard-circle wizard clearfix">
+            <form action="{{ route('assessmentPeriod.updateStep01', $assessmentPeriod->id) }}" method="POST" class="tab-wizard wizard-circle wizard clearfix">
+                @method('PUT')
                 @csrf
                 <div class="steps clearfix">
                     <ul role="tablist">
-                        <li role="tab" class="first current" aria-disabled="false" aria-selected="true">
-                            <a id="steps-uid-5-t-0" href="#steps-uid-5-h-0" aria-controls="steps-uid-5-p-0">
+                        <li role="tab" class="done" aria-disabled="false" aria-selected="true">
+                            <a id="steps-uid-5-t-0" class="done" href="javascript:void(0)" aria-controls="steps-uid-5-p-0">
                                 <span class="current-info audible">current step: </span>
                                 <span class="step">1</span> Thiết lập kỳ đánh giá
                             </a>
                         </li>
-                        <li role="tab" class="disabled" aria-disabled="false" aria-selected="false">
-                            <a id="steps-uid-5-t-1" href="#steps-uid-5-h-1" aria-controls="steps-uid-5-p-1">
+                        <li role="tab" class="done" aria-disabled="false" aria-selected="false">
+                            <a id="steps-uid-5-t-1" href="{{route('assessmentPeriod.editStep2', $assessmentPeriod->id)}}" aria-controls="steps-uid-5-p-1">
                                 <span class="step">2</span> Thiết lập mẫu đánh giá
                             </a>
                         </li>
-                        <li role="tab" class="disabled" aria-disabled="true">
+                        <li role="tab" aria-disabled="true" class="current done">
                             <a id="steps-uid-5-t-2" href="#steps-uid-5-h-2" aria-controls="steps-uid-5-p-2">
                                 <span class="step">3</span> Thiết lập người đánh giá</a>
                         </li>

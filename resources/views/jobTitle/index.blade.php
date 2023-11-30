@@ -8,10 +8,10 @@
         <div class="row pb-5 border-bottom">
             <div class="d-flex flex-wrap gap-2 justify-content-xxl-between justify-content-start">
                 <form class="d-flex flex-wrap gap-2 justify-content-start col-12 col-xxl-9" action="{{ route('jobTitle.search') }}" method="GET">
-                    <div class="col-4">
+                    <div class="col-8">
                         <div class="position-relative">
                             <input type="text" class="ps-5 form-control product-search e-submit ps-3" name="keyword"
-                                value="{{ request('keyword') }}" placeholder="Mã chức danh, tên chức danh">
+                                value="{{ request('keyword') }}" placeholder="Tìm kiếm theo mã chức danh, tên chức danh">
                                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                         </div>
                     </div>

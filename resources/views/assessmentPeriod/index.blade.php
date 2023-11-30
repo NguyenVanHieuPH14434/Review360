@@ -89,7 +89,6 @@
                                             <p class="mb-0 fw-normal fs-4">{{$assessmentPeriod->created_at->format('d/m/Y')}}</p>
                                         </td>
                                         <td class="td-action">
-                                            <a href="{{route('assessmentPeriod.show',$assessmentPeriod->id)}}"><i class="ti ti-eye btn-update"></i></a>
                                             <a href="{{route('assessmentPeriod.edit',$assessmentPeriod->id)}}"><i class="ti ti-pencil btn-update"></i></a>
                                             <a href="javascript:void(0)" class="delete-obj" data-flag="confirm"><i class="ti ti-trash btn-delete"></i></a>
                                         </td>

@@ -11,7 +11,7 @@
                                 <a class="text-muted text-decoration-none" href="{{route('home')}}">Home</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page"> <a class="text-muted text-decoration-none" href="{{route('assessmentPeriod.list')}}">Kỳ đánh giá</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Tạo mới</li>
+                            <li class="breadcrumb-item" aria-current="page">Thiết lập người đánh giá</li>
                         </ol>
                     </nav>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="steps clearfix">
                     <ul role="tablist">
                         <li role="tab" class="done" aria-disabled="false" aria-selected="true">
-                            <a id="steps-uid-5-t-0" class="done" href="#steps-uid-5-h-0" aria-controls="steps-uid-5-p-0">
+                            <a id="steps-uid-5-t-0" class="done" href="{{route('assessmentPeriod.edit', $id)}}" aria-controls="steps-uid-5-p-0">
                                 <span class="current-info audible">current step: </span>
                                 <span class="step">1</span> Thiết lập kỳ đánh giá
                             </a>
@@ -45,7 +45,7 @@
                                 <span class="step">2</span> Thiết lập mẫu đánh giá
                             </a>
                         </li>
-                        <li role="tab" aria-disabled="true" class="current">
+                        <li role="tab" aria-disabled="true" class="current done">
                             <a id="steps-uid-5-t-2" href="#steps-uid-5-h-2" aria-controls="steps-uid-5-p-2">
                                 <span class="step">3</span> Thiết lập người đánh giá</a>
                         </li>
@@ -55,7 +55,7 @@
                     <!-- Step 1 -->
                     <h6 id="steps-uid-5-h-0" tabindex="-1" class="title current">Personal Info</h6>
                     <section id="steps-uid-5-p-0" role="tabpanel" aria-labelledby="steps-uid-5-h-0" class="body current" aria-hidden="false" style="">
-                        <h5>Nhân viên đánh giá</h5>
+                        <h5>Người đánh giá</h5>
                         <table class="table table-striped table-responsive">
                             <thead>
                             <tr>
@@ -111,7 +111,7 @@
                                         </td>
                                         <td class="td-action">
                                             <a href="javascript:void(0)" class="add_reviewer" data-id="{{$row->id}}" data-userId="{{$row->user_id}}"><i class="ti ti-plus btn-update"></i></a>
-                                            <a href="javascript:void(0)" class="update_reviewer"><i class="ti ti-pencil btn-update"></i></a>
+                                            <a href="javascript:void(0)" class="add_reviewer" data-id="{{$row->id}}" data-userId="{{$row->user_id}}"><i class="ti ti-pencil btn-update"></i></a>
                                             <a href="javascript:void(0)" class="delete-user" data-flag="confirm"><i class="ti ti-trash btn-delete"></i></a>
                                         </td>
                                     </tr>

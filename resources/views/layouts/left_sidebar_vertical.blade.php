@@ -47,7 +47,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('department.list') }}" aria-expanded="false">
         <span>
-          <i class="ti ti-shopping-cart"></i>
+          <i class="ti ti-briefcase"></i>
         </span>
                         <span class="hide-menu">Phòng ban</span>
                     </a>
@@ -55,7 +55,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('user.list') }}" aria-expanded="false">
         <span>
-          <i class="ti ti-currency-dollar"></i>
+          <i class="ti ti-user"></i>
         </span>
                         <span class="hide-menu">Users</span>
                     </a>
@@ -125,7 +125,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="../main/page-pricing.html" aria-expanded="false">
         <span>
-          <i class="ti ti-currency-dollar"></i>
+          <i class="ti ti-chart-pie"></i>
         </span>
                         <span class="hide-menu">Kết quả đánh giá theo kỳ</span>
                     </a>
@@ -133,7 +133,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="../main/page-pricing.html" aria-expanded="false">
         <span>
-          <i class="ti ti-currency-dollar"></i>
+          <i class="ti ti-chart-pie-2"></i>
         </span>
                         <span class="hide-menu">So sánh kết quả qua các kỳ</span>
                     </a>
@@ -141,7 +141,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="../main/page-faq.html" aria-expanded="false">
         <span>
-          <i class="ti ti-help"></i>
+          <i class="ti ti-chart-pie-3"></i>
         </span>
                         <span class="hide-menu">Balance Scorecard</span>
                     </a>

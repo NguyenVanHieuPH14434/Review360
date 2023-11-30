@@ -12,7 +12,7 @@
                         <li class="breadcrumb-item" aria-current="page">
                             @php
                                 $routeName = explode('.', Route::currentRouteName())[0] . '.list';
-                                $classActive =  ! empty($action) ? 'text-muted text-decoration-none' : 'text-primary text-decoration-underline'; 
+                                $classActive =  ! empty($action) ? 'text-muted text-decoration-none' : 'text-primary';
                             @endphp
                             <a class="{{ $classActive }}"  @if (! empty($action)) href="{{ route($routeName) }}" @endif >
                                 {{ $titlePage}}
@@ -20,7 +20,7 @@
                         </li>
                         @if (! empty($action))
                             <li class="breadcrumb-item action-breadcrumb" aria-current="page">
-                                <a class="text-primary text-decoration-underline">
+                                <a class="text-primary">
                                     {{ $action}}
                                 </a>
                             </li>
