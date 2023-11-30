@@ -24,4 +24,9 @@ class EvaluationCriteria extends Model
     {
         return $this->hasMany(EvaluationCriteriaPoint::class,'criteria_id', 'id');
     }
+
+    public function catCri(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(CategoryCriteria::class,'cat_criteria', 'id');
+    }
 }

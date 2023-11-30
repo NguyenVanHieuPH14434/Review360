@@ -14,5 +14,5 @@ interface AssessmentPeriodRepository extends Repository{
 
     public function getListEmpReview($asID);
 
-    public function getEmpReview($id);
+    public function getEmpReview($id, $asID);
 }

@@ -107,7 +107,7 @@ class AssessmentPeriodServiceImplement extends Service implements AssessmentPeri
         return $this->mainRepository->getListEmpReview($asID);
     }
 
-    public function getEmpReview($id){
-        return $this->mainRepository->getEmpReview($id);
+    public function getEmpReview($id, $asID){
+        return $this->mainRepository->getEmpReview($id, $asID);
     }
 }

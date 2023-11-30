@@ -27,8 +27,12 @@ class EmployeeReviewController extends Controller
 
     public function empReview($id, $asID){
         $data['asID'] = $asID;
-        $data['review'] = $this->assessmentPeriodService->getEmpReview($id);
+        $data['review'] = $this->assessmentPeriodService->getEmpReview($id, $asID);
         return view("employeeReview.review",$data);
+    }
+
+    public function storeEmpReview(Request $request) {
+        dd($request->all());
     }
 
 }

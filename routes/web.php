@@ -81,6 +81,7 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
             Route::get('/', 'index')->name('list');
             Route::post('/listEmpReview', 'getListEmpReview')->name('getListEmpReview');
             Route::get('/review/id={id}&asId={asID}', 'empReview')->name('empReview');
+            Route::post('/storeEmpReview', 'storeEmpReview')->name('storeEmpReview');
         });
 
     // evaluationCriteria
