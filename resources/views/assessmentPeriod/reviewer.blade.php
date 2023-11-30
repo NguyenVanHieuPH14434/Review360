@@ -39,32 +39,86 @@
                     </tr>
                     </thead>
                     <tbody class="tb-reviewer">
-                    <tr class="tr_reviewer" data-id="1">
-                        <td class="td_select_1">
-                            <select aria-label="Người đánh giá" data-id="1" class="selectReviewer hasSelect2 form-control customSelect floating-control" name="reviewers[1][reviewer_id]">
-                                @if(!empty($users))
-                                    <option value="">Chọn người đánh giá</option>
-                                    @foreach($users as $key => $user)
-                                        <option value="{{$key}}">{{$user}}</option>
-                                    @endforeach
-                                @endif
+                    <tr class="tr_reviewer" data-id="0">
+                        <td class="td_select_0">
+                            <select aria-label="Người đánh giá" class="hasSelect2 form-control customSelect floating-control" name="reviewers[0][reviewer_id]">
+                                <option value="{{$userInfo['user_id']}}">{{$userInfo['name']}}</option>
                             </select>
                         </td>
                         <td class="text-center td_weighting_1">
                             <div class="input-group">
-                                <input type="number" class="form-control weightingInput" name="reviewers[1][weighting]" placeholder="Trọng số đánh giá" aria-label="Trọng số đánh giá" aria-describedby="basic-addon1">
+                                <input type="number" class="form-control weightingInput" value="{{$nvtdg->weighting}}" name="reviewers[0][weighting]" placeholder="Trọng số đánh giá" aria-label="Trọng số đánh giá" aria-describedby="basic-addon1">
                                 <span class="input-group-text">%</span>
                             </div>
                         </td>
                         <td class="text-center">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input success" type="radio" name="principal_reviewer" id="success-radio" value="1">
-                            </div>
+
                         </td>
                         <td>
 
                         </td>
                     </tr>
+                    @if(count($reviewers) > 0)
+                        @foreach($reviewers as $k => $reviewer)
+                            @if($reviewer->user_id != $userInfo['user_id'])
+                                <tr class="tr_reviewer" data-id="{{$k + 1}}">
+                                    <td class="td_select_{{$k + 1}}">
+                                        <select aria-label="Người đánh giá" data-id="{{$k+1}}" class="selectReviewer hasSelect2 form-control customSelect floating-control" name="reviewers[{{$k+1}}][reviewer_id]">
+                                            @if(!empty($users))
+                                                <option value="">Chọn người đánh giá</option>
+                                                @foreach($users as $key => $user)
+                                                    <option value="{{$key}}" @if($key == $reviewer->user_id) selected @endif>{{$user}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </td>
+                                    <td class="text-center td_weighting_{{$k+1}}">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control weightingInput" value="{{$reviewer->weighting}}" name="reviewers[{{$k+1}}][weighting]" placeholder="Trọng số đánh giá" aria-label="Trọng số đánh giá" aria-describedby="basic-addon1">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input success" type="radio" @if($reviewer->principal_reviewer == 1) checked @endif name="principal_reviewer" id="success-radio" value="{{$k+1}}">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0)" class="delete-reviewer fs-3" data-flag="confirm">
+                                            <i class="ti ti-trash btn-delete"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    @else
+                        <tr class="tr_reviewer" data-id="1">
+                            <td class="td_select_1">
+                                <select aria-label="Người đánh giá" data-id="1" class="selectReviewer hasSelect2 form-control customSelect floating-control" name="reviewers[1][reviewer_id]">
+                                    @if(!empty($users))
+                                        <option value="">Chọn người đánh giá</option>
+                                        @foreach($users as $key => $user)
+                                            <option value="{{$key}}">{{$user}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </td>
+                            <td class="text-center td_weighting_1">
+                                <div class="input-group">
+                                    <input type="number" class="form-control weightingInput" name="reviewers[1][weighting]" placeholder="Trọng số đánh giá" aria-label="Trọng số đánh giá" aria-describedby="basic-addon1">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input success" type="radio" name="principal_reviewer" id="success-radio" value="1">
+                                </div>
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+                    @endif
                     </tbody>
                 </table>
             </form>
@@ -172,5 +226,7 @@
             });
         }
     });
-
+    $('.delete-reviewer').on('click',function (){
+        $(this).parent().parent().remove();
+    })
 </script>

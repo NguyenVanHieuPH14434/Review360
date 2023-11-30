@@ -11,7 +11,7 @@
                                 <a class="text-muted text-decoration-none" href="{{route('home')}}">Home</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page"> <a class="text-muted text-decoration-none" href="{{route('assessmentPeriod.list')}}">Kỳ đánh giá</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Tạo mới</li>
+                            <li class="breadcrumb-item" aria-current="page">Thiết lập nhân viên đánh giá</li>
                         </ol>
                     </nav>
                 </div>
@@ -23,7 +23,7 @@
     @csrf
     <div class="card">
         <div class="px-4 py-3 border-bottom">
-            <h5 class="card-title fw-semibold mb-0 lh-sm title-form">Tạo mới</h5>
+            <h5 class="card-title fw-semibold mb-0 lh-sm title-form">Thiết lập nhân viên đánh giá</h5>
             <div class="box-action">
                 <a href="{{route('assessmentPeriod.list')}}" class="btn mb-1 waves-effect waves-light btn-primary">
                     <i class="ti ti-list"></i> Danh sách
@@ -43,7 +43,7 @@
                         </li>
                         <li role="tab" aria-disabled="false" class="current" aria-selected="true">
                             <a id="steps-uid-5-t-1" href="javascript:void(0)" aria-controls="steps-uid-5-p-1">
-                                <span class="step">2</span> Thiết lập nhân viên
+                                <span class="step">2</span> Thiết lập nhân viên đánh giá
                             </a>
                         </li>
                         <li role="tab" class="disabled" aria-disabled="true">
@@ -53,52 +53,7 @@
                     </ul>
                 </div>
                 <div class="content clearfix">
-                    <!-- Step 1 -->
-                    <h6 id="steps-uid-5-h-0" tabindex="-1" class="title current">Personal Info</h6>
-                    <section id="steps-uid-5-p-0" role="tabpanel" aria-labelledby="steps-uid-5-h-0" class="body current" aria-hidden="false" style="">
-                        <div class="row">
-                            <h5 style="margin-bottom:  20px">Tìm kiếm nhân viên</h5>
-                            <div class="col-md-6 mb-3">
-                                <label for="tb-status" class="floating-label">Phòng ban</label>
-                                <select aria-label="Phòng ban" multiple="multiple" class="selectEmp hasSelect2 form-control selectDepartment customSelect floating-control" name="departments[]" id="selectDepartment"  aria-placeholder="Tìm kiếm theo phòng ban">
-                                    @if(!empty($departments))
-                                        @foreach($departments as $key => $department)
-                                            <option value="{{$key}}">{{$department}}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="tb-status" class="floating-label">Chức danh</label>
-                                <select aria-label="Chức danh" multiple="multiple" class="selectEmp hasSelect2 form-control selectJobTitle customSelect floating-control" name="jobTitles[]" id="selectJobTitle"  aria-placeholder="Tìm kiếm theo chức danh">
-                                    @if(!empty($jobTitles))
-                                        @foreach($jobTitles as $key => $jobTitle)
-                                            <option value="{{$key}}">{{$jobTitle}}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="department" class="form-label">Level</label>
-                                <select class="form-select hasSelect2 customSelect selectEmp" name="levels[]" multiple id="selectLevel" aria-placeholder="Tìm kiếm theo level">
-                                    @foreach(config('constants.level') as $key => $level)
-                                        <option value="{{$key}}">{{$level}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="department" class="form-label">Nhân viên</label>
-                                <select class="form-select hasSelect2 selectEmp customSelect @error('status') is-invalid @enderror" name="users[]" multiple id="selectUser" aria-placeholder="Tìm kiếm theo nhân viên">
-                                    @foreach($users as $k => $user)
-                                        <option value="{{$k}}">{{$user}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="box-eval-form">
-
-                            </div>
-                        </div>
-                    </section>
+                   @include('assessmentPeriod.form_step2')
                 </div>
                 <div class="actions clearfix">
                     <ul role="menu" aria-label="Pagination">

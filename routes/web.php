@@ -68,10 +68,11 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
             Route::post('/updateStep3/{id}', 'updateStep3')->name('updateStep3');
             Route::post('/list-reviewer', 'getListReviewer')->name('getListReviewer');
             Route::post('/add-reviewer', 'addReviewer')->name('addReviewer');
-
-
             Route::get('/edit/{id}', 'edit')->name('edit');
-            Route::put('/update/{id}', 'update')->name('update');
+            Route::put('/updateStep01/{id}', 'updateStep01')->name('updateStep01');
+
+            Route::get('/editStep2/{id}', 'editStep2')->name('editStep2');
+
             Route::get('/view/{id}', 'show')->name('show');
             Route::delete('/delete', 'destroy')->name('destroy');
         });

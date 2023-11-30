@@ -43,21 +43,35 @@ class AssessmentPeriodServiceImplement extends Service implements AssessmentPeri
     {
         try {
             DB::beginTransaction();
+
+            $listUserOld = AssessmentPeriodUser::query()->where('assessment_id', $id)->pluck('user_id')->toArray();
+            $listUserDiff = array_diff($data['user_eval'],$listUserOld);
+            $listUserDiff2 = array_diff($listUserOld, $data['user_eval']);
+
+            if(!empty($listUserDiff2)) {
+                AssessmentPeriodReviewer::query()
+                    ->join('assessment_period_user as apu', 'assessment_period_reviewer.assessment_period_user_id','=','apu.id')
+                    ->whereIn('apu.user_id', $listUserDiff2)->delete();
+
+                AssessmentPeriodUser::query()->where('assessment_id', $id)
+                    ->whereIn('user_id', $listUserDiff2)->delete();
+            }
+
             isset($data['departments']) ?? $data['departments'] = json_encode($data['departments']);
             isset($data['jobTitles']) ?? $data['jobTitles'] =json_encode($data['jobTitles']);
             isset($data['levels']) ?? $data['levels'] = json_encode($data['levels']);
             $this->mainRepository->update($id, $data);
 
-            if (empty($data['user_eval'])) {
-                return 'Lỗi rồi';
-            }
+            $userEval = !empty($listUserDiff) ? $listUserDiff :  [];
 
-            $users = [];
-            foreach ($data['user_eval'] as $user) {
-                $users[] = ['assessment_id' => $id,'user_id' => $user];
-            }
+            if (!empty($userEval)) {
+                $users = [];
+                foreach ($userEval as $user) {
+                    $users[] = ['assessment_id' => $id,'user_id' => $user];
+                }
 
-            AssessmentPeriodUser::insert($users);
+                AssessmentPeriodUser::insert($users);
+            }
 
             DB::commit();
             return true;
@@ -68,22 +82,33 @@ class AssessmentPeriodServiceImplement extends Service implements AssessmentPeri
     }
 
     public function updateStep3($id, $data){
-        $dataReviewer = [];
-        if(!empty($data['reviewers'])) {
-            foreach ($data['reviewers'] as $key => $item) {
-                $dataReviewer[] = [
-                    'assessment_period_user_id' => $id,
-                    'user_id' => $item['reviewer_id'],
-                    'peg_person' => $data['principal_reviewer'] == $key ? $item['reviewer_id'] : 0 ,
-                    'principal_reviewer' =>  $data['principal_reviewer'] == $key ? 1 : 0,
-                    'weighting' => $item['weighting'],
-                    'status' => 2
-                ];
+        try {
+            DB::beginTransaction();
+
+            AssessmentPeriodReviewer::query()->where('assessment_period_user_id',$id)->delete();
+
+            $dataReviewer = [];
+            if(!empty($data['reviewers'])) {
+                foreach ($data['reviewers'] as $key => $item) {
+                    $dataReviewer[] = [
+                        'assessment_period_user_id' => $id,
+                        'user_id' => $item['reviewer_id'],
+                        'peg_person' => $data['principal_reviewer'] == $key ? $item['reviewer_id'] : 0 ,
+                        'principal_reviewer' =>  $data['principal_reviewer'] == $key ? 1 : 0,
+                        'weighting' => $item['weighting'],
+                        'status' => 2
+                    ];
+                }
+                AssessmentPeriodReviewer::insert($dataReviewer);
             }
-            AssessmentPeriodReviewer::insert($dataReviewer);
+
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
         }
 
-        return true;
     }
 
     public function getListUser($data){
@@ -109,5 +134,10 @@ class AssessmentPeriodServiceImplement extends Service implements AssessmentPeri
 
     public function getEmpReview($id, $asID){
         return $this->mainRepository->getEmpReview($id, $asID);
+    }
+
+    public function updateStep01($id, $data)
+    {
+        return $this->mainRepository->update($id, $data);
     }
 }
