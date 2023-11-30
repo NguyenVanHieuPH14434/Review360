@@ -66,11 +66,17 @@ class AssessmentPeriodRepositoryImplement extends Eloquent implements Assessment
         return AssessmentPeriodUser::where('assessment_id',$asID)->with(['user','user.getJobTitle','user.getDepartment'])->get();
     }
 
-    public function getEmpReview($id){
-        $user = User::find($id);
+    public function getEmpReview($id, $asID){
+        $user = User::with(['getJobTitle','getDepartment','getManagement'])->find($id);
         $evalForm = EvalForm::where(['job_title_id' => $user->job_title_id])->whereNull('department_id')
             ->whereNull('level_id')->whereNull('user_id')
             ->with('evalFormCri')->first();
+
+        $reviewers =AssessmentPeriodUser::select('apr.weighting','users.name','apr.principal_reviewer', 'users.code','users.id')
+            ->join('assessment_period_reviewer as apr','apr.assessment_period_user_id','=','assessment_period_user.id')
+            ->join('users','users.id','=','apr.user_id')
+            ->where(['assessment_period_user.assessment_id' => $asID, 'assessment_period_user.user_id' => $id])
+            ->get()->toArray();
 
         $idCris = $dataCri =  [];
 
@@ -80,7 +86,7 @@ class AssessmentPeriodRepositoryImplement extends Eloquent implements Assessment
             }
         }
 
-        $evalCris = EvaluationCriteria::whereIn('id', $idCris)->with('evalCriPoint')->get();
+        $evalCris = EvaluationCriteria::whereIn('id', $idCris)->with(['evalCriPoint','catCri'])->get();
 
         foreach ($evalCris as $evalCri) {
             if(!array_key_exists($evalCri->type_criteria, $dataCri)){
@@ -88,7 +94,7 @@ class AssessmentPeriodRepositoryImplement extends Eloquent implements Assessment
             }
 
             if(!array_key_exists($evalCri->cat_criteria,$dataCri[$evalCri->type_criteria])){
-                $dataCri[$evalCri->type_criteria][$evalCri->cat_criteria] = [];
+                $dataCri[$evalCri->type_criteria][$evalCri->cat_criteria] = ['cat_title' => $evalCri->catCri->title];
             }
 
 
@@ -106,7 +112,7 @@ class AssessmentPeriodRepositoryImplement extends Eloquent implements Assessment
             }
         }
 
-        return $dataCri;
+        return ['user' => $user, 'dataCri' => $dataCri, 'reviewers' => $reviewers];
     }
 
 }

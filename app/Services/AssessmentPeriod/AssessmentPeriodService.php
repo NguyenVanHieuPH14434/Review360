@@ -24,6 +24,6 @@ interface AssessmentPeriodService extends BaseService{
 
     public function listEmpReview($asID);
 
-    public function getEmpReview($id);
+    public function getEmpReview($id, $asID);
 
 }
