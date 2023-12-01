@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}"/>
+<title>Nền tảng đánh giá nhân viên Thor Review</title>
 <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     <div
@@ -9,9 +10,13 @@
             <div class="card mb-0">
               <div class="card-body">
                 <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+                    <img
+                        src="{{ asset('assets/images/logos/logo_new.png') }}"
+                        class="dark-logo"
+                        alt="Logo-Dark"
+                    />
+                    <span style="font-size: 23px;margin-top: -6px;font-weight: bold;margin-left: 5px;position: relative;top: 4px;">Thor Review</span>
                 </a>
-                <p class="text-center">Your Social Campaigns</p>
                 <form method="POST" action="{{ route('login') }}">
                   @csrf
                   <div class="mb-3">

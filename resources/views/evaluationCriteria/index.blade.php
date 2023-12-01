@@ -25,12 +25,6 @@
                                 value="{{ request('jobTitleCode') }}" placeholder="Chức danh">
                         </div>
                     </div>
-                    <div class="col-12 col-md-3 col-xl-3">
-                        <div class="position-relative">
-                            <input type="text" class="form-control product-search ps-3" name="jobTitleCode"
-                                value="{{ request('jobTitleCode') }}" placeholder="Trạng thái">
-                        </div>
-                    </div>
                     <div class="col-4 col-md-2 col-xl-1 d-flex">
                         <button type="submit" style="min-height: 35px"
                             class="btn btn-info w-100 h-100 d-flex justify-content-center position-relative">

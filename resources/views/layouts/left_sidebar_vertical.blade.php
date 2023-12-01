@@ -3,7 +3,7 @@
         <!-- Start Vertical Layout Sidebar -->
         <!-- ---------------------------------- -->
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="../main/index.html" class="text-nowrap logo-img">
+            <a href="{{route('home')}}" class="text-nowrap logo-img">
                 <img
                     src="{{ asset('assets/images/logos/logo_new.png') }}"
                     class="dark-logo"
@@ -132,27 +132,45 @@
                     <span class="hide-menu">Báo cáo</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="../main/page-pricing.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('report.danhgiatheoky') }}" aria-expanded="false">
         <span>
           <i class="ti ti-chart-pie"></i>
+        </span>
+                        <span class="hide-menu">Đánh giá theo kỳ</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('report.danhgiatheocacky')}}" aria-expanded="false">
+        <span>
+          <i class="ti ti-chart-pie-2"></i>
         </span>
                         <span class="hide-menu">Đánh giá qua các kỳ</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="../main/page-pricing.html" aria-expanded="false">
-        <span>
-          <i class="ti ti-chart-pie-2"></i>
-        </span>
-                        <span class="hide-menu">Đánh giá performance qua kỳ</span>
+                    <a class="sidebar-link link-disabled" href="#disabled" aria-expanded="false">
+                        <span class="d-flex">
+                          <i class="ti ti-ban"></i>
+                        </span>
+                        <span class="hide-menu">Đánh giá nhân viên mới</span>
                     </a>
                 </li>
+
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="../main/page-faq.html" aria-expanded="false">
-        <span>
-          <i class="ti ti-chart-pie-3"></i>
-        </span>
-                        <span class="hide-menu">Đánh giá nhân viên mới</span>
+                    <a class="sidebar-link link-disabled" href="#disabled" aria-expanded="false">
+                        <span class="d-flex">
+                          <i class="ti ti-ban"></i>
+                        </span>
+                        <span class="hide-menu">Balance scorecard</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link link-disabled" href="#disabled" aria-expanded="false">
+                        <span class="d-flex">
+                          <i class="ti ti-ban"></i>
+                        </span>
+                        <span class="hide-menu">Đánh giá 360</span>
                     </a>
                 </li>
 
@@ -172,10 +190,18 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="#" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-settings"></i>
+                        </span>
+                        <span class="hide-menu">Kết nối Hrm</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="../main/page-faq.html" aria-expanded="false">
-        <span>
-          <i class="ti ti-help"></i>
-        </span>
+                        <span>
+                          <i class="ti ti-help"></i>
+                        </span>
                         <span class="hide-menu">Hướng dẫn sử dụng</span>
                     </a>
                 </li>

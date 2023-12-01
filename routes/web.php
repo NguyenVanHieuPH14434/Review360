@@ -85,7 +85,7 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
             Route::post('/listEmpReview', 'getListEmpReview')->name('getListEmpReview');
             Route::get('/review/id={id}&asId={asID}', 'empReview')->name('review');
             Route::post('/storeEmpReview', 'storeEmpReview')->name('storeEmpReview');
-            Route::get('/showReview/id={id}&asId={asID}', 'empReview')->name('showReview');
+            Route::get('/showReview/id/{id}/asId/{asId}', 'showReview')->name('showReview');
         });
 
     // evaluationCriteria
@@ -118,6 +118,13 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
 
     // user
     Route::resourceRoutes('/user', 'user', UserController::class);
+
+    Route::prefix("/report")->controller(\App\Http\Controllers\ReportController::class)
+        ->name("report.")->group(function(){
+            Route::get('/danh-gia-theo-ky', 'index')->name('danhgiatheoky');
+            Route::get('/danh-gia-theo-cac-ky', 'danhgiatheocacky')->name('danhgiatheocacky');
+            Route::get('/danh-gia-nhan-vien-moi', 'index')->name('danhGiaNhanVienMoi');
+        });
 
 });
 

@@ -62,7 +62,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home2" role="tabpanel">
                                     <div class="p-3">
-                                        <table class="table table-responsive table-bordered table-review-perform">
+                                        <table class="table table-responsive table-bordered table-review">
                                             <thead>
                                             <tr>
                                                 <th style="width: 30px">STT</th>
@@ -97,8 +97,9 @@
                                                                     <td class="percent_cat_{{$r}}"><span>{{(count($item)-1) * 20}}</span>%</td>
                                                                     @if(count($review['reviewers']) > 0)
                                                                         @foreach($review['reviewers'] as $userReview)
+                                                                            <?php $results = json_decode($userReview['result'],true);?>
                                                                             <td class="text-center">
-                                                                                <input type="text" class="input_score score_review_{{$userReview['id']}}" name="performance[totalPointCri][{{$userReview['id']}}][{{$r}}]" id="score_review_{{$r}}_{{$userReview['id']}}" value="0">
+                                                                                <input type="text" class="input_score score_review_{{$userReview['id']}}" name="totalPointCri[{{$userReview['id']}}][{{$r}}]" id="score_review_{{$r}}_{{$userReview['id']}}" value="{{$results['performance']['totalPointCri'][$userReview['id']][$r]}}">
                                                                             </td>
                                                                         @endforeach
                                                                     @endif
@@ -115,8 +116,9 @@
                                                                     <td class="text-center percent_cri_{{$k}}"><span>20</span>%</td>
                                                                     @if(count($review['reviewers']) > 0)
                                                                         @foreach($review['reviewers'] as $userReview)
+                                                                            <?php $result_review = json_decode($userReview['result_review'],true);?>
                                                                             <td class="text-center">
-                                                                                <div class="default-star-rating cri_{{$r}}_{{$userReview['id']}}" data-cri="{{$k}}" data-user="{{$userReview['id']}}" data-cat="{{$r}}" data-score-name="performance[empReview][{{$userReview['id']}}][{{$k}}]">
+                                                                                <div class="default-star-rating cri_{{$r}}_{{$userReview['id']}}" data-cri="{{$k}}" data-user="{{$userReview['id']}}" data-cat="{{$r}}" data-score="{{$result_review[$k]}}" data-score-name="empReview[{{$userReview['id']}}][{{$k}}]">
                                                                                 </div>
                                                                             </td>
                                                                         @endforeach
@@ -132,8 +134,9 @@
                                                 <td colspan="2">Điểm trung bình</td>
                                                 @if(count($review['reviewers']) > 0)
                                                     @foreach($review['reviewers'] as $userReview)
+                                                        <?php $results = json_decode($userReview['result'],true);?>
                                                         <td class="text-center">
-                                                            <input type="text" name="performance[scoreAverage][{{$userReview['id']}}]" class="input_score total_review total_score_review_{{$userReview['id']}}">
+                                                            <input type="text" value="{{$results['performance']['scoreAverage'][$userReview['id']]}}" name="scoreAverage[{{$userReview['id']}}]" class="input_score total_review total_score_review_{{$userReview['id']}}">
                                                         </td>
                                                     @endforeach
                                                 @endif
@@ -143,8 +146,9 @@
                                                 <td colspan="2">Xếp loại</td>
                                                 @if(count($review['reviewers']) > 0)
                                                     @foreach($review['reviewers'] as $userReview)
+                                                        <?php $results = json_decode($userReview['result'],true);?>
                                                         <td class="text-center">
-                                                            <input class="input_score rating_{{$userReview['id']}}" name="performance[rating][{{$userReview['id']}}]" type="text">
+                                                            <input class="input_score rating_{{$userReview['id']}}" value="{{$results['performance']['rating'][$userReview['id']]}}" name="rating[{{$userReview['id']}}]" type="text">
                                                         </td>
                                                     @endforeach
                                                 @endif
@@ -153,10 +157,10 @@
                                                 <td colspan="6"></td>
                                                 <td colspan="3">Trung bình cộng</td>
                                                 <td class="text-center">
-                                                    <input type="text" class="input_score average_point" name="performance[averagePointPerformance]">
+                                                    <input type="text" class="input_score average_point" name="averagePointPerformance" value="{{$userReview['total_point_performance']}}">
                                                 </td>
                                                 <td class="text-center">
-                                                    <input type="text" class="input_score average_rating" name="performance[averageRatingPerformance]">
+                                                    <input type="text" class="input_score average_rating" name="averageRatingPerformance" value="{{$userReview['rank_performance']}}">
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -164,7 +168,7 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane p-3" id="profile2" role="tabpanel">
-                                    <table class="table table-responsive table-bordered table-review-job-rank">
+                                    <table class="table table-responsive table-bordered table-review">
                                         <thead>
                                         <tr>
                                             <th style="width: 30px">STT</th>
@@ -199,8 +203,9 @@
                                                                 <td class="percent_cat_{{$r}}"><span>{{(count($item)-1) * 20}}</span>%</td>
                                                                 @if(count($review['reviewers']) > 0)
                                                                     @foreach($review['reviewers'] as $userReview)
+                                                                            <?php $results = json_decode($userReview['result'],true);?>
                                                                         <td class="text-center">
-                                                                            <input type="text" class="input_score score_review_job_rank_{{$userReview['id']}}" name="job_rank[totalPointCri][{{$userReview['id']}}][{{$r}}]" id="score_review_job_rank_{{$r}}_{{$userReview['id']}}" value="0">
+                                                                            <input type="text" class="input_score score_review_{{$userReview['id']}}" name="totalPointCri[{{$userReview['id']}}][{{$r}}]" id="score_review_{{$r}}_{{$userReview['id']}}" value="{{$results['job_rank']['totalPointCri'][$userReview['id']][$r]}}">
                                                                         </td>
                                                                     @endforeach
                                                                 @endif
@@ -214,11 +219,12 @@
                                                                         <p class="mb-0 fw-normal">{{$point['description']}}</p>
                                                                     </td>
                                                                 @endforeach
-                                                                <td class="text-center percent_cri_job_rank_{{$k}}"><span>20</span>%</td>
+                                                                <td class="text-center percent_cri_{{$k}}"><span>20</span>%</td>
                                                                 @if(count($review['reviewers']) > 0)
                                                                     @foreach($review['reviewers'] as $userReview)
+                                                                            <?php $result_review = json_decode($userReview['result_job_rank'],true);?>
                                                                         <td class="text-center">
-                                                                            <div class="default-star-rating-job-rank cri_{{$r}}_{{$userReview['id']}}" data-cri="{{$k}}" data-user="{{$userReview['id']}}" data-cat="{{$r}}" data-score-name="job_rank[empReview][{{$userReview['id']}}][{{$k}}]">
+                                                                            <div class="default-star-rating cri_{{$r}}_{{$userReview['id']}}" data-cri="{{$k}}" data-user="{{$userReview['id']}}" data-cat="{{$r}}" data-score="{{$result_review[$k]}}" data-score-name="empReview[{{$userReview['id']}}][{{$k}}]">
                                                                             </div>
                                                                         </td>
                                                                     @endforeach
@@ -234,8 +240,9 @@
                                             <td colspan="2">Điểm trung bình</td>
                                             @if(count($review['reviewers']) > 0)
                                                 @foreach($review['reviewers'] as $userReview)
+                                                        <?php $results = json_decode($userReview['result'],true);?>
                                                     <td class="text-center">
-                                                        <input type="text" name="job_rank[scoreAverage][{{$userReview['id']}}]" class="input_score total_review_job_rank total_score_review_job_rank_{{$userReview['id']}}">
+                                                        <input type="text" value="{{$results['job_rank']['scoreAverage'][$userReview['id']]}}" name="scoreAverage[{{$userReview['id']}}]" class="input_score total_review total_score_review_{{$userReview['id']}}">
                                                     </td>
                                                 @endforeach
                                             @endif
@@ -245,8 +252,9 @@
                                             <td colspan="2">Xếp loại</td>
                                             @if(count($review['reviewers']) > 0)
                                                 @foreach($review['reviewers'] as $userReview)
+                                                        <?php $results = json_decode($userReview['result'],true);?>
                                                     <td class="text-center">
-                                                        <input class="input_score rating_job_rank_{{$userReview['id']}}" name="job_rank[rating][{{$userReview['id']}}]" type="text">
+                                                        <input class="input_score rating_{{$userReview['id']}}" value="{{$results['job_rank']['rating'][$userReview['id']]}}" name="rating[{{$userReview['id']}}]" type="text">
                                                     </td>
                                                 @endforeach
                                             @endif
@@ -255,20 +263,15 @@
                                             <td colspan="6"></td>
                                             <td colspan="3">Trung bình cộng</td>
                                             <td class="text-center">
-                                                <input type="text" class="input_score average_point_job_rank" name="job_rank[averagePointJobRank]">
+                                                <input type="text" class="input_score average_point" name="averagePointPerformance" value="{{$userReview['total_point_job_rank']}}">
                                             </td>
                                             <td class="text-center">
-                                                <input type="text" class="input_score average_rating_job_rank" name="job_rank[averageRatingJobRank]">
+                                                <input type="text" class="input_score average_rating" name="averageRatingPerformance" value="{{$userReview['rank_job_rank']}}">
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                            <div class="actions clearfix">
-                                <button type="submit" class="btn btn-info font-medium rounded-pill px-4">
-                                    <i class="ti ti-send me-2 fs-4"></i>Lưu lại
-                                </button>
                             </div>
                             <input type="hidden" name="user_id" value="{{$user_id}}">
                             <input type="hidden" name="assessment_id" value="{{$asID}}">
@@ -286,145 +289,9 @@
         $(function (x) {
             $.fn.raty.defaults.path = "{{asset('assets/images/rating/')}}";
             $(".default-star-rating").raty({
-                click: function(score, evt) {
-                    let cat = $(this).data('cat');
-                    let cri = $(this).data('cri');
-                    let user = $(this).data('user');
-                    let score_review = $('#score_review_'+cat+'_'+user);
-                    let table_review = $('.table-review-perform');
-                    let total_score = score;
-                    let percent = $('.percent_cri_'+cri+' span').html();
-                    let total_score_review = 0;
-                    let average_point = 0;
-                    let number_review = $('#number_review').val();
-
-                    table_review.find('.cri_'+cat+'_'+user+' .starReview').each(function (){
-                        total_score = Number(total_score) + Number($(this).val());
-                    });
-
-                    total_score =  total_score*percent/100;
-                    score_review.val(total_score);
-
-                   // tinh diem trung binh
-                   table_review.find('.score_review_'+user).each(function (){
-                       total_score_review = Number(total_score_review) + Number($(this).val());
-                    });
-
-                   $('.total_score_review_'+user).val(parseFloat(total_score_review).toFixed(2));
-
-                   // xep loai
-                    if(total_score_review >= 1 && total_score_review <= 2) {
-                        $('.rating_'+user).val('D')
-                    }else if(total_score_review > 2 && total_score_review <= 3) {
-                        $('.rating_'+user).val('C')
-                    }else if(total_score_review > 3 && total_score_review <= 4) {
-                        $('.rating_'+user).val('B')
-                    }else if(total_score_review > 4 && total_score_review <= 5) {
-                        $('.rating_'+user).val('A')
-                    }
-
-                    // xep loai trung binh
-                    table_review.find('.total_review').each(function (){
-                        average_point = Number(average_point) + Number($(this).val());
-                    });
-                    average_point = parseFloat(average_point / number_review).toFixed(2);
-
-                    if(average_point >= 1 && average_point <= 2) {
-                        $('.average_rating').val('D')
-                    }else if(average_point > 2 && average_point <= 3) {
-                        $('.average_rating').val('C')
-                    }else if(average_point > 3 && average_point <= 4) {
-                        $('.average_rating').val('B')
-                    }else if(average_point > 4 && average_point <= 5) {
-                        $('.average_rating').val('A')
-                    }
-
-                    $('.average_point').val(average_point)
-                }
+                readOnly: true,
             });
-            $(".default-star-rating-job-rank").raty({
-                click: function(score, evt) {
-                    let cat = $(this).data('cat');
-                    let cri = $(this).data('cri');
-                    let user = $(this).data('user');
-                    let score_review = $('#score_review_job_rank_'+cat+'_'+user);
-                    let table_review = $('.table-review-job-rank');
-                    let total_score = score;
-                    let percent = $('.percent_cri_job_rank_'+cri+' span').html();
-                    let total_score_review = 0;
-                    let average_point = 0;
-                    let number_review = $('#number_review').val();
-
-                    table_review.find('.cri_'+cat+'_'+user+' .starReview2').each(function (){
-                        total_score = Number(total_score) + Number($(this).val());
-                    });
-
-                    total_score =  total_score*percent/100;
-                    score_review.val(total_score);
-
-                    // tinh diem trung binh
-                    table_review.find('.score_review_job_rank_'+user).each(function (){
-                        total_score_review = Number(total_score_review) + Number($(this).val());
-                    });
-
-                    $('.total_score_review_job_rank_'+user).val(parseFloat(total_score_review).toFixed(2));
-
-                    // xep loai
-                    if(total_score_review <= 1) {
-                        $('.rating_job_rank_'+user).val('Intern')
-                    }else if(total_score_review > 1 && total_score_review <= 1.5) {
-                        $('.rating_job_rank_'+user).val('Fresher')
-                    }else if(total_score_review > 1.5 && total_score_review <= 2) {
-                        $('.rating_job_rank_'+user).val('Junior 1')
-                    }else if(total_score_review > 2 && total_score_review <= 2.5) {
-                        $('.rating_job_rank_'+user).val('Junior 2')
-                    }else if(total_score_review > 2.5 && total_score_review <= 2.7) {
-                        $('.rating_job_rank_'+user).val('Junior 3')
-                    }else if(total_score_review > 2.7 && total_score_review <= 3) {
-                        $('.rating_job_rank_'+user).val('Middle 1')
-                    }else if(total_score_review > 3 && total_score_review <= 3.5) {
-                        $('.rating_job_rank_'+user).val('Middle 2')
-                    }else if(total_score_review > 3.5 && total_score_review <= 4) {
-                        $('.rating_job_rank_'+user).val('Senior 1')
-                    }else if(total_score_review > 4 && total_score_review <= 4.8) {
-                        $('.rating_job_rank_'+user).val('Senior 2')
-                    }else if(total_score_review > 4.8 && total_score_review <= 5) {
-                        $('.rating_job_rank_'+user).val('Expert')
-                    }
-
-                    // xep loai trung binh
-                    table_review.find('.total_review_job_rank').each(function (){
-                        average_point = Number(average_point) + Number($(this).val());
-                    });
-                    average_point = parseFloat(average_point / number_review).toFixed(2);
-
-                    if(average_point <= 1) {
-                        $('.average_rating_job_rank').val('Intern')
-                    }else if(average_point > 1 && average_point <= 1.5) {
-                        $('.average_rating_job_rank').val('Fresher')
-                    }else if(average_point > 1.5 && average_point <= 2) {
-                        $('.average_rating_job_rank').val('Junior 1')
-                    }else if(average_point > 2 && average_point <= 2.5) {
-                        $('.average_rating_job_rank').val('Junior 2')
-                    }else if(average_point > 2.5 && average_point <= 2.7) {
-                        $('.average_rating_job_rank').val('Junior 3')
-                    }else if(average_point > 2.7 && average_point <= 3) {
-                        $('.average_rating_job_rank').val('Middle 1')
-                    }else if(average_point > 3 && average_point <= 3.5) {
-                        $('.average_rating_job_rank').val('Middle 2')
-                    }else if(average_point > 3.5 && average_point <= 4) {
-                        $('.average_rating_job_rank').val('Senior 1')
-                    }else if(average_point > 4 && average_point <= 4.8) {
-                        $('.average_rating_job_rank').val('Senior 2')
-                    }else if(average_point > 4.8 && average_point <= 5) {
-                        $('.average_rating_job_rank').val('Expert')
-                    }
-
-                    $('.average_point_job_rank').val(average_point)
-                }
-            });
-            $('.table-review-perform').find(".default-star-rating input").addClass('starReview');
-            $('.table-review-job-rank').find(".default-star-rating-job-rank input").addClass('starReview2');
+            $('.table-review').find(".default-star-rating input").addClass('starReview');
         });
     </script>
 @endsection

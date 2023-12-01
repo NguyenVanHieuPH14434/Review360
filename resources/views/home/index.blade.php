@@ -57,7 +57,7 @@
                             class="mb-3"
                             alt=""
                         />
-                        <p class="fw-semibold fs-3 text-info mb-1">Nhân viên chưa đánh giá</p>
+                        <p class="fw-semibold fs-3 text-info mb-1">Chưa đánh giá</p>
                         <h5 class="fw-semibold text-info mb-0">10</h5>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                             class="mb-3"
                             alt=""
                         />
-                        <p class="fw-semibold fs-3 text-success mb-1">Số nhân viên mới</p>
+                        <p class="fw-semibold fs-3 text-success mb-1">Nhân viên mới</p>
                         <h5 class="fw-semibold text-success mb-0">2</h5>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                             class="mb-3"
                             alt=""
                         />
-                        <p class="fw-semibold fs-3 text-info mb-1">Nhân viên đạt mục tiêu</p>
+                        <p class="fw-semibold fs-3 text-info mb-1">Đạt mục tiêu</p>
                         <h5 class="fw-semibold text-info mb-0">12</h5>
                     </div>
                 </div>

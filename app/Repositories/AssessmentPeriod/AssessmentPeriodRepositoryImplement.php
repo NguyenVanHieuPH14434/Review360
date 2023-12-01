@@ -72,7 +72,11 @@ class AssessmentPeriodRepositoryImplement extends Eloquent implements Assessment
             ->whereNull('level_id')->whereNull('user_id')
             ->with('evalFormCri')->first();
 
-        $reviewers =AssessmentPeriodUser::select('apr.weighting','users.name','apr.principal_reviewer', 'users.code','users.id')
+        $reviewers =AssessmentPeriodUser::select('assessment_period_user.total_point_job_rank',
+            'apr.result as result_review','apr.weighting','users.name','apr.principal_reviewer',
+            'users.code','users.id','assessment_period_user.rank_job_rank','assessment_period_user.total_point_performance',
+        'assessment_period_user.rank_performance','assessment_period_user.status','assessment_period_user.calendar_assess',
+        'assessment_period_user.assessment_completion_date','assessment_period_user.result', 'apr.result_job_rank')
             ->join('assessment_period_reviewer as apr','apr.assessment_period_user_id','=','assessment_period_user.id')
             ->join('users','users.id','=','apr.user_id')
             ->where(['assessment_period_user.assessment_id' => $asID, 'assessment_period_user.user_id' => $id])
