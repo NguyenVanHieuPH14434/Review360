@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
-    <title>Modernize Bootstrap Admin</title>
+    <title>Nền tảng đánh giá nhân viên Thor Review</title>
     <!-- Owl Carousel  -->
     <link
         rel="stylesheet"
@@ -38,7 +38,9 @@
         }
     </style>
 </head>
-
+<?php
+$user = \App\Models\User::find(auth()->user()->id);
+?>
 <body>
 <!-- Preloader -->
 <div class="preloader">
@@ -122,7 +124,7 @@
             $(this).closest('form')[0].reset();
             $(this).closest('form').find('input.datepicker').val('');
             $(this).closest('form').find('select:not(.hasSelect2)').prop('selectedIndex', 0);
-            $(".hasSelect2").val(null).trigger("change"); 
+            $(".hasSelect2").val(null).trigger("change");
         })
         $('input.e-submit').on('keydown', function(e){
             if(e.key === 'Enter') {

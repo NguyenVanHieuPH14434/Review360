@@ -71,7 +71,7 @@
                             <h6 class="fw-semibold mb-0">Trạng thái</h6>
                         </th>
                         <th rowspan="2">
-                            <h6 class="fw-semibold mb-0">Thời hạn đánh giá</h6>
+                            <h6 class="fw-semibold mb-0">Lịch đánh giá</h6>
                         </th>
                         <th rowspan="2">
                             <h6 class="fw-semibold mb-0">Ngày đánh giá</h6>

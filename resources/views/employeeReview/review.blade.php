@@ -65,8 +65,8 @@
                                         <table class="table table-responsive table-bordered table-review">
                                             <thead>
                                             <tr>
-                                                <th>STT</th>
-                                                <th>Tiêu chí đánh giá</th>
+                                                <th style="width: 30px">STT</th>
+                                                <th style="width: 200px">Tiêu chí đánh giá</th>
                                                 <th class="text-center">Mức 1</th>
                                                 <th class="text-center">Mức 2</th>
                                                 <th class="text-center">Mức 3</th>
@@ -75,7 +75,7 @@
                                                 <th class="text-center">Tỷ trọng</th>
                                                 @if(count($review['reviewers']) > 0)
                                                     @foreach($review['reviewers'] as $userReview)
-                                                        <th class="text-center" style="width: 150px">
+                                                        <th class="text-center" style="width: 100px">
                                                             <p class="mb-0 fw-normal">{{$userReview['principal_reviewer'] == 2 ? "NV tự đánh giá" : $userReview['name']}}</p>
                                                             <p class="mb-0 fw-normal">{{$userReview['code']}}</p>
                                                             <span class="mb-1 badge rounded-pill font-medium bg-secondary-subtle text-secondary">
@@ -98,7 +98,7 @@
                                                                     @if(count($review['reviewers']) > 0)
                                                                         @foreach($review['reviewers'] as $userReview)
                                                                             <td class="text-center">
-                                                                                <input type="text" class="score_review_{{$userReview['id']}}" name="empReview[{{$userReview['id']}}][total_cri][{{$r}}]" id="score_review_{{$r}}_{{$userReview['id']}}" value="0">
+                                                                                <input type="text" class="input_score score_review_{{$userReview['id']}}" name="totalPointCri[{{$userReview['id']}}][{{$r}}]" id="score_review_{{$r}}_{{$userReview['id']}}" value="0">
                                                                             </td>
                                                                         @endforeach
                                                                     @endif
@@ -116,7 +116,7 @@
                                                                     @if(count($review['reviewers']) > 0)
                                                                         @foreach($review['reviewers'] as $userReview)
                                                                             <td class="text-center">
-                                                                                <div class="default-star-rating cri_{{$r}}_{{$userReview['id']}}" data-cri="{{$k}}" data-user="{{$userReview['id']}}" data-cat="{{$r}}" data-score-name="empReview[{{$userReview['id']}}][score][{{$k}}]">
+                                                                                <div class="default-star-rating cri_{{$r}}_{{$userReview['id']}}" data-cri="{{$k}}" data-user="{{$userReview['id']}}" data-cat="{{$r}}" data-score-name="empReview[{{$userReview['id']}}][{{$k}}]">
                                                                                 </div>
                                                                             </td>
                                                                         @endforeach
@@ -133,7 +133,7 @@
                                                 @if(count($review['reviewers']) > 0)
                                                     @foreach($review['reviewers'] as $userReview)
                                                         <td class="text-center">
-                                                            <input type="text" name="empReview[{{$userReview['id']}}][total_score_review]" class="total_review total_score_review_{{$userReview['id']}}">
+                                                            <input type="text" name="scoreAverage[{{$userReview['id']}}]" class="input_score total_review total_score_review_{{$userReview['id']}}">
                                                         </td>
                                                     @endforeach
                                                 @endif
@@ -144,7 +144,7 @@
                                                 @if(count($review['reviewers']) > 0)
                                                     @foreach($review['reviewers'] as $userReview)
                                                         <td class="text-center">
-                                                            <input class="rating_{{$userReview['id']}}" name="empReview[{{$userReview['id']}}][rating]" type="text">
+                                                            <input class="input_score rating_{{$userReview['id']}}" name="rating[{{$userReview['id']}}]" type="text">
                                                         </td>
                                                     @endforeach
                                                 @endif
@@ -153,10 +153,10 @@
                                                 <td colspan="6"></td>
                                                 <td colspan="3">Trung bình cộng</td>
                                                 <td class="text-center">
-                                                    <input type="text" class="average_point" name="empReview[{{$userReview['id']}}][average_point]">
+                                                    <input type="text" class="input_score average_point" name="averagePointPerformance">
                                                 </td>
                                                 <td class="text-center">
-                                                    <input type="text" class="average_rating" name="empReview[{{$userReview['id']}}][average_rating]">
+                                                    <input type="text" class="input_score average_rating" name="averageRatingPerformance">
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -171,6 +171,8 @@
                                     <i class="ti ti-send me-2 fs-4"></i>Lưu lại
                                 </button>
                             </div>
+                            <input type="hidden" name="user_id" value="{{$user_id}}">
+                            <input type="hidden" name="assessment_id" value="{{$asID}}">
                         </form>
                     </div>
                 </div>

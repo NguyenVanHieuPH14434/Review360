@@ -4,6 +4,10 @@ return [
       '1' => 'Hoạt động',
       '2' => 'Không hoạt động'
   ],
+  'status_assess' => [
+    '1' => 'Hoàn thành',
+    '2' => 'Chưa hoàn thành'
+  ],
   'badge-status' => [
       '1' => 'text-bg-success',
       '2' => 'text-bg-danger'

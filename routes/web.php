@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EvaluationCriteriaController;
 use \App\Http\Controllers\EvalFormController;
 use \App\Http\Controllers\EmployeeReviewController;
+use \App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ use \App\Http\Controllers\EmployeeReviewController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('landingpage');
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
 
 // In your RouteServiceProvider or any service provider
 Route::macro('resourceRoutes', function ($prefix, $routeName, $controller) {
@@ -81,8 +83,9 @@ Route::middleware(['auth'])->prefix('/')->group(function () {
         ->name("employeeReview.")->group(function(){
             Route::get('/', 'index')->name('list');
             Route::post('/listEmpReview', 'getListEmpReview')->name('getListEmpReview');
-            Route::get('/review/id={id}&asId={asID}', 'empReview')->name('empReview');
+            Route::get('/review/id={id}&asId={asID}', 'empReview')->name('review');
             Route::post('/storeEmpReview', 'storeEmpReview')->name('storeEmpReview');
+            Route::get('/showReview/id={id}&asId={asID}', 'empReview')->name('showReview');
         });
 
     // evaluationCriteria

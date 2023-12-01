@@ -5,10 +5,11 @@
         <div class="brand-logo d-flex align-items-center justify-content-between">
             <a href="../main/index.html" class="text-nowrap logo-img">
                 <img
-                    src="{{ asset('assets/images/logos/dark-logo.svg') }}"
+                    src="{{ asset('assets/images/logos/logo_new.png') }}"
                     class="dark-logo"
                     alt="Logo-Dark"
                 />
+                <span style="font-size: 23px;margin-top: -6px;font-weight: bold;margin-left: 5px;position: relative;top: 4px;">Thor Review</span>
                 <img
                     src="{{ asset('assets/images/logos/light-logo.svg') }}"
                     class="light-logo"
@@ -61,7 +62,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="../main/app-calendar.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{route('calendar')}}" aria-expanded="false">
         <span>
           <i class="ti ti-calendar"></i>
         </span>
@@ -110,9 +111,17 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('employeeReview.list') }}" aria-expanded="false">
         <span>
-          <i class="ti ti-mail"></i>
+          <i class="ti ti-award"></i>
         </span>
                         <span class="hide-menu">Đánh giá nhân viên</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link link-disabled" href="#disabled" aria-expanded="false">
+                        <span class="d-flex">
+                          <i class="ti ti-ban"></i>
+                        </span>
+                        <span class="hide-menu">Phát triển nhân viên</span>
                     </a>
                 </li>
                 <!-- ---------------------------------- -->
@@ -127,7 +136,7 @@
         <span>
           <i class="ti ti-chart-pie"></i>
         </span>
-                        <span class="hide-menu">Kết quả đánh giá theo kỳ</span>
+                        <span class="hide-menu">Đánh giá qua các kỳ</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -135,7 +144,7 @@
         <span>
           <i class="ti ti-chart-pie-2"></i>
         </span>
-                        <span class="hide-menu">So sánh kết quả qua các kỳ</span>
+                        <span class="hide-menu">Đánh giá performance qua kỳ</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -143,7 +152,7 @@
         <span>
           <i class="ti ti-chart-pie-3"></i>
         </span>
-                        <span class="hide-menu">Balance Scorecard</span>
+                        <span class="hide-menu">Đánh giá nhân viên mới</span>
                     </a>
                 </li>
 
@@ -157,17 +166,9 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="../main/page-pricing.html" aria-expanded="false">
         <span>
-          <i class="ti ti-currency-dollar"></i>
+          <i class="ti ti-settings"></i>
         </span>
                         <span class="hide-menu">Thiết lập điểm đánh giá</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="../main/page-pricing.html" aria-expanded="false">
-        <span>
-          <i class="ti ti-currency-dollar"></i>
-        </span>
-                        <span class="hide-menu">Thiết lập thông báo</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -195,8 +196,8 @@
                     />
                 </div>
                 <div class="john-title">
-                    <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
-                    <span class="fs-2">Designer</span>
+                    <h6 class="mb-0 fs-4 fw-semibold">{{$user->name}}</h6>
+                    <span class="fs-2">{{$user->getJobTitle->title}}</span>
                 </div>
                 <button
                     class="border-0 bg-transparent text-primary ms-auto"
