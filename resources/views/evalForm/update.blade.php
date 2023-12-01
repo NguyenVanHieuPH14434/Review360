@@ -3,12 +3,12 @@
     <x-breadcrumb titlePage="Mẫu đánh giá" action="Cập nhật"/>
 @endsection
 @section('styles')
-    {{-- <style>
-          .drag-handle {
+    <style>
+          .drag-handle, .nested-sortable {
             cursor: move;
             cursor: grab;
         }
-    </style> --}}
+    </style>
     <style>
         .sortable-list {
             list-style-type: none;
@@ -24,39 +24,44 @@
             background-color: #f9f9f9;
         }
     </style>
+    <style>
+        input:focus-visible {
+            border: 1px solid #333 !important;
+            border-top: none !important;
+            border-left: none !important;
+            outline: 1px solid #333 !important;
+            border-radius: 3px;
+        }
+        .highlight {
+            background-color: #a0e9a6;
+        }
+    </style>
 @endsection
 @section('content')
+    <x-notification />
     <div class="card">
-        <x-card-title title="Cập nhật" />
-        <form class="card-body" action="{{ route('evalForm.update', $evalForm->id) }}" method="POST">
+        <x-card-title title="Cập nhật">
+            <x-slot:view>
+                <a href="{{ route('evalForm.show', $evalForm->id) }}" class="btn mb-1 waves-effect waves-light btn-warning">
+                    <i class="ti ti-eye"></i> Chi tiết
+                </a>
+            </x-slot:view>  
+        </x-card-title>
+        <form id="evalForm" class="card-body" action="{{ route('evalForm.update', $evalForm->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="table-responsive-xl">
                 <div style="width: 100%; min-width: 960px;">
                     <div class="bg-primary text-center py-2">
-                        <h3 class="text-white fw-bolder">Đánh giá</h3>
+                        <h3 class="text-white fw-bolder">Đánh giá {{ $typeCriteria }}</h3>
                     </div>
                     <div class="d-flex">
-                        <div class="border fs-3 py-2 px-2" style="width: 29%;">CBNV tự đánh giá: ...</div>
-                        <div class="border fs-3 py-2 px-2" style="width: 25%;">Bộ phận: ...</div>
-                        <div class="border fs-3 py-2 px-2" style="width: 25%;">Vị trí: ...</div>
-                        <div class="border fs-3 py-2 px-2" style="width: 21%;">Ngày đánh giá: ...</div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="border fs-3 py-2 px-2" style="width: 29%;">Quản lý trực tiếp đánh giá: ...</div>
-                        <div class="border fs-3 py-2 px-2" style="width: 25%;">Bộ phận: ...</div>
-                        <div class="border fs-3 py-2 px-2" style="width: 25%;">Vị trí: ...</div>
-                        <div class="border fs-3 py-2 px-2" style="width: 21%;">Ngày đánh giá: ...</div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="border d-flex align-items-center text-center px-2 py-2" style="width: 4%;">STT</div>
-                        <div class="border d-flex align-items-center text-center px-2 py-2" style="width: 12.5%;">Tiêu chí đánh giá</div>
+                        <div class="border d-flex align-items-center text-center px-2 py-2" style="width: 4%;"><b>STT</b></div>
+                        <div class="border d-flex align-items-center justify-content-center px-2 py-2" style="width: 14.9%;"><b>Tiêu chí đánh giá</b></div>
                         @foreach ([1=>1, 2=>2, 3=>3, 4=>4, 5=>5] as $item)
-                            <div class="border fs-3 d-flex align-items-center justify-content-center px-2 py-2" style="width: 12.5%;">{{ $item }}</div>
+                            <div class="border fs-3 d-flex align-items-center justify-content-center px-2 py-2" style="width: 14.9%;"><b>{{ $item }}</b></div>
                         @endforeach
-                        <div class="border text-wrap d-flex align-items-center text-center px-2 py-2 fs-3" style="width: 7%;">Tỷ trọng</div>
-                        <div class="border text-wrap d-flex align-items-center text-center px-2 py-2 fs-3" style="width: 7%;">NV tự đánh giá</div>
-                        <div class="border text-wrap d-flex align-items-center text-center px-2 py-2 fs-3" style="width: 7%;">QL trực tiếp đánh giá</div>
+                        <div class="border text-wrap d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3" style="width: 7%;"><b>Tỉ trọng</b></div>
                     </div>
                     <div class="row nested-sortable">
                         @foreach ($catCriterias as $index => $criteria) 
@@ -66,10 +71,8 @@
                             <div>
                                 <div class="d-flex">
                                     <input type="hidden" name="catCriteria[]" value="{{$criteria->id}}">
-                                    <label class="border my-0 py-2 px-2 text-bg-primary" style="width: 79%;" for="">{{$romanNumeral}}- {{ $criteria->title }}</label>
-                                    <label class="border my-0 py-2 px-2 text-center text-bg-warning criteriaCount{{$criteria->id}}" style="width: 7%;" for="">0</label>
-                                    <label class="border my-0 py-2 px-2 text-center text-bg-warning" style="width: 7%;" for="">0</label>
-                                    <label class="border my-0 py-2 px-2 text-center text-bg-warning" style="width: 7%;" for="">0</label>
+                                    <label class="border my-0 py-2 px-2 text-bg-primary" style="width: 93%;" for=""><b>{{$romanNumeral}}- {{ $criteria->title }}</b></label>
+                                    <label class="border my-0 py-2 px-2 text-center text-bg-warning" style="width: 7%;" for=""><b class="criteriaCount{{$criteria->id}}">0</b></label>
                                 </div>
                                 <div class="nested-sortable">
                                     @php $loopIndex = 1; @endphp
@@ -77,26 +80,15 @@
                                         @if ($evaltionCriteria->cat_criteria == $criteria->id)
                                             <div class="d-flex 1">
                                                 <label class="border d-flex align-items-center justify-content-center px-2 py-2 my-0 text-center" style="width: 4%;">{{ $loopIndex }}</label>
-                                                <label class="border d-flex align-items-center px-2 py-2 my-0 text-wrap fs-3" style="width: 12.5%;">{{ $evaltionCriteria->title }}</label>
+                                                <label class="border d-flex align-items-center px-2 py-2 my-0 text-wrap fs-3" style="width: 14.9%;">{{ $evaltionCriteria->title }}</label>
                                                 @foreach ($evaltionCriteria->criteriaPoint as $criteriaPoint)
-                                                    <label class="border d-flex align-items-center justify-content-center px-2 py-2 my-0 text-wrap fs-3" style="width: 12.5%;">{{ $criteriaPoint->description }}</label>
+                                                    <label class="border d-flex align-items-center justify-content-center px-2 py-2 my-0 text-wrap fs-3" style="width: 14.9%;">{{ $criteriaPoint->description }}</label>
                                                 @endforeach
                                                 <input type="hidden" name="criteriaId[]" value="{{$evaltionCriteria->id}}">
                                                 <input type="hidden" name="catPosition[]" value="{{$criteria->id}}">
-                                                <style>
-                                                    input:focus-visible {
-                                                        border: 1px solid #333 !important;
-                                                        border-top: none !important;
-                                                        border-left: none !important;
-                                                        outline: 1px solid #333 !important;
-                                                        border-radius: 3px;
-                                                    }
-                                                </style>
                                                 <input type="text" class="border px-2 text-center weighting{{$criteria->id}}" 
-                                                    onchange="changeData({{$criteria->id}})" name="weighting[]" value="{{old('weighting') ?? $evaltionCriteria->pivot->weighting}}"
-                                                    style="width: 7%;">
-                                                <label class="px-2 text-center border my-0" style="width: 7%;"></label>
-                                                <label class="px-2 text-center border my-0" style="width: 7%;"></label>
+                                                 oninput="changeData({{$criteria->id}})"  name="weighting[]" value="{{old('weighting') ?? $evaltionCriteria->pivot->weighting}}"
+                                                    style="width: 7%;" oninput="changeData({{$criteria->id}})">
                                             </div>
                                             @php $loopIndex++; @endphp
                                         @endif
@@ -105,66 +97,22 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="d-flex">
-                        <label class="border border-bottom-0 my-0 px-2 py-2" style="width: 66.5%"></label>
-                        <label class="border my-0 px-2 py-2 text-center" style="width: 12.5%;">Điểm trung bình</label>
-                        <label class="border my-0 px-2 py-2 text-center" style="width: 7%;" id="dtb">0%</label>
-                        <label class="border my-0 px-2 py-2 text-center" style="width: 7%;">0</label>
-                        <label class="border my-0 px-2 py-2 text-center" style="width: 7%;">0</label>
-                    </div>
-                    <div class="d-flex">
-                        <label class="border border-top-0 border-bottom-0 my-0 px-2 py-2" style="width: 66.5%"></label>
-                        <label class="border my-0 px-2 py-2 text-center" style="width: 12.5%;">Xếp loại</label>
-                        <label class="border my-0 px-2 py-2 text-center" style="width: 7%;"></label>
-                        <label class="border my-0 px-2 py-2 text-center" style="width: 7%;"></label>
-                        <label class="border my-0 px-2 py-2 text-center" style="width: 7%;"></label>
-                    </div>
-                    <div class="d-flex">
-                        <label class="border border-top-0 my-0 px-2 py-2" style="width: 66.5%"></label>
-                        <label class="border my-0 px-2 py-2 text-center text-bg-danger" style="width: 19.5%;">Trung bình cộng</label>
-                        <label class="border my-0 px-2 py-2 text-center" style="width: 7%;"></label>
-                        <label class="border my-0 px-2 py-2 text-center" style="width: 7%;"></label>
-                    </div>
-                    <div class="d-flex">
-                        <label class="border my-0 py-2 px-2 text-center col-6 text-bg-warning">
-                            Nhân viên tự đánh giá
-                        </label>
-                        <label class="border my-0 py-2 px-2 text-center col-6 text-bg-warning">
-                            QL trực tiếp đánh giá
-                        </label>
-                    </div>
-                    <div>
-                        @php
-                            $index = count($catCriterias) ?? 0;
-                        @endphp
-                        @foreach (Config::get('constants.other') as $item)
-                           <div class="d-flex">
-                                @foreach ($item as $it)
-                                    @php
-                                        $romanNumeral = Config::get('constants.romanNumerals')[$index]; 
-                                    @endphp
-                                    <label class="border my-0 px-2 py-2 col-6 text-start text-bg-primary">
-                                        {{$romanNumeral}}- {{$it}}
-                                    </label>
-                                    @php
-                                        $index++;
-                                    @endphp
-                                @endforeach
-                           </div>
-                           <div class="d-flex">
-                                <div class="col-6 border my-0" style="height: 80px"></div>
-                                <div class="col-6 border my-0" style="height: 80px"></div>
-                           </div>
-                        @endforeach
-                    </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary rounded-pill mt-3 px-4 waves-effect waves-light">
-                <div class="d-flex align-items-center">
-                    <i class="ti ti-send me-2 fs-4"></i>
-                    Lưu lại
-                </div>
-            </button>
+            <div class="col-12 d-flex flex-wrap justify-content-start gap-2 mt-3">
+                <button class="btn btn-warning back-page">
+                    <div class="d-flex align-items-center">
+                        <i class="ti ti-arrow-left"></i>
+                        Quay lại
+                    </div>
+                </button>
+                <button type="submit" class="btn btn-primary px-4 waves-effect waves-light">
+                    <div class="d-flex align-items-center">
+                        <i class="ti ti-send me-2"></i>
+                        Lưu lại
+                    </div>
+                </button>
+            </div>
         </form>
     </div>
 @endsection
@@ -289,93 +237,82 @@
 
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Thiết lập Sortable cho toàn bộ danh sách
-            var groups = document.querySelectorAll('.sortable-list');
-
-            groups.forEach(function(group) {
-                new Sortable(group, {
-                    group: {
-                        name: 'shared',
-                        put: false
-                        
-                    },
-                });
-            });
-        });
-    </script> --}}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var nestedSortables = document.querySelectorAll('.nested-sortable');
-                for (var i = 0; i <  nestedSortables.length; i++) {
-                    new Sortable(nestedSortables[i], {
-                        // group: 'nested',
-                        animation: 150,
-                        fallbackOnBody: false,
-                        swapThreshold: 0.65
-                    });
-                }
+            for (var i = 0; i < nestedSortables.length; i++) {
+                new Sortable(nestedSortables[i], {
+                    animation: 150,
+                    fallbackOnBody: false,
+                    swapThreshold: 0.65,
+                    swap: true,
+                    swapClass: 'highlight'
+                });
+            }
         });
-    </script>
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          // Get the sortable list
-          const sortableList = document.getElementById('sortable-list');
-      
-          // Initialize SortableJS
-          const sortable = new Sortable(sortableList, {
-            onMove(evt, originalEvent) {
-              // Get the dragged item
-              const draggedItem = evt.dragged;
-      
-              // Get the target item
-              const targetItem = evt.related;
-      
-              // If either the dragged item or the target item has class 'no-sort', prevent moving
-              if (draggedItem.classList.contains('no-sort') || targetItem.classList.contains('no-sort')) {
-                return false;
-              }
-      
-              return true;
-            },
-          });
-        });
-      </script> --}}
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          // Get the sortable list
-          const sortableList = document.getElementById('sortable-list');
-      
-          // Initialize SortableJS
-          const sortable = new Sortable(sortableList, {
-            filter: '.no-sort', // Specify the class that should not be sortable
-            onStart(evt) {
-              // Prevent sorting if the item does not have the required class
-              if (!evt.from.classList.contains('sortable-list')) {
-                sortable.option("disabled", true);
-              }
-            },
-            onEnd(evt) {
-              // Enable sorting after the drag-and-drop operation
-              sortable.option("disabled", false);
-            },
-          });
-        });
-      </script> --}}
+    </script>    
     <script>
+        $(function(){
+            let data = @json($evaluationCriterias);
+            let arrayOfObjects = Object.values(data);
+            let catCriteria = [];
+            arrayOfObjects.forEach(function(elm){
+            let group = elm.cat_criteria.id;
+                if(! catCriteria.includes(group)){
+                    catCriteria.push(group);
+                }
+            });
+            catCriteria.forEach(function(group){
+                changeData(group);
+            });
+
+            //validation
+            $("#evalForm").submit(function (e) {
+                e.preventDefault();
+
+                var isValid = true;
+
+                $("[name='weighting[]']").each(function (index, element) {
+                    var value = $(element).val();
+
+                    if (value === "") {
+                        isValid = false;
+                        $('#notification').html(addFlashMessage('danger', `Cột tỉ trọng ${index + 1}: Không được trống!`));
+                        return false;
+                    }
+
+                    if (!$.isNumeric(value)) {
+                        isValid = false;
+                        $('#notification').html(addFlashMessage('danger', `Cột tỉ trọng ${index + 1}: Phải là số!`));
+                        return false;
+                    }
+                });
+                removeFlashMessage();
+                if (isValid) {
+                    $("#evalForm").unbind('submit').submit();
+                }
+            });
+            removeFlashMessage();
+        });
+
         function changeData(group){
-            event.preventDefault();
             let total = 0;
+            let totalWeighting = 0;
             $('input.weighting'+group).each(function() {
-                total += parseFloat($(this).val());
+                let value = $(this).val() !== '' ? $(this).val() : 0;
+                total += parseFloat(value);
             });
-            $('.criteriaCount'+group).text(isNaN(total) ? '0%' : total + '%');
-            let dtb = 0;
+            $('.criteriaCount'+group).text(total + '%');
             $('input[class*="weighting"]').each(function() {
-                dtb += parseFloat($(this).val());
+                let value = $(this).val() !== '' ? $(this).val() : 0;
+                totalWeighting += parseFloat(value);
             });
-            $('#dtb').text(isNaN(dtb) ? '0%' : dtb+ '%');
+            $("button[type='submit']").prop('disabled', false);
+            if(totalWeighting > 100) {
+                $("button[type='submit']").prop('disabled', true);
+                $('#notification').html(addFlashMessage('danger', 'Tỉ trọng tối đa 100%!'));
+            }
+            removeFlashMessage();
         }
     </script>
 @endsection

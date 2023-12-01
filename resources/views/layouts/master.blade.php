@@ -205,6 +205,26 @@ $user = \App\Models\User::find(auth()->user()->id);
             });
         }
     }
+
+    function addFlashMessage(level, message) {
+           return `<div class="alert alert-${level} alert-dismissible bg-${level} text-white border-0 fade show" role="alert">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>${message}</strong>
+            </div>`
+    }
+
+    function removeFlashMessage() {
+        if($('#notification').find("*").length > 0){
+            setTimeout(() => {
+                $('#notification').empty();
+            }, 5000);
+        }
+        if ($("#btn-cl-notice").length > 0) {
+            setTimeout(() => {
+                $("#btn-cl-notice").closest('div').remove();
+            }, 5000);
+        }
+    }
 </script>
 </body>
 </html>

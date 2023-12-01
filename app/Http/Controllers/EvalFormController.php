@@ -6,6 +6,7 @@ use App\Http\Traits\CommonTrait;
 use App\Models\EvalForm;
 use App\Services\EvalForm\EvalFormService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 class EvalFormController extends Controller
 {
@@ -32,7 +33,8 @@ class EvalFormController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = $this->getData($id);
+        return view('evalForm.view', $data);
     }
 
     /**
@@ -40,7 +42,31 @@ class EvalFormController extends Controller
      */
     public function edit(string $id)
     {
+        $data = $this->getData($id);
+        return view('evalForm.update', $data);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $evalFrom = $this->evalFormService->updateEvalForm($id, $request->all());
+        return redirect()->back()->with('notice', ['success', 'Cập nhật thành công!']);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+
+    public function getData ($id)
+    {
         $data['evalForm'] = $this->findOrFailAndReturn(EvalForm::class, $id);
+        $data['typeCriteria'] = Config::get('constants.type_criteria')[$data['evalForm']->evaluationCriteria[0]->pivot->type_criteria];
         $data['evaluationCriterias'] = $data['evalForm']->evaluationCriteria->sortBy('pivot.position');
         $data['catCriterias'] = [];
         $dataCatPosition = [];
@@ -57,23 +83,6 @@ class EvalFormController extends Controller
             $data['catCriterias'] = array_combine(array_values($dataCatPosition), $data['catCriterias']);
             ksort($data['catCriterias']);
         }
-        return view('evalForm.update', $data);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        $evalFrom = $this->evalFormService->updateEvalForm($id, $request->all());
-        return redirect()->route('evalForm.list');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return $data;
     }
 }
