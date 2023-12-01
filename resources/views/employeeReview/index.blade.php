@@ -67,13 +67,13 @@
                         <th colspan="2" class="text-center">
                             <h6 class="fw-semibold mb-0">Performance</h6>
                         </th>
-                        <th rowspan="2">
+                        <th rowspan="2" class="text-center">
                             <h6 class="fw-semibold mb-0">Trạng thái</h6>
                         </th>
-                        <th rowspan="2">
+                        <th rowspan="2" class="text-center">
                             <h6 class="fw-semibold mb-0">Lịch đánh giá</h6>
                         </th>
-                        <th rowspan="2">
+                        <th rowspan="2" class="text-center">
                             <h6 class="fw-semibold mb-0">Ngày đánh giá</h6>
                         </th>
                         <th class="th-action" rowspan="2">
