@@ -26319,3 +26319,6 @@ span#select2-tb-status-container {
 body .select2-container--default .select2-selection--multiple{border-radius: 7px !important;}
 .table thead tr th, .table tbody tr td {vertical-align: middle;font-size: 14px!important;}
 .info-user span{margin-right: 30px}
+.input_score{border:0;width:50px;text-align: center}
+.check-lists{margin-top: 30px}
+.check-lists li {padding: 10px 0}

@@ -17,7 +17,7 @@
 
             <ul class="navbar-nav quick-links d-none d-lg-flex">
                 <li class="nav-item dropdown-hover d-none d-lg-block">
-                    <a class="nav-link" href="../main/app-calendar.html">Calendar</a>
+                    <a class="nav-link" href="{{route('calendar')}}">Lịch đánh giá</a>
                 </li>
             </ul>
 
@@ -71,8 +71,8 @@
                                 aria-labelledby="drop2"
                             >
                                 <div class="d-flex align-items-center justify-content-between py-3 px-7">
-                                    <h5 class="mb-0 fs-5 fw-semibold">Notifications</h5>
-                                    <span class="badge text-bg-primary rounded-4 px-3 py-1 lh-sm">5 new</span>
+                                    <h5 class="mb-0 fs-5 fw-semibold">Thông báo</h5>
+                                    <span class="badge text-bg-primary rounded-4 px-3 py-1 lh-sm">5 thông báo mới</span>
                                 </div>
                                 <div class="message-body" data-simplebar>
                                     <a
@@ -89,9 +89,9 @@
       />
     </span>
                                         <div class="w-75 d-inline-block v-middle">
-                                            <h6 class="mb-1 fw-semibold lh-base">Roman Joined the Team!</h6>
+                                            <h6 class="mb-1 fw-semibold lh-base">Nguyễn Văn Hiếu vừa tạo kỳ đánh giá</h6>
                                             <span
-                                                class="fs-2 d-block text-body-secondary">Congratulate him</span>
+                                                class="fs-2 d-block text-body-secondary">Theo dõi ngay</span>
                                         </div>
                                     </a>
                                     <a
@@ -108,8 +108,8 @@
       />
     </span>
                                         <div class="w-75 d-inline-block v-middle">
-                                            <h6 class="mb-1 fw-semibold lh-base">New message</h6>
-                                            <span class="fs-2 d-block text-body-secondary">Salma sent you new message</span>
+                                            <h6 class="mb-1 fw-semibold lh-base">Admin: Bạn có bản đánh giá mới</h6>
+                                            <span class="fs-2 d-block text-body-secondary">Vui lòng đánh giá đúng hạn</span>
                                         </div>
                                     </a>
                                     <a
@@ -117,18 +117,18 @@
                                         class="py-6 px-7 d-flex align-items-center dropdown-item"
                                     >
     <span class="me-3">
-      <img
-          src="/assets/images/profile/user-3.jpg"
-          alt="user"
-          class="rounded-circle"
-          width="48"
-          height="48"
-      />
+     <img
+         src="/assets/images/profile/user-1.jpg"
+         alt="user"
+         class="rounded-circle"
+         width="48"
+         height="48"
+     />
     </span>
                                         <div class="w-75 d-inline-block v-middle">
-                                            <h6 class="mb-1 fw-semibold lh-base">Bianca sent payment</h6>
+                                            <h6 class="mb-1 fw-semibold lh-base">Võ Hồng Nghiệp hoàn thành đánh giá</h6>
                                             <span
-                                                class="fs-2 d-block text-body-secondary">Check your earnings</span>
+                                                class="fs-2 d-block text-body-secondary">Vui lòng kiểm tra</span>
                                         </div>
                                     </a>
                                     <a
@@ -137,7 +137,7 @@
                                     >
     <span class="me-3">
       <img
-          src="/assets/images/profile/user-4.jpg"
+          src="/assets/images/profile/user-1.jpg"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -145,9 +145,9 @@
       />
     </span>
                                         <div class="w-75 d-inline-block v-middle">
-                                            <h6 class="mb-1 fw-semibold lh-base">Jolly completed tasks</h6>
+                                            <h6 class="mb-1 fw-semibold lh-base">Kỳ đánh giá tháng 12 sắp hết hạn</h6>
                                             <span
-                                                class="fs-2 d-block text-body-secondary">Assign her new tasks</span>
+                                                class="fs-2 d-block text-body-secondary">Vui lòng hoàn thành đánh giá</span>
                                         </div>
                                     </a>
                                     <a
@@ -156,7 +156,7 @@
                                     >
     <span class="me-3">
       <img
-          src="/assets/images/profile/user-5.jpg"
+          src="/assets/images/profile/user-1.jpg"
           alt="user"
           class="rounded-circle"
           width="48"
@@ -164,8 +164,8 @@
       />
     </span>
                                         <div class="w-75 d-inline-block v-middle">
-                                            <h6 class="mb-1 fw-semibold lh-base">John received payment</h6>
-                                            <span class="fs-2 d-block text-body-secondary">$230 deducted from account</span>
+                                            <h6 class="mb-1 fw-semibold lh-base">Còn 3 nhân viên bạn chưa đánh giá</h6>
+                                            <span class="fs-2 d-block text-body-secondary">Vui lòng hoàn thành đánh giá</span>
                                         </div>
                                     </a>
                                     <a
@@ -238,90 +238,14 @@
                                             alt=""
                                         />
                                         <div class="ms-3">
-                                            <h5 class="mb-1 fs-3">Mathew Anderson</h5>
-                                            <span class="mb-1 d-block">Designer</span>
+                                            <h5 class="mb-1 fs-3">{{$user->name}}</h5>
+                                            <span class="mb-1 d-block">{{$user->getJobTitle->title}}</span>
                                             <p class="mb-0 d-flex align-items-center gap-2">
-                                                <i class="ti ti-mail fs-4"></i> info@modernize.com
+                                                <i class="ti ti-mail fs-4"></i> {{$user->email}}
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="message-body">
-                                        <a
-                                            href="../main/page-user-profile.html"
-                                            class="py-8 px-7 mt-8 d-flex align-items-center"
-                                        >
-      <span
-          class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6"
-      >
-        <img
-            src="/assets/images/svgs/icon-account.svg"
-            alt=""
-            width="24"
-            height="24"
-        />
-      </span>
-                                            <div class="w-75 d-inline-block v-middle ps-3">
-                                                <h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>
-                                                <span
-                                                    class="fs-2 d-block text-body-secondary">Account Settings</span>
-                                            </div>
-                                        </a>
-                                        <a href="../main/app-email.html"
-                                           class="py-8 px-7 d-flex align-items-center">
-      <span
-          class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6"
-      >
-        <img
-            src="/assets/images/svgs/icon-inbox.svg"
-            alt=""
-            width="24"
-            height="24"
-        />
-      </span>
-                                            <div class="w-75 d-inline-block v-middle ps-3">
-                                                <h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>
-                                                <span
-                                                    class="fs-2 d-block text-body-secondary">Messages & Emails</span>
-                                            </div>
-                                        </a>
-                                        <a href="../main/app-notes.html"
-                                           class="py-8 px-7 d-flex align-items-center">
-      <span
-          class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6"
-      >
-        <img
-            src="/assets/images/svgs/icon-tasks.svg"
-            alt=""
-            width="24"
-            height="24"
-        />
-      </span>
-                                            <div class="w-75 d-inline-block v-middle ps-3">
-                                                <h6 class="mb-1 fs-3 fw-semibold lh-base">My Task</h6>
-                                                <span class="fs-2 d-block text-body-secondary">To-do and Daily Tasks</span>
-                                            </div>
-                                        </a>
-                                    </div>
                                     <div class="d-grid py-4 px-7 pt-8">
-                                        <div
-                                            class="upgrade-plan bg-primary-subtle position-relative overflow-hidden rounded-4 p-4 mb-9"
-                                        >
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <h5 class="fs-4 mb-3 w-50 fw-semibold">Unlimited Access</h5>
-                                                    <button class="btn btn-primary">Upgrade</button>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="m-n4 unlimited-img">
-                                                        <img
-                                                            src="/assets/images/backgrounds/unlimited-bg.png"
-                                                            alt=""
-                                                            class="w-100"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <a href="{{ route('logout') }}"
                                            class="btn btn-outline-primary"
                                            onclick="event.preventDefault();
@@ -607,7 +531,7 @@
             <span>
               <i class="ti ti-calendar"></i>
             </span>
-                                <span class="hide-menu">Calendar</span>
+                                <span class="hide-menu">Lịch đánh giá</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -1110,7 +1034,7 @@
                                 aria-labelledby="drop2"
                             >
                                 <div class="d-flex align-items-center justify-content-between py-3 px-7">
-                                    <h5 class="mb-0 fs-5 fw-semibold">Notifications</h5>
+                                    <h5 class="mb-0 fs-5 fw-semibold">Thông báo</h5>
                                     <span class="badge text-bg-primary rounded-4 px-3 py-1 lh-sm">5 new</span>
                                 </div>
                                 <div class="message-body" data-simplebar>
@@ -1118,15 +1042,6 @@
                                         href="javascript:void(0)"
                                         class="py-6 px-7 d-flex align-items-center dropdown-item"
                                     >
-    <span class="me-3">
-      <img
-          src="{{ asset('assets/images/profile/user-1.jpg') }}"
-          alt="user"
-          class="rounded-circle"
-          width="48"
-          height="48"
-      />
-    </span>
                                         <div class="w-75 d-inline-block v-middle">
                                             <h6 class="mb-1 fw-semibold lh-base">Roman Joined the Team!</h6>
                                             <span
@@ -1284,87 +1199,10 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="message-body">
-                                        <a
-                                            href="../main/page-user-profile.html"
-                                            class="py-8 px-7 mt-8 d-flex align-items-center"
-                                        >
-      <span
-          class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6"
-      >
-        <img
-            src="{{ asset('assets/images/svgs/icon-account.svg') }}"
-            alt=""
-            width="24"
-            height="24"
-        />
-      </span>
-                                            <div class="w-75 d-inline-block v-middle ps-3">
-                                                <h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>
-                                                <span
-                                                    class="fs-2 d-block text-body-secondary">Account Settings</span>
-                                            </div>
-                                        </a>
-                                        <a href="../main/app-email.html"
-                                           class="py-8 px-7 d-flex align-items-center">
-      <span
-          class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6"
-      >
-        <img
-            src="{{ asset('assets/images/svgs/icon-inbox.svg') }}"
-            alt=""
-            width="24"
-            height="24"
-        />
-      </span>
-                                            <div class="w-75 d-inline-block v-middle ps-3">
-                                                <h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>
-                                                <span
-                                                    class="fs-2 d-block text-body-secondary">Messages & Emails</span>
-                                            </div>
-                                        </a>
-                                        <a href="../main/app-notes.html"
-                                           class="py-8 px-7 d-flex align-items-center">
-      <span
-          class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6"
-      >
-        <img
-            src="{{ asset('assets/images/svgs/icon-tasks.svg') }}"
-            alt=""
-            width="24"
-            height="24"
-        />
-      </span>
-                                            <div class="w-75 d-inline-block v-middle ps-3">
-                                                <h6 class="mb-1 fs-3 fw-semibold lh-base">My Task</h6>
-                                                <span class="fs-2 d-block text-body-secondary">To-do and Daily Tasks</span>
-                                            </div>
-                                        </a>
-                                    </div>
                                     <div class="d-grid py-4 px-7 pt-8">
-                                        <div
-                                            class="upgrade-plan bg-primary-subtle position-relative overflow-hidden rounded-4 p-4 mb-9"
-                                        >
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <h5 class="fs-4 mb-3 w-50 fw-semibold">Unlimited Access</h5>
-                                                    <button class="btn btn-primary">Upgrade</button>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="m-n4 unlimited-img">
-                                                        <img
-                                                            src="{{ asset('assets/images/backgrounds/unlimited-bg.png') }}"
-                                                            alt=""
-                                                            class="w-100"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <a href="../main/authentication-login.html"
                                            class="btn btn-outline-primary"
-                                        >Log Out</a
-                                        >
+                                        >Log Out</a>
                                     </div>
                                 </div>
 

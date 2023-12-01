@@ -15,35 +15,37 @@
                 <p class="mb-0 fw-normal fs-2">{{$emp->user->email}}</p>
             </td>
             <td>
-                <p class="mb-0 fw-normal fs-4">{{ $emp->user->getDepartment ? $emp->user->getDepartment->title : '' }}</p>
+                <p class="mb-0 fw-normal">{{ $emp->user->getDepartment ? $emp->user->getDepartment->title : '' }}</p>
             </td>
             <td>
-                <p class="mb-0 fw-normal fs-4">{{ $emp->user->getJobTitle ? $emp->user->getJobTitle->title : '' }}</p>
-                <p class="mb-0 fw-normal fs-4">{{$emp->user->level_id != '' ? config('constants.level')[$emp->user->level_id] : ''}}</p>
+                <p class="mb-0 fw-normal">{{ $emp->user->getJobTitle ? $emp->user->getJobTitle->title : '' }}</p>
+                <p class="mb-0 fw-normal">{{$emp->user->level_id != '' ? config('constants.level')[$emp->user->level_id] : ''}}</p>
             </td>
             <td class="td-action">
-                sdsdsd
+                {{$emp->total_point_job_rank}}
             </td>
             <td class="td-action">
-                sdsdsds
+                {{$emp->rank_job_rank}}
             </td>
             <td class="td-action">
-                sdsdsdsd
-            </td>
-            <td class="td-action">
-                sdsdsdsd
-            </td>
-            <td class="td-action">
-                sdsdsdsd
-            </td>
-            <td class="td-action">
-                sdsdsdsd
-            </td>
-            <td class="td-action">
-                sdsdsdsd
+                {{$emp->total_point_performance}}
             </td>
             <td>
-                <a href="{{url('employee-reviews/review/id='.$emp->user->id.'&asId='.$asID)}}" target="_blank" class="btn mb-1 waves-effect waves-light btn-primary">Đánh giá</a>
+                {{$emp->rank_performance}}
+            </td>
+            <td>
+                <span class="mb-1 badge rounded-pill {{config('constants.badge-status')[$emp->status]}} fw-semibold fs-2">{{config('constants.status_assess')[$emp->status]}}</span>
+            </td>
+            <td>
+                {{$emp->calendar_assess}}
+            </td>
+            <td>
+                {{$emp->assessment_completion_date}}
+            </td>
+            <td class="td-action">
+                <a href="#"><i class="ti ti-eye btn-update"></i></a>
+                <a href="#"><i class="ti ti-calendar btn-update"></i></a>
+                <a href="{{url('employee-reviews/review/id='.$emp->user->id.'&asId='.$asID)}}"><i class="ti ti-chart-bar btn-update"></i></a>
             </td>
         </tr>
     @endforeach
