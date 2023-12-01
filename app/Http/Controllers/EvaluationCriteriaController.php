@@ -45,7 +45,7 @@ class EvaluationCriteriaController extends Controller
     public function store(EvalCriteriaRequest $request)
     {
         $evalCri = $this->evaluationCriteriaService->createEvalCriteria($request->all());
-        return redirect()->route("evaluationCriteria.show", $evalCri->id)->with('success', 'Create success!');
+        return redirect()->route("evaluationCriteria.list")->with('success', 'Create success!');
     }
 
     /**
