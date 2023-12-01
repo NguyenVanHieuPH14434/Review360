@@ -28,7 +28,7 @@
                        <option value="">Chọn kỳ đánh giá</option>
                         @if(!empty($listAssessmentPeriod))
                             @foreach($listAssessmentPeriod as $key => $item)
-                                <option value="{{$key}}">{{$item}}</option>
+                                <option value="{{$key}}" @if($key == $asID) selected @endif>{{$item}}</option>
                             @endforeach
                         @endif
                     </select>
@@ -43,7 +43,7 @@
         <div class="card-body p-4">
             @csrf
             <div class="table-responsive rounded-2">
-                <table class="table table-striped text-nowrap customize-table mb-0 align-middle table-empReview">
+                <table class="table table-striped table-bordered text-nowrap customize-table mb-0 align-middle table-empReview">
                     <thead class="text-dark fs-4">
                     <tr>
                         <th rowspan="2">
@@ -96,9 +96,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td colspan="13">Không dữ liệu</td>
-                        </tr>
+                        @if(count($listEmpReview) > 0)
+                            @include('employeeReview.list_emp_review')
+                        @else
+                            <tr>
+                                <td colspan="13">Không dữ liệu</td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>

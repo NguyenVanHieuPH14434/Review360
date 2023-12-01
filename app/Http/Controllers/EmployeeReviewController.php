@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssessmentPeriod;
 use App\Services\AssessmentPeriod\AssessmentPeriodService;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,9 @@ class EmployeeReviewController extends Controller
     }
     public function index() {
         $data['listAssessmentPeriod'] = $this->assessmentPeriodService->listAp();
+        $assessmentPeriodActive = AssessmentPeriod::query()->where('status',1)->latest()->first();
+        $data['listEmpReview'] = $this->assessmentPeriodService->listEmpReview($assessmentPeriodActive->id);
+        $data['asID'] = $assessmentPeriodActive->id;
         return view("employeeReview.index",$data);
     }
 
