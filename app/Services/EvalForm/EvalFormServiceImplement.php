@@ -98,5 +98,23 @@ class EvalFormServiceImplement extends Service implements EvalFormService{
     public function updateEvalForm($id, $data)
     {
         // TODO: Implement listEvalForm() method.
+        $evalForm = $this->mainRepository->findOrFail($id);
+        $dataUpdate = [];
+        $catPosition = [];
+        foreach ($data['catPosition'] as $keyA => $valueA) {
+            $keyB = array_search($valueA, $data['catCriteria']);
+            
+            if ($keyB !== false) {
+                $catPosition[$keyA] = $keyB + 1;
+            }
+        }
+        foreach ($data['criteriaId'] as $key => $value) {
+            $dataUpdate[$data['criteriaId'][$key]] = [
+                'weighting' => $data['weighting'][$key],
+                'position' => $key,
+                'cat_position' => $catPosition[$key]
+            ];
+        }
+        $evalForm->evaluationCriteria()->sync($dataUpdate);
     }
 }

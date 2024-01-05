@@ -32,4 +32,8 @@ class EvalForm extends Model
         return $this->belongsTo(Department::class);
     }
 
+    public function evaluationCriteria()
+    {
+        return $this->belongsToMany(EvaluationCriteria::class, 'eval_form_criteria', 'eval_form_id', 'criteria_id')->withPivot('id', 'weighting', 'position', 'cat_position', 'type_criteria');
+    }
 }

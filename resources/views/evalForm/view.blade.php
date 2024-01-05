@@ -1,109 +1,151 @@
 @extends('layouts.master')
 @section('breadcrumb')
-    <x-breadcrumb titlePage="Tạo tiêu chí đánh giá" action="Tạo mới"/>
+    <x-breadcrumb titlePage="Mẫu đánh giá" action="Chi tiết"/>
 @endsection
+
 @section('content')
+    <x-notification />
     <div class="card">
-        <x-card-title title="Tạo mới" />
-        <form class="card-body" action="{{ route('evaluationCriteria.store') }}" method="POST">
-            @csrf
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <label for="title" class="form-label">Tiêu chí<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" name="title" id="title">
-                    @error('title')
-                        <span class="text-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="cat_criteria" class="form-label">Loại tiêu chí<span class="text-danger">*</span></label>
-                    <select class="form-select hasSelect2 customSelect @error('status') is-invalid @enderror" name="cat_criteria" id="cat_criteria">
-                            <option value="">Chọn loại tiêu chí</option>
-                            @foreach($listCategoryCriteria as $categoryCriteria)
-                                <option value="{{$categoryCriteria->id}}">{{$categoryCriteria->title}}</option>
-                            @endforeach
-                    </select>
-                    @error('status')
-                        <span class="text-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="status" class="form-label">Trạng thái</label>
-                    <select class="form-select @error('status') is-invalid @enderror" name="status" id="status">
-                        <option value="">Chọn trạng thái</option>
-                        <option value="1">Hoạt động</option>
-                        <option value="2">Không hoạt động</option>
-                    </select>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="criterion_level" class="form-label">Cấp độ mục tiêu</label>
-                    <select class="form-select @error('status') is-invalid @enderror" name="criterion_level" id="criterion_level">
-                        @foreach(config('constants.criterion_level') as $key => $criterion_level)
-                            <option value="{{$key}}">{{$criterion_level}}</option>
-                         @endforeach
-                    </select>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="job_title" class="form-label">Chức danh<span class="text-danger">*</span></label>
-                    <select class="form-select hasSelect2 customSelect @error('status') is-invalid @enderror" name="job_title" multiple id="job_title" aria-placeholder="Chọn chức danh">
-                        @foreach($listJobTitle as $jobTitle)
-                        <option value="{{$jobTitle->id}}">{{$jobTitle->title}}</option>
+        <x-card-title title="Chi tiết">
+            <x-slot:update>
+                <a href="{{ route('evalForm.edit', $evalForm->id) }}"
+                    class="btn mb-1 waves-effect waves-light btn-secondary">
+                    <i class="ti ti-edit fs-5"></i>
+                    Cập nhật
+                </a>
+            </x-slot:update> 
+        </x-card-title>
+        <form id="evalForm" class="card-body">
+            <div class="table-responsive-xl">
+                <div style="width: 100%; min-width: 960px;">
+                    <div class="bg-primary text-center py-2">
+                        <h3 class="text-white fw-bolder">Đánh giá {{ $typeCriteria }}</h3>
+                    </div>
+                    <div class="d-flex">
+                        <div class="border d-flex align-items-center text-center px-2 py-2" style="width: 4%;"><b>STT</b></div>
+                        <div class="border d-flex align-items-center justify-content-center text-center px-2 py-2" style="width: 12.5%;"><b>Tiêu chí đánh giá</b></div>
+                        @foreach ([1=>1, 2=>2, 3=>3, 4=>4, 5=>5] as $item)
+                            <div class="border fs-3 d-flex align-items-center justify-content-center px-2 py-2" style="width: 12.5%;"><b>{{ $item }}</b></div>
                         @endforeach
-                    </select>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label for="department" class="form-label">Phòng ban</label>
-                    <select class="form-select hasSelect2 customSelect @error('status') is-invalid @enderror" name="department" id="department">
-                        <option value="">Chọn phòng ban</option>
-                        @foreach($listDepartments as $department)
-                        <option value="{{$department->id}}">{{$department->title}}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label for="department" class="form-label">Nhân viên</label>
-                    <select class="form-select hasSelect2 customSelect @error('status') is-invalid @enderror" name="department" id="department">
-                        <option value="">Chọn nhân viên</option>
-                        @foreach($listDepartments as $department)
-                        <option value="{{$department->id}}">{{$department->title}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                
-                <div class="col-md-12 mb-3">
-                    <label for="description" class="form-label">Mô tả tiêu chí<span class="text-danger">*</span></label>
-                    <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
-                </div>
-
-                <div class="col-md-12 mb-3">
-                    <label for="criterion_level" class="form-label">Mô tả thang điểm đánh giá<span class="text-danger">*</span></label>
-                        @foreach($listAssessmentSetup as $assessmentSetup)
-                        <div class="col-md-12 mb-3">
-                            <label>Level {{$assessmentSetup->number_level}}</label>
-                            <div class="row">
-                                <div class="col-md-9">
-                                  <div class="mb-1">
-                                    <input type="text" class="form-control" placeholder="Mô tả ..." name="levelDescription[{{$assessmentSetup->number_level}}]">
-                                  </div>
+                        <div class="border text-wrap d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3" style="width: 7%;"><b>Tỉ trọng</b></div>
+                        <div class="border text-wrap d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3" style="width: 7%;"><b>NV tự đánh giá</b></div>
+                        <div class="border text-wrap d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3" style="width: 7%;"><b>QL trực tiếp đánh giá</b></div>
+                    </div>
+                    <div class="row nested-sortable">
+                        @foreach ($catCriterias as $index => $criteria) 
+                            @php
+                                $romanNumeral = Config::get('constants.romanNumerals')[$index - 1]; 
+                            @endphp
+                            <div>
+                                <div class="d-flex">
+                                    <label class="border my-0 py-2 px-2 text-bg-primary" style="width: 79%;" for=""><b>{{$romanNumeral}}- {{ $criteria->title }}</b></label>
+                                    <label class="border my-0 py-2 px-2 text-center text-bg-warning" style="width: 7%;" for=""><b class="criteriaCount{{$criteria->id}}">0</b></label>
+                                    <label class="border my-0 py-2 px-2 text-center text-bg-warning" style="width: 7%;" for=""><b>0</b></label>
+                                    <label class="border my-0 py-2 px-2 text-center text-bg-warning" style="width: 7%;" for=""><b>0</b></label>
+                                </div>
+                                <div class="nested-sortable">
+                                    @php $loopIndex = 1; @endphp
+                                    @foreach ($evaluationCriterias as $evaltionCriteria)
+                                        @if ($evaltionCriteria->cat_criteria == $criteria->id)
+                                            <div class="d-flex 1">
+                                                <label class="border d-flex align-items-center justify-content-center px-2 py-2 my-0 text-center" style="width: 4%;">{{ $loopIndex }}</label>
+                                                <label class="border d-flex align-items-center px-2 py-2 my-0 text-wrap fs-3" style="width: 12.5%;">{{ $evaltionCriteria->title }}</label>
+                                                @foreach ($evaltionCriteria->criteriaPoint as $criteriaPoint)
+                                                    <label class="border d-flex align-items-center justify-content-center px-2 py-2 my-0 text-wrap fs-3" style="width: 12.5%;">{{ $criteriaPoint->description }}</label>
+                                                @endforeach
+                                                <input type="text" class="border px-2 text-center weighting{{$criteria->id}} bg-white" 
+                                                 readonly disabled name="weighting[]" value="{{$evaltionCriteria->pivot->weighting}}"
+                                                    style="width: 7%;">
+                                                <label class="border d-flex align-items-center justify-content-center px-2 py-2 my-0 text-wrap fs-3" style="width: 7%;">0</label>
+                                                <label class="border d-flex align-items-center justify-content-center px-2 py-2 my-0 text-wrap fs-3" style="width: 7%;">0</label>
+                                            </div>
+                                            @php $loopIndex++; @endphp
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
-                        </div>
                         @endforeach
-                    </select>
+                    </div>
+                    <div class="d-flex">
+                        <label class="border my-0 border-bottom-0" style="width: 67.7%"></label>
+                        <label for="" class="d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3 border my-0" style="width: 13%;">Điểm trung bình</label>
+                        <label for="" class="d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3 border my-0" style="width: 7%;">0</label>
+                        <label for="" class="d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3 border my-0" style="width: 7%;">0</label>
+                        <label for="" class="d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3 border my-0" style="width: 7%;">0</label>
+                    </div>
+                    <div class="d-flex">
+                        <label class="border border-top-0 border-bottom-0 my-0" style="width: 67.7%"></label>
+                        <label for="" class="d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3 border my-0" style="width: 13%;">Xếp loại</label>
+                        <label for="" class="d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3 border my-0" style="width: 7%;">0</label>
+                        <label for="" class="d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3 border my-0" style="width: 7%;">0</label>
+                        <label for="" class="d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3 border my-0" style="width: 7%;">0</label>
+                    </div>
+                    <div class="d-flex">
+                        <label class="border border-top-0 my-0" style="width: 67.7%"></label>
+                        <label for="" class="d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3 border my-0 text-bg-danger" style="width: 20%;">Trung bình cộng</label>
+                        <label for="" class="d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3 border my-0" style="width: 7%;">0</label>
+                        <label for="" class="d-flex align-items-center justify-content-center text-center px-2 py-2 fs-3 border my-0" style="width: 7%;">0</label>
+                    </div>
+                    <div class="d-flex">
+                        <label for="" class="col-6 border my-0 text-bg-warning text-center px-2 py-2 fs-3"><b>Nhân viên tự đánh giá</b></label>
+                        <label for="" class="col-6 border my-0 text-bg-warning text-center px-2 py-2 fs-3"><b>QL trực tiếp đánh giá</b></label>
+                    </div>
+                    @php
+                        $index = count($catCriterias) ?? 0;
+                    @endphp
+                    @foreach (Config::get('constants.other') as $item)
+                        <div class="d-flex">
+                            @foreach ($item as $it)
+                                @php
+                                    $romanNumeral = Config::get('constants.romanNumerals')[$index]; 
+                                @endphp
+                                    <label for="" class="col-6 border my-0 text-bg-primary px-2 py-2 fs-3">{{$romanNumeral}}- {{$it}}</label>
+                                @php
+                                    $index++;
+                                @endphp
+                            @endforeach
+                        </div>
+                       <div class="d-flex">
+                            <div class="border col-6 my-0" style="height: 80px"></div>
+                            <div class="border col-6 my-0" style="height: 80px"></div>
+                       </div>
+                    @endforeach
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary rounded-pill px-4 waves-effect waves-light">
+            <button class="btn btn-warning back-page fs-3 mt-3">
                 <div class="d-flex align-items-center">
-                    <i class="ti ti-send me-2 fs-4"></i>
-                    Lưu lại
+                    <i class="ti ti-arrow-left"></i>
+                    Quay lại
                 </div>
             </button>
         </form>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(function(){
+            let data = @json($evaluationCriterias);
+            let arrayOfObjects = Object.values(data);
+            let catCriteria = [];
+            arrayOfObjects.forEach(function(elm){
+            let group = elm.cat_criteria.id;
+                if(! catCriteria.includes(group)){
+                    catCriteria.push(group);
+                }
+            });
+            catCriteria.forEach(function(group){
+                changeData(group);
+            });
+        });
+
+        function changeData(group){
+            let total = 0;
+            $('input.weighting'+group).each(function() {
+                let value = $(this).val() !== '' ? $(this).val() : 0;
+                total += parseFloat(value);
+            });
+            $('.criteriaCount'+group).text(total + '%');
+        }
+    </script>
 @endsection

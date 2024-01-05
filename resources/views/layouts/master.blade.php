@@ -37,6 +37,7 @@
             display: none;
         }
     </style>
+    @yield('styles')
 </head>
 <?php
 $user = \App\Models\User::find(auth()->user()->id);
@@ -122,6 +123,7 @@ $user = \App\Models\User::find(auth()->user()->id);
         })
         $(".reset-form-search").on('click', function() {
             $(this).closest('form')[0].reset();
+            $(this).closest('form').find(':input').val('');
             $(this).closest('form').find('input.datepicker').val('');
             $(this).closest('form').find('select:not(.hasSelect2)').prop('selectedIndex', 0);
             $(".hasSelect2").val(null).trigger("change");
@@ -201,6 +203,26 @@ $user = \App\Models\User::find(auth()->user()->id);
                 error: function(jqXHR, textStatus, errorThrown) {
                 }
             });
+        }
+    }
+
+    function addFlashMessage(level, message) {
+           return `<div class="alert alert-${level} alert-dismissible bg-${level} text-white border-0 fade show" role="alert">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>${message}</strong>
+            </div>`
+    }
+
+    function removeFlashMessage() {
+        if($('#notification').find("*").length > 0){
+            setTimeout(() => {
+                $('#notification').empty();
+            }, 5000);
+        }
+        if ($("#btn-cl-notice").length > 0) {
+            setTimeout(() => {
+                $("#btn-cl-notice").closest('div').remove();
+            }, 5000);
         }
     }
 </script>

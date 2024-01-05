@@ -43,4 +43,24 @@ return [
     '2' => 'JobRank' ,
     '3' => 'Performance & JobRank',
   ],
+
+  'other' => [
+    1 => [
+      1 => 'Đánh giá việc thực hiện mục tiêu đã đề ra kỳ trước',
+      2 => 'Điểm mạnh',
+    ],
+    2 => [
+      1 => 'Mục tiêu ngắn hạn ( trong 6 tháng tới)',
+      2 => 'Điểm cần cải thiện',
+    ],
+    3 => [
+      1 => 'Ý kiến góp ý (cho Bộ phận và Công ty)',
+      2 => 'Định hướng/ khẳng năng phát triển trong ngắn/ dài hạn',
+    ],
+  ],
+
+  'romanNumerals' => [
+    "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
+    "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"
+  ]
 ];

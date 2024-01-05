@@ -29,4 +29,14 @@ class EvaluationCriteria extends Model
     {
         return $this->belongsTo(CategoryCriteria::class,'cat_criteria', 'id');
     }
+    
+    public function catCriteria()
+    {
+        return $this->belongsTo(CategoryCriteria::class, 'cat_criteria', 'id');
+    }
+
+    public function criteriaPoint()
+    {
+        return $this->hasMany(EvaluationCriteriaPoint::class, 'criteria_id', 'id');
+    }
 }
